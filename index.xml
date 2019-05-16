@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title></title>
+    <title>Justin Dong</title>
     <link>/</link>
-    <description>Recent content on </description>
+    <description>Recent content on Justin Dong</description>
     <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
     <language>en-us</language>
     <lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
@@ -324,26 +324,33 @@ $$&lt;/p&gt;
       <guid>/post/getting-started/</guid>
       <description>
 
-&lt;p&gt;&lt;strong&gt;Create a free website with Academic using Markdown, Jupyter, or RStudio. Choose a beautiful color theme and build anything with the Page Builder - over 40 &lt;em&gt;widgets&lt;/em&gt;, &lt;em&gt;themes&lt;/em&gt;, and &lt;em&gt;language packs&lt;/em&gt; included!&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;1-conservation-laws&#34;&gt;&lt;strong&gt;1. Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://academic-demo.netlify.com/&#34; target=&#34;_blank&#34;&gt;Check out the latest &lt;strong&gt;demo&lt;/strong&gt;&lt;/a&gt; of what you&amp;rsquo;ll get in less than 10 minutes, or &lt;a href=&#34;https://sourcethemes.com/academic/#expo&#34; target=&#34;_blank&#34;&gt;view the &lt;strong&gt;showcase&lt;/strong&gt;&lt;/a&gt; of personal, project, and business sites.&lt;/p&gt;
+&lt;p&gt;In this post, we&amp;rsquo;ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form
+$$
+\begin{cases}
+  u_{t} + f(u)_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
+  u(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+\end{cases}
+$$&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;#install&#34;&gt;&lt;strong&gt;Setup Academic&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/get-started/&#34; target=&#34;_blank&#34;&gt;&lt;strong&gt;Get Started&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;View the documentation&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;http://discuss.gohugo.io/&#34; target=&#34;_blank&#34;&gt;Ask a question&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/issues&#34; target=&#34;_blank&#34;&gt;Request a feature or report a bug&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Updating? View the &lt;a href=&#34;https://sourcethemes.com/academic/docs/update/&#34; target=&#34;_blank&#34;&gt;Update Guide&lt;/a&gt; and &lt;a href=&#34;https://sourcethemes.com/academic/updates/&#34; target=&#34;_blank&#34;&gt;Release Notes&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;Support development of Academic:
+&lt;p&gt;Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &amp;ndash; typically called the &lt;em&gt;flux function&lt;/em&gt; &amp;ndash; is sufficiently smooth. To gain some intuition for how solutions of this PDE might behave, we&amp;rsquo;ll first consider the simplest conservation law there is: the linear advection equation.&lt;/p&gt;
 
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&#34;https://paypal.me/cushen&#34; target=&#34;_blank&#34;&gt;Donate a coffee&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.patreon.com/cushen&#34; target=&#34;_blank&#34;&gt;Become a backer on Patreon&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://www.redbubble.com/people/neutreno/works/34387919-academic&#34; target=&#34;_blank&#34;&gt;Decorate your laptop or journal with an Academic sticker&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&#34;https://academic.threadless.com/&#34; target=&#34;_blank&#34;&gt;Wear the T-shirt&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;&lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. In particular, we note that the solution to the &lt;em&gt;linear&lt;/em&gt; conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&amp;rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&amp;rsquo;t particularly interesting to begin with.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider a simple nonlinear conservation law now:
+$$
+\begin{cases}
+  u_{t} + uu_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
+  u(x,0) = \sin{x} &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+\end{cases}
+$$&lt;/p&gt;
+
+&lt;p&gt;The initial condition is as smooth as possible now: $\sin{x} \in C_{x}^{\infty}(\mathbb{R})$. But what can we say about $u(x,t)$? Should we still expect it to be smooth in $x$? It turns out that the answer is a resounding &lt;em&gt;no&lt;/em&gt;. In fact, solutions to the above nonlinear PDE (known as &lt;em&gt;Burgers equation&lt;/em&gt;) are not even $C_{x}^{0}(\mathbb{R})$! The exact cause of this phenomena is due to the crossing of characteristic curves, but we will first consider a more intuitive explanation.&lt;/p&gt;
+
+&lt;p&gt;We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. Initially, at $x=\pi/2$ the sine wave is maximized, so the solution travels forward at faster speeds in a vicinity of $x=\pi/2$. At $x=3\pi/2$, the sine wave is minimized and takes on negative values, suggesting that the solution will actually travel &lt;em&gt;backwards&lt;/em&gt; in $x$ in a vicinity of $x=3\pi/2$. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-2-weak-solutions-of-conservation-laws&#34;&gt;&lt;strong&gt;1.2 Weak Solutions of Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&#34;https://github.com/gcushen/hugo-academic/&#34; target=&#34;_blank&#34;&gt;&lt;img src=&#34;https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png&#34; alt=&#34;Screenshot&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
 
