@@ -318,20 +318,23 @@ $$&lt;/p&gt;
     
     <item>
       <title>Numerical Methods for Conservation Laws</title>
-      <link>/post/getting-started/</link>
+      <link>/post/conservation-laws-1/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
-      <guid>/post/getting-started/</guid>
+      <guid>/post/conservation-laws-1/</guid>
       <description>
 
 &lt;h2 id=&#34;1-conservation-laws&#34;&gt;&lt;strong&gt;1. Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;In this post, we&amp;rsquo;ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form
 $$
-\begin{cases}
-  u_{t} + f(u)_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
-  u(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
-\end{cases}
+\begin{equation}
+  \begin{cases}
+    u_{t} + f(u)_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
+    u(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+  \end{cases}
+  \label{eq:conslaw}
+\end{equation}
 $$&lt;/p&gt;
 
 &lt;p&gt;Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &amp;ndash; typically called the &lt;em&gt;flux function&lt;/em&gt; &amp;ndash; is sufficiently smooth. To gain some intuition for how solutions of this PDE might behave, we&amp;rsquo;ll first consider the simplest conservation law there is: the linear advection equation.&lt;/p&gt;
@@ -374,12 +377,15 @@ $$&lt;/p&gt;
 
 &lt;h2 id=&#34;1-2-weak-solutions-of-conservation-laws&#34;&gt;&lt;strong&gt;1.2 Weak Solutions of Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;strong&gt;Definition 1.&lt;/strong&gt; We call $u(x,t)$ a &lt;strong&gt;weak solution&lt;/strong&gt; of the conservation law if
+&lt;p&gt;&lt;strong&gt;Definition 1.&lt;/strong&gt; &lt;em&gt;We call $u(x,t)$ a&lt;/em&gt; &lt;strong&gt;weak solution&lt;/strong&gt; &lt;em&gt;of the conservation law if&lt;/em&gt;
 $$
-\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+\begin{equation}
+  \int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+  \label{eq:weaksol}
+\end{equation}
 $$&lt;/p&gt;
 
-&lt;p&gt;for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;We refer to $\varphi$ as a test function. It is smooth in both space and time and compactly supported, i.e. $\varphi$ is zero outside of some compact set in space and time. Let&amp;rsquo;s break down what&amp;rsquo;s actually going on in the definition of the weak solution. The most notable feature is that if $u$ is a weak solution, it does &lt;em&gt;not&lt;/em&gt; have to be differentiable in space or time since the definition only contains derivatives of $\varphi$!&lt;/p&gt;
 
@@ -393,7 +399,79 @@ $$
 \int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi\;dxdt = 0
 $$&lt;/p&gt;
 
-&lt;p&gt;The last step is to integrate the first term by parts in time and the second term by parts in space:&lt;/p&gt;
+&lt;p&gt;The last step is to integrate the first term by parts in time and the second term by parts in space:
+$$
+\begin{align}
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt\\&lt;br /&gt;
+  &amp;amp;\;\;\;\; + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\notag\\&lt;br /&gt;
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi\;dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x}\;dxdt
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+$$&lt;/p&gt;
+
+&lt;p&gt;But &lt;em&gt;why&lt;/em&gt; do we do this? The idea is that rather than consider pointwise values of $u(x,t)$, we consider averaged values of $u(x,t)$ against test functions. If you&amp;rsquo;ve taken a functional analysis course, you can view the integration against a test function as the evaluation of a distribution induced by $u_{t}$ and $f(u)_{x}$. We note that all classical solutions ($C_{x,t}^{1}$ solutions that satisfy the PDE in a pointwise sense) are weak solutions but the converse is certainly not true.&lt;/p&gt;
+
+&lt;p&gt;It is straightforward to verify that $𝟙_{{x\leqslant t}}$ is a weak solution of the linear advection equation with $u(x,0) = 𝟙_{{x \leqslant 0}}$. However, the definition $\eqref{eq:weaksol}$ of quite cumbersome to work with and we would like to develop a more convenient way to verify whether we have a weak solution or not. Notice that $u(x,t) = 𝟙_{{x\leqslant t}}$ as well as the solution of Burgers equation in Figure 1 are piecewise smooth and only discontinuous at a single point that may (in the case of linear advection) or may not (in the case of Burgers equation) change with time. In this case, we can say much more about the structure of the weak solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 1. (Rankine-Hugoniot)&lt;/strong&gt; &lt;em&gt;Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is a weak solution of $\eqref{eq:conslaw}$ if and only if
+$$
+\begin{equation}
+  x&amp;rsquo;(t) = \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}},
+  \label{eq:RH}
+\end{equation}
+$$
+where $x&amp;rsquo;(t)$ is the speed of the discontinuity and $u^{\pm}$ are the values of $u$ along each side of the shock.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Condition $\eqref{eq:RH}$ is referred to as the &lt;strong&gt;Rankine-Hugoniot jump condition&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example 1.&lt;/strong&gt; &lt;em&gt;Let&amp;rsquo;s return to the linear advection equation and use the jump condition to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution. We have $x&amp;rsquo;(t) = 1$, $u^{-} = 1$, and $u^{+} = 0$. Then
+$$
+\frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}} = \frac{u^{-} - u^{+}}{u^{-} - u^{+}} = 1
+$$
+and the jump condition is satisfied.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus, the Rankine-Hugoniot condition is a handy way for us to verify whether something is a weak solution. It turns out that solutions to conservation laws often have the structure required by Theorem 1 &amp;ndash; that is, they are piecewise smooth except along finitely many curves of discontinuity.&lt;/p&gt;
+
+&lt;p&gt;By relaxing the definition of the solution, we are able to admit much less smooth solutions to $\eqref{eq:conslaw}$. However, we will see weak solutions need not be unique! Consider Burgers equation with the initial condition $u(x,0) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$. It is straightforward to verify that $u(x,t) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$ as well as
+$$
+u(x,t) = \begin{cases}
+  -1 &amp;amp;x \leqslant -t\\&lt;br /&gt;
+  \frac{x}{t} &amp;amp;-t &amp;lt; x \leqslant t\\&lt;br /&gt;
+  1 &amp;amp;x &amp;gt; t
+\end{cases}
+$$
+are both weak solutions. The first weak solution does not change at all with time, so our intuition might tell us that this solution does not make much physical sense. But what about the second weak solution? At the very least, we need to establish more stringent criteria for our weak solutions in order to pick out the physically relevant solution.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-3-entropy-solutions-of-conservation-laws&#34;&gt;&lt;strong&gt;1.3 Entropy Solutions of Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Consider the slightly modified PDE given by
+$$
+\begin{equation}
+  \begin{cases}
+    u^{(\varepsilon)}_{t} + f(u^{(\varepsilon)})_{x} = \varepsilon u^{(\varepsilon)}_{xx} &amp;amp;\text{in}\;\mathbb{R} \times (0,\infty)\\&lt;br /&gt;
+    u^{(\varepsilon)}(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+    \label{eq:viscosityPDE}
+  \end{cases}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;This PDE is &lt;em&gt;parabolic&lt;/em&gt; and it turns out that the solution $u^{(\varepsilon)}$, if it exists, is smooth and unique.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 2.&lt;/strong&gt; &lt;em&gt;The entropy solution of $\eqref{eq:conslaw}$ is defined as
+$$
+u(x,t) = \lim_{\varepsilon \to 0} u^{(\varepsilon)}(x,t).
+$$
+This limit, if it exists, is unique and is a weak solution of $\eqref{eq:conslaw}$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. Thanks to the work of Oleinik and Lax, we have a quick way to do this.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 2. (Oleinik Entropy Condition)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 3. (Lax Entropy Condition)&lt;/strong&gt;&lt;/p&gt;
 </description>
     </item>
     
