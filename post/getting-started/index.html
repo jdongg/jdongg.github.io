@@ -750,307 +750,52 @@ $$</p>
 
 <p>The initial condition is as smooth as possible now: $\sin{x} \in C_{x}^{\infty}(\mathbb{R})$. But what can we say about $u(x,t)$? Should we still expect it to be smooth in $x$? It turns out that the answer is a resounding <em>no</em>. In fact, solutions to the above nonlinear PDE (known as <em>Burgers equation</em>) are not even $C_{x}^{0}(\mathbb{R})$! The exact cause of this phenomena is due to the crossing of characteristic curves, but we will first consider a more intuitive explanation.</p>
 
-<p>We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. Initially, at $x=\pi/2$ the sine wave is maximized, so the solution travels forward at faster speeds in a vicinity of $x=\pi/2$. At $x=3\pi/2$, the sine wave is minimized and takes on negative values, suggesting that the solution will actually travel <em>backwards</em> in $x$ in a vicinity of $x=3\pi/2$. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.</p>
+<p>We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. For $0 \leqslant x \leqslant \pi$, the sine wave is positive and the solution travels forward. For $\pi &lt; x \leqslant 2\pi$, the sine wave is negative and the solution travels backwards. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.
+
+
+
+<figure>
+
+<img src="gallery/burgers.gif" alt="**Figure 1:** Solution of Burgers equation with sine initial data." />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    <strong>Figure 1:</strong> Solution of Burgers equation with sine initial data.
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure></p>
+
+<p>Shocks such as the one above occur naturally in many settings, for instance high-speed compressible flows and aeroacoustics. However, a natural question we might ask next is how discontinuities and shocks fit with our notion of the classical solution of a PDE. For instance, the linear advection equation contains a first-order time derivative and a first-order spatial derivative. Naturally, we should require that $u \in C_{x,t}^{1}(\mathbb{R} \times [0,\infty))$ &ndash; our solution should be once differentiable in space and time. Consider, though, the linear advection equation with $u(x,0) = 𝟙_{x \leqslant 0}$. You&rsquo;ll probably agree with me that the only possible solution to this problem is $u(x,t) = 𝟙_{x \leqslant t}$, and yet this &ldquo;solution&rdquo; is not even continuous let alone differentiable. Before moving on to numerical solvers, we will spend some time developing alternative notions of PDE solutions that are capable of admitting discontinuities and shocks.</p>
 
 <h2 id="1-2-weak-solutions-of-conservation-laws"><strong>1.2 Weak Solutions of Conservation Laws</strong></h2>
 
-<p><a href="https://github.com/gcushen/hugo-academic/" target="_blank"><img src="https://raw.githubusercontent.com/gcushen/hugo-academic/master/academic.png" alt="Screenshot" /></a></p>
+<p><strong>Definition 1.</strong> We call $u(x,t)$ a <strong>weak solution</strong> of the conservation law if
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+$$</p>
 
-<p><strong>Key features:</strong></p>
+<p>for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.</p>
 
-<ul>
-<li><strong>Page builder</strong> - Create <em>anything</em> with <a href="https://sourcethemes.com/academic/docs/page-builder/" target="_blank"><strong>widgets</strong></a> and <a href="https://sourcethemes.com/academic/docs/writing-markdown-latex/" target="_blank"><strong>elements</strong></a></li>
-<li><strong>Edit any type of content</strong> - Blog posts, publications, talks, slides, projects, and more!</li>
-<li><strong>Create content</strong> in <a href="https://sourcethemes.com/academic/docs/writing-markdown-latex/" target="_blank"><strong>Markdown</strong></a>, <a href="https://sourcethemes.com/academic/docs/jupyter/" target="_blank"><strong>Jupyter</strong></a>, or <a href="https://sourcethemes.com/academic/docs/install/#install-with-rstudio" target="_blank"><strong>RStudio</strong></a></li>
-<li><strong>Plugin System</strong> - Fully customizable <a href="https://sourcethemes.com/academic/themes/" target="_blank"><strong>color</strong> and <strong>font themes</strong></a></li>
-<li><strong>Display Code and Math</strong> - Code highlighting and <a href="https://en.wikibooks.org/wiki/LaTeX/Mathematics" target="_blank">LaTeX math</a> supported</li>
-<li><strong>Integrations</strong> - <a href="https://analytics.google.com" target="_blank">Google Analytics</a>, <a href="https://disqus.com" target="_blank">Disqus commenting</a>, Maps, Contact Forms, and more!</li>
-<li><strong>Beautiful Site</strong> - Simple and refreshing one page design</li>
-<li><strong>Industry-Leading SEO</strong> - Help get your website found on search engines and social media</li>
-<li><strong>Media Galleries</strong> - Display your images and videos with captions in a customizable gallery</li>
-<li><strong>Mobile Friendly</strong> - Look amazing on every screen with a mobile friendly version of your site</li>
-<li><strong>Multi-language</strong> - 15+ language packs including English, 中文, and Português</li>
-<li><strong>Multi-user</strong> - Each author gets their own profile page</li>
-<li><strong>Privacy Pack</strong> - Assists with GDPR</li>
-<li><strong>Stand Out</strong> - Bring your site to life with animation, parallax backgrounds, and scroll effects</li>
-<li><strong>One-Click Deployment</strong> - No servers. No databases. Only files.</li>
-</ul>
+<p>We refer to $\varphi$ as a test function. It is smooth in both space and time and compactly supported, i.e. $\varphi$ is zero outside of some compact set in space and time. Let&rsquo;s break down what&rsquo;s actually going on in the definition of the weak solution. The most notable feature is that if $u$ is a weak solution, it does <em>not</em> have to be differentiable in space or time since the definition only contains derivatives of $\varphi$!</p>
 
-<h2 id="color-themes">Color Themes</h2>
+<p>So how do we arrive at this definition? First, we multiply the entire conservation law by $\varphi$:
+$$
+u_{t}\varphi + f(u)_{x}\varphi = 0.
+$$</p>
 
-<p>Academic comes with <strong>day (light) and night (dark) mode</strong> built-in. Click the sun/moon icon in the top right of the <a href="https://academic-demo.netlify.com/" target="_blank">Demo</a> to see it in action!</p>
+<p>Then, we integrate in time over $[0,\infty)$ and in space over the entire real line:
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi\;dxdt = 0
+$$</p>
 
-<p>Choose a stunning color and font theme for your site. Themes are fully customizable and include:</p>
-
-
-
-
-
-
-
-
-
-  
-  
-
-
-<div class="gallery">
-
-  
-  
-  
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-1950s.png" data-caption="1950s">
-  <img src="/post/getting-started/gallery/theme-1950s_huaf5482f8cea0c5a703a328640e3b7509_21614_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-apogee.png" data-caption="Apogee">
-  <img src="/post/getting-started/gallery/theme-apogee_hu4b45d99db97150df01464c393bfd17d4_24119_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-coffee-playfair.png" data-caption="Coffee theme with Playfair font">
-  <img src="/post/getting-started/gallery/theme-coffee-playfair_hu446a8f670cc5622adcc77b97ba95f6c5_22462_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-cupcake.png" data-caption="Cupcake">
-  <img src="/post/getting-started/gallery/theme-cupcake_hueba8cfa8cfbc7543924fcbf387a99e92_23986_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-dark.png" data-caption="Dark">
-  <img src="/post/getting-started/gallery/theme-dark_hu1e8601ecc47f58eada7743fdcd709d3d_21456_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-default.png" data-caption="Default">
-  <img src="/post/getting-started/gallery/theme-default_huba6228b7bdf30e2f03f12ea91b2cba0d_21751_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-forest.png" data-caption="Forest">
-  <img src="/post/getting-started/gallery/theme-forest_hu4f093a1c683134431456584193ea41ee_21797_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-    
-    
-    
-    
-    
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-      
-    
-    
-  <a data-fancybox="gallery-gallery" href="/post/getting-started/gallery/theme-ocean.png" data-caption="Ocean">
-  <img src="/post/getting-started/gallery/theme-ocean_hu14831ccafc2219f30a7a096fa7617e01_21760_0x190_resize_lanczos_2.png" alt="">
-  </a>
-  
-
-  
-</div>
-
-<h2 id="ecosystem">Ecosystem</h2>
-
-<ul>
-<li><strong><a href="https://github.com/sourcethemes/academic-admin" target="_blank">Academic Admin</a>:</strong> An admin tool to import publications from BibTeX or import assets for an offline site</li>
-<li><strong><a href="https://github.com/sourcethemes/academic-scripts" target="_blank">Academic Scripts</a>:</strong> Scripts to help migrate content to new versions of Academic</li>
-</ul>
-
-<h2 id="install">Install</h2>
-
-<p>You can choose from one of the following four methods to install:</p>
-
-<ul>
-<li><a href="https://sourcethemes.com/academic/docs/install/#install-with-web-browser" target="_blank"><strong>one-click install using your web browser (recommended)</strong></a></li>
-<li><a href="https://sourcethemes.com/academic/docs/install/#install-with-git" target="_blank">install on your computer using <strong>Git</strong> with the Command Prompt/Terminal app</a></li>
-<li><a href="https://sourcethemes.com/academic/docs/install/#install-with-zip" target="_blank">install on your computer by downloading the <strong>ZIP files</strong></a></li>
-<li><a href="https://sourcethemes.com/academic/docs/install/#install-with-rstudio" target="_blank">install on your computer with <strong>RStudio</strong></a></li>
-</ul>
-
-<p>Then <a href="https://sourcethemes.com/academic/docs/get-started/" target="_blank">personalize and deploy your new site</a>.</p>
-
-<h2 id="updating">Updating</h2>
-
-<p><a href="https://sourcethemes.com/academic/docs/update/" target="_blank">View the Update Guide</a>.</p>
-
-<p>Feel free to <em>star</em> the project on <a href="https://github.com/gcushen/hugo-academic/" target="_blank">Github</a> to help keep track of <a href="https://sourcethemes.com/academic/updates" target="_blank">updates</a>.</p>
-
-<h2 id="license">License</h2>
-
-<p>Copyright 2016-present <a href="https://georgecushen.com" target="_blank">George Cushen</a>.</p>
-
-<p>Released under the <a href="https://github.com/gcushen/hugo-academic/blob/master/LICENSE.md" target="_blank">MIT</a> license.</p>
+<p>The last step is to integrate the first term by parts in time and the second term by parts in space:</p>
 
     </div>
 
@@ -1058,7 +803,7 @@ $$</p>
 
 <div class="article-tags">
   
-  <a class="badge badge-light" href="/tags/academic/">Academic</a>
+  <a class="badge badge-light" href="/tags/numerical-pde/">Numerical PDE</a>
   
 </div>
 
