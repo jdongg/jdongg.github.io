@@ -451,8 +451,8 @@
 
 
 <div class="article-header d-xl-none">
-  <div class="featured-image" style="background-image: url('/post/conservation-laws-1/featured_hub9ee31969f44a6711206a2baf9f065b4_241861_800x0_resize_q90_lanczos.jpg');"></div>
-  <span class="article-header-caption">Image credit: <a href="https://unsplash.com/photos/CpkOjOcXdUY" target="_blank"><strong>Unsplash</strong></a></span>
+  <div class="featured-image" style="background-image: url('/post/conservation-laws-1/featured_hu0a30ffcfc73c5f2ff650a59bdef9f33e_331152_800x0_resize_q90_lanczos.jpg');"></div>
+  <span class="article-header-caption">Image credit: <strong>Justin Dong</strong></span>
 </div>
 
 
@@ -507,7 +507,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    7 min read
+    15 min read
   </span>
   
 
@@ -587,8 +587,8 @@
     </div>
     <div class="col-6">
       <div class="split-header-image">
-        <img src="/post/conservation-laws-1/featured_hub9ee31969f44a6711206a2baf9f065b4_241861_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
-        <span class="article-header-caption">Image credit: <a href="https://unsplash.com/photos/CpkOjOcXdUY" target="_blank"><strong>Unsplash</strong></a></span>
+        <img src="/post/conservation-laws-1/featured_hu0a30ffcfc73c5f2ff650a59bdef9f33e_331152_680x500_fill_q90_lanczos_smart1.jpg" itemprop="image" alt="">
+        <span class="article-header-caption">Image credit: <strong>Justin Dong</strong></span>
       </div>
     </div>
   </div>
@@ -642,7 +642,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    7 min read
+    15 min read
   </span>
   
 
@@ -741,7 +741,7 @@ $$</p>
 
 <p>Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &ndash; typically called the <em>flux function</em> &ndash; is sufficiently smooth. To gain some intuition for how solutions of this PDE might behave, we&rsquo;ll first consider the simplest conservation law there is: the linear advection equation.</p>
 
-<p>Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. In particular, we note that the solution to the <em>linear</em> conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&rsquo;t particularly interesting to begin with.</p>
+<p>Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. The PDE &ldquo;transports&rdquo; the initial profile in the $x$ direction. In particular, we note that the solution to the <em>linear</em> conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&rsquo;t particularly interesting to begin with.</p>
 
 <p>Let&rsquo;s consider a simple nonlinear conservation law now:
 $$
@@ -867,13 +867,177 @@ $$</p>
 $$
 u(x,t) = \lim_{\varepsilon \to 0} u^{(\varepsilon)}(x,t).
 $$
-This limit, if it exists, is unique and is a weak solution of $\eqref{eq:conslaw}$.</em></p>
+This limit, if it exists, is unique and is a weak solution of  $\eqref{eq:conslaw}$.</em></p>
 
-<p>Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. Thanks to the work of Oleinik and Lax, we have a quick way to do this.</p>
+<p>Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. There are alternative definitions based on the notions of <em>entropy flux</em> and <em>entropy flux functions</em>, but we&rsquo;ll skip right to the chase here. Thanks to the work of Oleinik and Lax, we have a quick way to identify entropy solutions.</p>
 
-<p><strong>Theorem 2. (Oleinik Entropy Condition)</strong></p>
+<p><strong>Theorem 2. (Oleinik Entropy Condition)</strong> <em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+  \frac{f(u) - f(u^{-})}{u - u^{-}} \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant \frac{f(u^{+}) - f(u)}{u^{+} - u}
+  \label{eq:oleinik}
+\end{equation}
+$$
+for all $u$ between $u^{-}$ and $u^{+}$.</em></p>
 
-<p><strong>Theorem 3. (Lax Entropy Condition)</strong></p>
+<p>Again, $u^{-}$ and $u^{+}$ denote the values of $u$ on each side of the shock $x(t)$. However, we can simplify $\eqref{eq:oleinik}$ even further if we have a <em>convex</em> conservation law, which is simply the case when $f(u)$ is convex. For Burgers equation, we have $f(u) = u^{2}/2$, which is indeed convex. The Lax Entropy condition tell us the following.</p>
+
+<p><strong>Theorem 3. (Lax Entropy Condition)</strong> <em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Suppose also that $f$ is convex. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+  f&rsquo;(u^{-}) \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant f&rsquo;(u^{+}).
+  \label{eq:lax}
+\end{equation}
+$$
+In particular, $\eqref{eq:lax}$ is equivalent to requiring that $u^{-} &gt; u^{+}$.</em></p>
+
+<p>The Lax Entropy condition tells us that for convex conservation laws, the value of the weak solution on the left side of the shock ($u^{-}$) must be larger than the value of the solution on the right side of the shock ($u^{+}$) in order for the weak solution to be an entropy solution. The physical intuition behind the entropy solution is related to the entropy of a fluid in gas dynamics: in smooth flows, the entropy remains constant along particle paths, and if the particle crosses a shock, the entropy may only jump to a <em>higher</em> value. Entropy is inversely proportional to density, and so density can only jump to lower values along a shock.</p>
+
+<p>We&rsquo;ve spent a lot of time now developing the main ideas of weak solutions for conservation laws. We can concretely define what it means to have discontinuous solutions of $\eqref{eq:conslaw}$ and impose conditions to guarantee the uniqueness of this solution. Great. We can finally move on to numerical methods for solving conservation laws. In developing such schemes, our goal will be to ensure that our scheme converges (in some sense) to the entropy solution.</p>
+
+<h2 id="2-conservative-schemes-monotone-schemes"><strong>2. Conservative Schemes &amp; Monotone Schemes</strong></h2>
+
+<p>First, a cautionary tale in constructing numerical methods for conservation laws. We consider Burgers equation with the initial condition $u(x,0) = 𝟙_{\{x \geqslant 0\}}$ and the following finite difference scheme:
+$$
+u_{j}^{n+1} = u_{j}^{n} - \frac{\Delta t}{\Delta x} u_{j}^{n}(u_{j}^{n} - u_{j-1}^{n}).
+$$</p>
+
+<p>Initially, we have $u_{j}^{0} = 𝟙_{\{x_{j} \geqslant 0\}}$. However, this scheme returns $u_{j}^{n} = u_{j}^{0}$ for all $n$ and $j$, so the scheme converges to $u(x,t) = u(x,0)$. But in the preceding sections, we established that this can&rsquo;t even be a weak solution (indeed, the Rankine-Hugoniot condition is not satisfied).</p>
+
+<p>Clearly, we must exercise caution in constructing schemes to solve $\eqref{eq:conslaw}$. We have just seen that a perfectly reasonable-looking finite difference scheme (at least, at first glance) fails to converge to a weak solution, let alone the correct entropy solution. In other cases, it may be possible that a scheme converges to a weak solution but not an entropy solution.</p>
+
+<h2 id="2-1-the-finite-volume-method"><strong>2.1 The Finite Volume Method</strong></h2>
+
+<p>We begin by introducing the <strong>finite volume method</strong>, discretizes the spatial domain into cells (intervals in 1D, rectangles or other polygons in 2D), and computes an approximation to the average of the solution in each cell. The precise formulation is as follows: consider a bounded, open, connected domain $\Omega = (a,b) \subset \mathbb{R}$ and a finite stopping time $T$, and consider the conservation law given by
+$$
+\begin{equation}
+  \begin{cases}
+    u_{t} + f(u)_{x} = 0 &amp;\text{in}\;\Omega \times (0,T)\\<br />
+    u(x,0) = u_{0}(x) &amp;\text{on}\;\Omega \times \{t=0\}.
+  \end{cases}
+  \label{eq:conslaw2}
+\end{equation}
+$$</p>
+
+<p>We discretize $\Omega$ into equally-sized cells $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$:
+$$
+a = x_{1/ 2} &lt; x_{3/ 2} &lt; \dots &lt; x_{N+1/ 2} = b, \;\;\;\Delta x := x_{j+1/ 2} - x_{j-1/ 2}.
+$$</p>
+
+<p>Next, we integrate $\eqref{eq:conslaw2}$ over each cell $I_{j}$:
+$$
+\begin{align}
+  \int_{x_{j-1/ 2}}^{x_{j+1/ 2}} (u_{t} + f(u)_{x})\;dx &amp;= 0\notag\\<br />
+  \Delta x \frac{d\bar{u}_{j}}{dt} + f(u_{j+1/ 2}^{-}) - f(u_{j-1/ 2}^{+}) &amp;= 0\notag\\<br />
+  \frac{d\bar{u}_{j}}{dt} + \frac{f(u_{j+1/ 2}) - f(u_{j-1/ 2})}{\Delta x} &amp;= 0
+\end{align}
+$$</p>
+
+<p>Here, $\bar{u}_{j}$ denotes the cell average of $u$ in cell $I_{j}$: $\bar{u}_{j} := \frac{1}{\Delta x}\int_{I_{j}} u\;dx$. If our goal is to solve for the cell averages $\bar{u}_{j}$, you might notice that the second term poses a problem as it is formulated in terms of pointwise values of $u$ at $x_{j-1/ 2}$ and $x_{j+1/ 2}$ rather than $\bar{u}_{j}$. The finite volume scheme remedies this by introducing a <em>numerical flux function</em> which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$:
+$$
+\begin{equation}
+  \frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left(\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) - \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})\right) = 0.
+  \label{eq:finitevol}
+\end{equation}
+$$</p>
+
+<p>Essentially, we approximate $u$ by its average in each cell. This approximation is not so well defined as the points $x_{j+1/ 2}$, which lie at the intersection between the two cells $I_{j}$ and $I_{j+1}$. Thus, $\hat{f}$ can be viewed in this context as a function which takes in the dual values at the cell interfaces and returns a single, physically relevant value.</p>
+
+<p>The only thing left to do to turn $\eqref{eq:finitevol}$ into a usable scheme is to discretize the time derivative. The simplest option is to use a first-order finite difference. In doing so, we arrive at the explicit first-order finite volume scheme.</p>
+
+<p><strong>Definition 3.</strong> <em>The explicit first-order finite volume scheme in space and time is given by
+$$
+\begin{equation}
+  \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+  \label{eq:finitevol2}
+\end{equation}
+$$
+where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$.</em></p>
+
+<p>Notice that we haven&rsquo;t specified what, exactly, the flux function $\hat{f}$ is yet. The choice of $\hat{f}$ is immensely important as it will determine many properties of our scheme, such as convergence to the entropy solution. Before stating some possible choices of $\hat{f}$, we will first go the properties $\hat{f}$ must satisfy in order to converge to the entropy solution.</p>
+
+<p><strong>Definition 4.</strong> <em>A</em> <strong>monotone scheme</strong> <em>is one that can be written in the form
+$$
+\begin{equation}
+  \bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}),
+\end{equation}
+$$
+where $\mathcal{H}$ is a nondecreasing function in all arguments. In particular, the monotone scheme on the three-point stencil $\{\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}\}$ is given by $\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$.</em></p>
+
+<p>This is all well and good, but why should we care about monotone schemes? To begin with, they have a number of remarkable properties that guarantee our numerical solution behaves &ldquo;nicely.&rdquo;</p>
+
+<p><strong>Theorem 4.</strong> <em>Monotone schemes satisfy the following properties:</em></p>
+
+<ol>
+<li><p><strong>Local maximum principle.</strong>
+$$
+\min_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \leqslant \mathcal{H}(\bar{u})_{j} \leqslant \max_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \;\;\;\forall j.
+$$</p></li>
+
+<li><p><strong>Total variation diminishing property.</strong>
+$$
+||\mathcal{H}(\bar{u})||_{BV} \leqslant ||\bar{u}||_{BV},
+$$
+<em>where the bounded variation seminorm is given by $||u||_{BV} = \sum_{j} |u_{j} - u_{j-1}|$.</em></p></li>
+
+<li><p><strong>Entropy solution.</strong> <em>Monotone schemes converge to the entropy solution with a rate in $\ell^{1}$ of half-order. This bound is sharp.</em></p></li>
+</ol>
+
+<p>Roughly speaking, the local maximum principle tells us that our cell averages at $t^{n+1}$ cannot be larger or smaller than our averages at $t^{n}$ around the stencil $\{\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}\}$. The total variation diminishing property tells us that our cell averages can only decrease in bounded variation. In particular, this means that our cell averages at $t^{n+1}$ cannot be more oscillatory than our cell averages at $t^{n}$. We will see soon some schemes which violate this property and tend to produce spurious oscillations in the numerical solution. The last property is of course self-explanatory: by using a monotone scheme, we are guaranteed to converge to the entropy solution!</p>
+
+<p>We would like for the finite volume scheme in $\eqref{eq:finitevol2}$ to be a monotone scheme, and our goal is now to choose a function $\hat{f}$ in order to achieve this. We have
+$$
+\mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right).
+$$</p>
+
+<p>$\mathcal{H}$ must be nondecreasing in each argument, so we compute its partial derivatives:
+$$
+\begin{align}
+  \mathcal{H}_{1} &amp;= \frac{\Delta t}{\Delta x} \hat{f}_{1}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})\label{eq:monotone1}\\<br />
+  \mathcal{H}_{2} &amp;= 1 - \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right)\label{eq:monotone2}\\<br />
+  \mathcal{H}_{3} &amp;= -\frac{\Delta t}{\Delta x} \hat{f}_{2}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})\label{eq:monotone3}.
+\end{align}
+$$</p>
+
+<p>Here, $\hat{f}_{1}$ denotes the partial derivative of $\hat{f}$ with respect to the first argument, and so on. If $\hat{f}$ is increasing in the first argument and decreasing in the second argument, then $\eqref{eq:monotone1}$ and $\eqref{eq:monotone3}$ will be nonnegative. Furthermore, if
+$$
+\frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right) \leqslant 1,
+$$</p>
+
+<p>then $\eqref{eq:monotone2}$ will also be nonnegative. This last condition is merely a restriction on our time step. By choosing $\Delta t$ small enough, we can always satisfy this condition. The first two conditions tell us that we merely need to choose our numerical flux function $\hat{f}$ such that it is increasing in its first argument and decreasing in its second argument.</p>
+
+<p><strong>Proposition 1.</strong> <em>If $\hat{f}$ satifies the following conditions:</em></p>
+
+<ol>
+<li><p><em>$\hat{f}$ is Lipschitz continuous in all arguments.</em></p></li>
+
+<li><p><em>$\hat{f}(u,u) = f(u)$. This is known as the consistency condition.</em></p></li>
+
+<li><p><em>$\hat{f}$ is increasing in the first argument and decreasing in the second argument,
+then the scheme $\eqref{eq:finitevol2}$ is monotone.</em></p></li>
+</ol>
+
+<p>We will not discuss the first two conditions here, but suffice it to say that these properties are very easy to check.</p>
+
+<h3 id="2-1-1-numerical-flux-functions"><strong>2.1.1 Numerical Flux Functions</strong></h3>
+
+<p>We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.</p>
+
+<ol>
+<li><p><strong>Lax-Friedrichs flux.</strong></p></li>
+
+<li><p><strong>Godunov flux.</strong></p></li>
+
+<li><p><strong>Engquist-Osher flux.</strong></p></li>
+</ol>
+
+<p>There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.</p>
+
+<ol>
+<li><p><strong>Roe flux.</strong></p></li>
+
+<li><p><strong>Lax-Wendroff flux.</strong></p></li>
+</ol>
 
     </div>
 
