@@ -402,13 +402,12 @@ $$&lt;/p&gt;
 &lt;p&gt;The last step is to integrate the first term by parts in time and the second term by parts in space:
 $$
 \begin{align}
-  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt\\&lt;br /&gt;
-  &amp;amp;\;\;\;\; + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\notag\\&lt;br /&gt;
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\&lt;br /&gt;
   \int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi\;dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x}\;dxdt
 \end{align}
 $$&lt;/p&gt;
 
-&lt;p&gt;Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
+&lt;p&gt;Most of the boundary terms vanish because $\varphi$ has compact support: we have $\varphi(\pm \infty,t) = \varphi(x,\pm\infty) = 0$. Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
 $$
 \int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
 $$&lt;/p&gt;
@@ -622,19 +621,52 @@ then the scheme $\eqref{eq:finitevol2}$ is monotone.&lt;/em&gt;&lt;/p&gt;&lt;/li
 &lt;p&gt;We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Friedrichs flux.&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Friedrichs flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \frac{1}{2}\left( f(u_{j}) + f(u_{j+1}) - \alpha(u_{j+1} - u_{j}) \right),
+\end{equation}
+$$
+where $\alpha = \max_{u} |f&amp;rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&amp;rsquo;(u)|$.&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Godunov flux.&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Godunov flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u) &amp;amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\&lt;br /&gt;
+\max_{\bar{u}_{j} \geqslant u \geqslant \bar{u}_{j+1}} f(u) &amp;amp;\bar{u}_{j} &amp;gt; \bar{u}_{j+1}.
+\end{cases}
+\end{equation}
+$$&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Engquist-Osher flux.&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Engquist-Osher flux.&lt;/strong&gt;
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\int_{0}^{\bar{u}_{j}} \max\{f&amp;rsquo;(u),0\}\;du + \int_{0}^{\bar{u}_{j+1}} \min\{f&amp;rsquo;(u),0\}\;du.
+\end{align}
+$$&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
 &lt;p&gt;There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.&lt;/p&gt;
 
 &lt;ol&gt;
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Roe flux.&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Roe flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+f(\bar{u}_{j}) &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\&lt;br /&gt;
+f(\bar{u}_{j+1}) &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} &amp;lt; 0.
+\end{cases}
+\end{equation}
+$$&lt;/p&gt;&lt;/li&gt;
 
-&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Wendroff flux.&lt;/strong&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Wendroff flux.&lt;/strong&gt;
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\&lt;br /&gt;
+&amp;amp;\frac{\Delta t}{2\Delta x}f&amp;rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
+\end{align}
+$$&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

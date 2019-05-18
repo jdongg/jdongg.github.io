@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.947ab85bb4b85e73e5924ff4eb468732.css">
+  <link rel="stylesheet" href="/css/academic.min.14f38d01b187403f4ba554110145b2b5.css">
 
   
 
@@ -507,7 +507,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    15 min read
+    16 min read
   </span>
   
 
@@ -642,7 +642,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    15 min read
+    16 min read
   </span>
   
 
@@ -804,13 +804,12 @@ $$</p>
 <p>The last step is to integrate the first term by parts in time and the second term by parts in space:
 $$
 \begin{align}
-  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt\\<br />
-  &amp;\;\;\;\; + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\notag\\<br />
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\<br />
   \int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi\;dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x}\;dxdt
 \end{align}
 $$</p>
 
-<p>Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
+<p>Most of the boundary terms vanish because $\varphi$ has compact support: we have $\varphi(\pm \infty,t) = \varphi(x,\pm\infty) = 0$. Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
 $$
 \int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
 $$</p>
@@ -1024,19 +1023,52 @@ then the scheme $\eqref{eq:finitevol2}$ is monotone.</em></p></li>
 <p>We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.</p>
 
 <ol>
-<li><p><strong>Lax-Friedrichs flux.</strong></p></li>
+<li><p><strong>Lax-Friedrichs flux.</strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \frac{1}{2}\left( f(u_{j}) + f(u_{j+1}) - \alpha(u_{j+1} - u_{j}) \right),
+\end{equation}
+$$
+where $\alpha = \max_{u} |f&rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&rsquo;(u)|$.</p></li>
 
-<li><p><strong>Godunov flux.</strong></p></li>
+<li><p><strong>Godunov flux.</strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u) &amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\<br />
+\max_{\bar{u}_{j} \geqslant u \geqslant \bar{u}_{j+1}} f(u) &amp;\bar{u}_{j} &gt; \bar{u}_{j+1}.
+\end{cases}
+\end{equation}
+$$</p></li>
 
-<li><p><strong>Engquist-Osher flux.</strong></p></li>
+<li><p><strong>Engquist-Osher flux.</strong>
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\int_{0}^{\bar{u}_{j}} \max\{f&rsquo;(u),0\}\;du + \int_{0}^{\bar{u}_{j+1}} \min\{f&rsquo;(u),0\}\;du.
+\end{align}
+$$</p></li>
 </ol>
 
 <p>There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.</p>
 
 <ol>
-<li><p><strong>Roe flux.</strong></p></li>
+<li><p><strong>Roe flux.</strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+f(\bar{u}_{j}) &amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\<br />
+f(\bar{u}_{j+1}) &amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} &lt; 0.
+\end{cases}
+\end{equation}
+$$</p></li>
 
-<li><p><strong>Lax-Wendroff flux.</strong></p></li>
+<li><p><strong>Lax-Wendroff flux.</strong>
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\<br />
+&amp;\frac{\Delta t}{2\Delta x}f&rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
+\end{align}
+$$</p></li>
 </ol>
 
     </div>
