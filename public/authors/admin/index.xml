@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Justin Dong</title>
+    <link>/authors/admin/</link>
+    <description>Recent content on Justin Dong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/authors/admin/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Approximation Properties of Neural Networks</title>
+      <link>/post/jupyter/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/jupyter/</guid>
+      <description>A brief look at some of the fundamental approximation theory behind artificial neural networks.</description>
+    </item>
+    
+    <item>
+      <title>Numerical Methods for Conservation Laws</title>
+      <link>/post/conservation-laws-1/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/conservation-laws-1/</guid>
+      <description>An introduction to solving nonlinear conservation laws.</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/authors/admin/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/authors/admin/</guid>
+      <description>I am a second year Ph.D. student in the Division of Applied Mathematics at Brown University. My research interests include scientific computing and numerical analysis of high-order methods for PDEs, especially as they pertain to problems in computational fluid dynamics. Presently, I am working on deep neural networks applied to PDEs with my advisor, Professor Mark Ainsworth. I am a recipient of the NSF Graduate Research Fellowship.
+I am interested in increasing the participation of historically underrepresented groups in higher mathematics.</description>
+    </item>
+    
+  </channel>
+</rss>

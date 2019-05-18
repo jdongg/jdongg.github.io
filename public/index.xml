@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Justin Dong</title>
+    <link>/</link>
+    <description>Recent content on Justin Dong</description>
+    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
+    
+	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Example Talk</title>
+      <link>/talk/example/</link>
+      <pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate>
+      
+      <guid>/talk/example/</guid>
+      <description>&lt;div class=&#34;alert alert-note&#34;&gt;
+  &lt;div&gt;
+    Click on the &lt;strong&gt;Slides&lt;/strong&gt; button above to view the built-in slides feature.
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Slides can be added in a few ways:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Create&lt;/strong&gt; slides using Academic&amp;rsquo;s &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-slides&#34; target=&#34;_blank&#34;&gt;&lt;em&gt;Slides&lt;/em&gt;&lt;/a&gt; feature and link using &lt;code&gt;slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Upload&lt;/strong&gt; an existing slide deck to &lt;code&gt;static/&lt;/code&gt; and link using &lt;code&gt;url_slides&lt;/code&gt; parameter in the front matter of the talk file&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Embed&lt;/strong&gt; your slides (e.g. Google Slides) or presentation video on this page using &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;shortcodes&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Further talk details can easily be added to this page using &lt;em&gt;Markdown&lt;/em&gt; and $\rm \LaTeX$ math code.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Approximation Properties of Neural Networks</title>
+      <link>/post/jupyter/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/jupyter/</guid>
+      <description>
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
+Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;img src=&#34;./academic_0_0.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;pre&gt;&lt;code&gt;Welcome to Academic!
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;install-python-and-jupyter&#34;&gt;Install Python and Jupyter&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and Jupyter notebook.&lt;/p&gt;
+
+&lt;p&gt;Otherwise, for advanced users, install Jupyter notebook with &lt;code&gt;pip3 install jupyter&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;create-a-new-blog-post-as-usual-https-sourcethemes-com-academic-docs-managing-content-create-a-blog-post&#34;&gt;Create a new blog post &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-a-blog-post&#34; target=&#34;_blank&#34;&gt;as usual&lt;/a&gt;&lt;/h2&gt;
+
+&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY_WEBSITE_FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;my-post&lt;/code&gt; with the file path to your Academic website folder and a name for your blog post (without spaces), respectively:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;
+hugo new  --kind post post/my-post
+cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;/content/post/my-post/
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
+
+&lt;p&gt;Run the following command to start Jupyter within your new blog post folder. Then create a new Jupyter notebook (&lt;em&gt;New &amp;gt; Python Notebook&lt;/em&gt;) or upload a notebook.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter notebook
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert Untitled.ipynb --to markdown --NbConvertApp.output_files_dir=.
+
+# Copy the contents of Untitled.md and append it to index.md:
+cat Untitled.md | tee -a index.md
+
+# Remove the temporary file:
+rm Untitled.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
+
+&lt;p&gt;Open &lt;code&gt;index.md&lt;/code&gt; in your text editor and edit the title etc. in the &lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34;&gt;front matter&lt;/a&gt; according to your preference.&lt;/p&gt;
+
+&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
+
+&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Slides</title>
+      <link>/slides/example/</link>
+      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/slides/example/</guid>
+      <description>
+
+&lt;h1 id=&#34;welcome-to-slides&#34;&gt;Welcome to Slides&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/&#34; target=&#34;_blank&#34;&gt;Academic&lt;/a&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;features&#34;&gt;Features&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Efficiently write slides in Markdown&lt;/li&gt;
+&lt;li&gt;3-in-1: Create, Present, and Publish your slides&lt;/li&gt;
+&lt;li&gt;Supports speaker notes&lt;/li&gt;
+&lt;li&gt;Mobile friendly slides&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;controls&#34;&gt;Controls&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Next: &lt;code&gt;Right Arrow&lt;/code&gt; or &lt;code&gt;Space&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Previous: &lt;code&gt;Left Arrow&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Start: &lt;code&gt;Home&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Finish: &lt;code&gt;End&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Overview: &lt;code&gt;Esc&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Speaker notes: &lt;code&gt;S&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Fullscreen: &lt;code&gt;F&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Zoom: &lt;code&gt;Alt + Click&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/hakimel/reveal.js#pdf-export&#34; target=&#34;_blank&#34;&gt;PDF Export&lt;/a&gt;: &lt;code&gt;E&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;code-highlighting&#34;&gt;Code Highlighting&lt;/h2&gt;
+
+&lt;p&gt;Inline code: &lt;code&gt;variable&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;Code block:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;porridge = &amp;quot;blueberry&amp;quot;
+if porridge == &amp;quot;blueberry&amp;quot;:
+    print(&amp;quot;Eating...&amp;quot;)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;math&#34;&gt;Math&lt;/h2&gt;
+
+&lt;p&gt;In-line math: $x + y = z$&lt;/p&gt;
+
+&lt;p&gt;Block math:&lt;/p&gt;
+
+&lt;p&gt;$$
+f\left( x \right) = \;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;fragments&#34;&gt;Fragments&lt;/h2&gt;
+
+&lt;p&gt;Make content appear incrementally&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;{{% fragment %}} One {{% /fragment %}}
+{{% fragment %}} **Two** {{% /fragment %}}
+{{% fragment %}} Three {{% /fragment %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press &lt;code&gt;Space&lt;/code&gt; to play!&lt;/p&gt;
+
+&lt;p&gt;&lt;span class=&#34;fragment &#34; &gt;
+   One
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+   &lt;strong&gt;Two&lt;/strong&gt;
+&lt;/span&gt;
+&lt;span class=&#34;fragment &#34; &gt;
+   Three
+&lt;/span&gt;&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;A fragment can accept two optional parameters:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;class&lt;/code&gt;: use a custom style (requires definition in custom CSS)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;weight&lt;/code&gt;: sets the order in which a fragment appears&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;speaker-notes&#34;&gt;Speaker Notes&lt;/h2&gt;
+
+&lt;p&gt;Add speaker notes to your presentation&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{% speaker_note %}}
+- Only the speaker can read these notes
+- Press `S` key to view
+{{% /speaker_note %}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Press the &lt;code&gt;S&lt;/code&gt; key to view the speaker notes!&lt;/p&gt;
+
+&lt;aside class=&#34;notes&#34;&gt;
+  &lt;ul&gt;
+&lt;li&gt;Only the speaker can read these notes&lt;/li&gt;
+&lt;li&gt;Press &lt;code&gt;S&lt;/code&gt; key to view&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/aside&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;themes&#34;&gt;Themes&lt;/h2&gt;
+
+&lt;ul&gt;
+&lt;li&gt;black: Black background, white text, blue links (default)&lt;/li&gt;
+&lt;li&gt;white: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;league: Gray background, white text, blue links&lt;/li&gt;
+&lt;li&gt;beige: Beige background, dark text, brown links&lt;/li&gt;
+&lt;li&gt;sky: Blue background, thin dark text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;ul&gt;
+&lt;li&gt;night: Black background, thick white text, orange links&lt;/li&gt;
+&lt;li&gt;serif: Cappuccino background, gray text, brown links&lt;/li&gt;
+&lt;li&gt;simple: White background, black text, blue links&lt;/li&gt;
+&lt;li&gt;solarized: Cream-colored background, dark green text, blue links&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/img/boards.jpg&#34;
+  &gt;
+
+
+&lt;h2 id=&#34;custom-slide&#34;&gt;Custom Slide&lt;/h2&gt;
+
+&lt;p&gt;Customize the slide style and background&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-markdown&#34;&gt;{{&amp;lt; slide background-image=&amp;quot;/img/boards.jpg&amp;quot; &amp;gt;}}
+{{&amp;lt; slide background-color=&amp;quot;#0000FF&amp;quot; &amp;gt;}}
+{{&amp;lt; slide class=&amp;quot;my-style&amp;quot; &amp;gt;}}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h2 id=&#34;custom-css-example&#34;&gt;Custom CSS Example&lt;/h2&gt;
+
+&lt;p&gt;Let&amp;rsquo;s make headers navy colored.&lt;/p&gt;
+
+&lt;p&gt;Create &lt;code&gt;assets/css/reveal_custom.css&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-css&#34;&gt;.reveal section h1,
+.reveal section h2,
+.reveal section h3 {
+  color: navy;
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;hr /&gt;
+
+&lt;h1 id=&#34;questions&#34;&gt;Questions?&lt;/h1&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://discourse.gohugo.io&#34; target=&#34;_blank&#34;&gt;Ask&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&#34;https://sourcethemes.com/academic/docs/&#34; target=&#34;_blank&#34;&gt;Documentation&lt;/a&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>A semi-implicit method for incompressible three-phase flow in porous media</title>
+      <link>/publication/journal-article/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 -0400</pubDate>
+      
+      <guid>/publication/journal-article/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>External Project</title>
+      <link>/project/external-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/external-project/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Internal Project</title>
+      <link>/project/internal-project/</link>
+      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/project/internal-project/</guid>
+      <description>&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p&gt;
+
+&lt;p&gt;Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p&gt;
+
+&lt;p&gt;Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p&gt;
+
+&lt;p&gt;Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p&gt;
+
+&lt;p&gt;Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Numerical Methods for Conservation Laws</title>
+      <link>/post/conservation-laws-1/</link>
+      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      
+      <guid>/post/conservation-laws-1/</guid>
+      <description>
+
+&lt;h2 id=&#34;1-conservation-laws&#34;&gt;&lt;strong&gt;1. Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;In this post, we&amp;rsquo;ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form
+$$
+\begin{equation}
+  \begin{cases}
+    u_{t} + f(u)_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
+    u(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+  \end{cases}
+  \label{eq:conslaw}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &amp;ndash; typically called the &lt;em&gt;flux function&lt;/em&gt; &amp;ndash; is sufficiently smooth. To gain some intuition for how solutions of this PDE might behave, we&amp;rsquo;ll first consider the simplest conservation law there is: the linear advection equation.&lt;/p&gt;
+
+&lt;p&gt;Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. The PDE &amp;ldquo;transports&amp;rdquo; the initial profile in the $x$ direction. In particular, we note that the solution to the &lt;em&gt;linear&lt;/em&gt; conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&amp;rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&amp;rsquo;t particularly interesting to begin with.&lt;/p&gt;
+
+&lt;p&gt;Let&amp;rsquo;s consider a simple nonlinear conservation law now:
+$$
+\begin{cases}
+  u_{t} + uu_{x} = 0 &amp;amp;\text{in}\;\mathbb{R} \times [0,\infty)\\&lt;br /&gt;
+  u(x,0) = \sin{x} &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+\end{cases}
+$$&lt;/p&gt;
+
+&lt;p&gt;The initial condition is as smooth as possible now: $\sin{x} \in C_{x}^{\infty}(\mathbb{R})$. But what can we say about $u(x,t)$? Should we still expect it to be smooth in $x$? It turns out that the answer is a resounding &lt;em&gt;no&lt;/em&gt;. In fact, solutions to the above nonlinear PDE (known as &lt;em&gt;Burgers equation&lt;/em&gt;) are not even $C_{x}^{0}(\mathbb{R})$! The exact cause of this phenomena is due to the crossing of characteristic curves, but we will first consider a more intuitive explanation.&lt;/p&gt;
+
+&lt;p&gt;We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. For $0 \leqslant x \leqslant \pi$, the sine wave is positive and the solution travels forward. For $\pi &amp;lt; x \leqslant 2\pi$, the sine wave is negative and the solution travels backwards. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;gallery/burgers.gif&#34; alt=&#34;**Figure 1:** Solution of Burgers equation with sine initial data.&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 1:&lt;/strong&gt; Solution of Burgers equation with sine initial data.
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;&lt;/p&gt;
+
+&lt;p&gt;Shocks such as the one above occur naturally in many settings, for instance high-speed compressible flows and aeroacoustics. However, a natural question we might ask next is how discontinuities and shocks fit with our notion of the classical solution of a PDE. For instance, the linear advection equation contains a first-order time derivative and a first-order spatial derivative. Naturally, we should require that $u \in C_{x,t}^{1}(\mathbb{R} \times [0,\infty))$ &amp;ndash; our solution should be once differentiable in space and time. Consider, though, the linear advection equation with $u(x,0) = 𝟙_{x \leqslant 0}$. You&amp;rsquo;ll probably agree with me that the only possible solution to this problem is $u(x,t) = 𝟙_{x \leqslant t}$, and yet this &amp;ldquo;solution&amp;rdquo; is not even continuous let alone differentiable. Before moving on to numerical solvers, we will spend some time developing alternative notions of PDE solutions that are capable of admitting discontinuities and shocks.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-2-weak-solutions-of-conservation-laws&#34;&gt;&lt;strong&gt;1.2 Weak Solutions of Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 1.&lt;/strong&gt; &lt;em&gt;We call $u(x,t)$ a&lt;/em&gt; &lt;strong&gt;weak solution&lt;/strong&gt; &lt;em&gt;of the conservation law if&lt;/em&gt;
+$$
+\begin{equation}
+  \int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+  \label{eq:weaksol}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;We refer to $\varphi$ as a test function. It is smooth in both space and time and compactly supported, i.e. $\varphi$ is zero outside of some compact set in space and time. Let&amp;rsquo;s break down what&amp;rsquo;s actually going on in the definition of the weak solution. The most notable feature is that if $u$ is a weak solution, it does &lt;em&gt;not&lt;/em&gt; have to be differentiable in space or time since the definition only contains derivatives of $\varphi$!&lt;/p&gt;
+
+&lt;p&gt;So how do we arrive at this definition? First, we multiply the entire conservation law by $\varphi$:
+$$
+u_{t}\varphi + f(u)_{x}\varphi = 0.
+$$&lt;/p&gt;
+
+&lt;p&gt;Then, we integrate in time over $[0,\infty)$ and in space over the entire real line:
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi\;dxdt = 0
+$$&lt;/p&gt;
+
+&lt;p&gt;The last step is to integrate the first term by parts in time and the second term by parts in space:
+$$
+\begin{align}
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\&lt;br /&gt;
+  \int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi\;dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x}\;dxdt
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;Most of the boundary terms vanish because $\varphi$ has compact support: we have $\varphi(\pm \infty,t) = \varphi(x,\pm\infty) = 0$. Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+$$&lt;/p&gt;
+
+&lt;p&gt;But &lt;em&gt;why&lt;/em&gt; do we do this? The idea is that rather than consider pointwise values of $u(x,t)$, we consider averaged values of $u(x,t)$ against test functions. If you&amp;rsquo;ve taken a functional analysis course, you can view the integration against a test function as the evaluation of a distribution induced by $u_{t}$ and $f(u)_{x}$. We note that all classical solutions ($C_{x,t}^{1}$ solutions that satisfy the PDE in a pointwise sense) are weak solutions but the converse is certainly not true.&lt;/p&gt;
+
+&lt;p&gt;It is straightforward to verify that $𝟙_{{x\leqslant t}}$ is a weak solution of the linear advection equation with $u(x,0) = 𝟙_{{x \leqslant 0}}$. However, the definition $\eqref{eq:weaksol}$ of quite cumbersome to work with and we would like to develop a more convenient way to verify whether we have a weak solution or not. Notice that $u(x,t) = 𝟙_{{x\leqslant t}}$ as well as the solution of Burgers equation in Figure 1 are piecewise smooth and only discontinuous at a single point that may (in the case of linear advection) or may not (in the case of Burgers equation) change with time. In this case, we can say much more about the structure of the weak solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 1. (Rankine-Hugoniot)&lt;/strong&gt; &lt;em&gt;Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is a weak solution of $\eqref{eq:conslaw}$ if and only if
+$$
+\begin{equation}
+  x&amp;rsquo;(t) = \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}},
+  \label{eq:RH}
+\end{equation}
+$$
+where $x&amp;rsquo;(t)$ is the speed of the discontinuity and $u^{\pm}$ are the values of $u$ along each side of the shock.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Condition $\eqref{eq:RH}$ is referred to as the &lt;strong&gt;Rankine-Hugoniot jump condition&lt;/strong&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Example 1.&lt;/strong&gt; &lt;em&gt;Let&amp;rsquo;s return to the linear advection equation and use the jump condition to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution. We have $x&amp;rsquo;(t) = 1$, $u^{-} = 1$, and $u^{+} = 0$. Then
+$$
+\frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}} = \frac{u^{-} - u^{+}}{u^{-} - u^{+}} = 1
+$$
+and the jump condition is satisfied.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Thus, the Rankine-Hugoniot condition is a handy way for us to verify whether something is a weak solution. It turns out that solutions to conservation laws often have the structure required by Theorem 1 &amp;ndash; that is, they are piecewise smooth except along finitely many curves of discontinuity.&lt;/p&gt;
+
+&lt;p&gt;By relaxing the definition of the solution, we are able to admit much less smooth solutions to $\eqref{eq:conslaw}$. However, we will see weak solutions need not be unique! Consider Burgers equation with the initial condition $u(x,0) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$. It is straightforward to verify that $u(x,t) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$ as well as
+$$
+u(x,t) = \begin{cases}
+  -1 &amp;amp;x \leqslant -t\\&lt;br /&gt;
+  \frac{x}{t} &amp;amp;-t &amp;lt; x \leqslant t\\&lt;br /&gt;
+  1 &amp;amp;x &amp;gt; t
+\end{cases}
+$$
+are both weak solutions. The first weak solution does not change at all with time, so our intuition might tell us that this solution does not make much physical sense. But what about the second weak solution? At the very least, we need to establish more stringent criteria for our weak solutions in order to pick out the physically relevant solution.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-3-entropy-solutions-of-conservation-laws&#34;&gt;&lt;strong&gt;1.3 Entropy Solutions of Conservation Laws&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Consider the slightly modified PDE given by
+$$
+\begin{equation}
+  \begin{cases}
+    u^{(\varepsilon)}_{t} + f(u^{(\varepsilon)})_{x} = \varepsilon u^{(\varepsilon)}_{xx} &amp;amp;\text{in}\;\mathbb{R} \times (0,\infty)\\&lt;br /&gt;
+    u^{(\varepsilon)}(x,0) = u_{0}(x) &amp;amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+    \label{eq:viscosityPDE}
+  \end{cases}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;This PDE is &lt;em&gt;parabolic&lt;/em&gt; and it turns out that the solution $u^{(\varepsilon)}$, if it exists, is smooth and unique.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 2.&lt;/strong&gt; &lt;em&gt;The entropy solution of $\eqref{eq:conslaw}$ is defined as
+$$
+u(x,t) = \lim_{\varepsilon \to 0} u^{(\varepsilon)}(x,t).
+$$
+This limit, if it exists, is unique and is a weak solution of  $\eqref{eq:conslaw}$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. There are alternative definitions based on the notions of &lt;em&gt;entropy flux&lt;/em&gt; and &lt;em&gt;entropy flux functions&lt;/em&gt;, but we&amp;rsquo;ll skip right to the chase here. Thanks to the work of Oleinik and Lax, we have a quick way to identify entropy solutions.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 2. (Oleinik Entropy Condition)&lt;/strong&gt; &lt;em&gt;Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+  \frac{f(u) - f(u^{-})}{u - u^{-}} \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant \frac{f(u^{+}) - f(u)}{u^{+} - u}
+  \label{eq:oleinik}
+\end{equation}
+$$
+for all $u$ between $u^{-}$ and $u^{+}$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Again, $u^{-}$ and $u^{+}$ denote the values of $u$ on each side of the shock $x(t)$. However, we can simplify $\eqref{eq:oleinik}$ even further if we have a &lt;em&gt;convex&lt;/em&gt; conservation law, which is simply the case when $f(u)$ is convex. For Burgers equation, we have $f(u) = u^{2}/2$, which is indeed convex. The Lax Entropy condition tell us the following.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 3. (Lax Entropy Condition)&lt;/strong&gt; &lt;em&gt;Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Suppose also that $f$ is convex. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+  f&amp;rsquo;(u^{-}) \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant f&amp;rsquo;(u^{+}).
+  \label{eq:lax}
+\end{equation}
+$$
+In particular, $\eqref{eq:lax}$ is equivalent to requiring that $u^{-} &amp;gt; u^{+}$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;The Lax Entropy condition tells us that for convex conservation laws, the value of the weak solution on the left side of the shock ($u^{-}$) must be larger than the value of the solution on the right side of the shock ($u^{+}$) in order for the weak solution to be an entropy solution. The physical intuition behind the entropy solution is related to the entropy of a fluid in gas dynamics: in smooth flows, the entropy remains constant along particle paths, and if the particle crosses a shock, the entropy may only jump to a &lt;em&gt;higher&lt;/em&gt; value. Entropy is inversely proportional to density, and so density can only jump to lower values along a shock.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve spent a lot of time now developing the main ideas of weak solutions for conservation laws. We can concretely define what it means to have discontinuous solutions of $\eqref{eq:conslaw}$ and impose conditions to guarantee the uniqueness of this solution. Great. We can finally move on to numerical methods for solving conservation laws. In developing such schemes, our goal will be to ensure that our scheme converges (in some sense) to the entropy solution.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-conservative-schemes-monotone-schemes&#34;&gt;&lt;strong&gt;2. Conservative Schemes &amp;amp; Monotone Schemes&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;First, a cautionary tale in constructing numerical methods for conservation laws. We consider Burgers equation with the initial condition $u(x,0) = 𝟙_{\{x \geqslant 0\}}$ and the following finite difference scheme:
+$$
+u_{j}^{n+1} = u_{j}^{n} - \frac{\Delta t}{\Delta x} u_{j}^{n}(u_{j}^{n} - u_{j-1}^{n}).
+$$&lt;/p&gt;
+
+&lt;p&gt;Initially, we have $u_{j}^{0} = 𝟙_{\{x_{j} \geqslant 0\}}$. However, this scheme returns $u_{j}^{n} = u_{j}^{0}$ for all $n$ and $j$, so the scheme converges to $u(x,t) = u(x,0)$. But in the preceding sections, we established that this can&amp;rsquo;t even be a weak solution (indeed, the Rankine-Hugoniot condition is not satisfied).&lt;/p&gt;
+
+&lt;p&gt;Clearly, we must exercise caution in constructing schemes to solve $\eqref{eq:conslaw}$. We have just seen that a perfectly reasonable-looking finite difference scheme (at least, at first glance) fails to converge to a weak solution, let alone the correct entropy solution. In other cases, it may be possible that a scheme converges to a weak solution but not an entropy solution.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-1-the-finite-volume-method&#34;&gt;&lt;strong&gt;2.1 The Finite Volume Method&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;We begin by introducing the &lt;strong&gt;finite volume method&lt;/strong&gt;, discretizes the spatial domain into cells (intervals in 1D, rectangles or other polygons in 2D), and computes an approximation to the average of the solution in each cell. The precise formulation is as follows: consider a bounded, open, connected domain $\Omega = (a,b) \subset \mathbb{R}$ and a finite stopping time $T$, and consider the conservation law given by
+$$
+\begin{equation}
+  \begin{cases}
+    u_{t} + f(u)_{x} = 0 &amp;amp;\text{in}\;\Omega \times (0,T)\\&lt;br /&gt;
+    u(x,0) = u_{0}(x) &amp;amp;\text{on}\;\Omega \times \{t=0\}.
+  \end{cases}
+  \label{eq:conslaw2}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;We discretize $\Omega$ into equally-sized cells $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$:
+$$
+a = x_{1/ 2} &amp;lt; x_{3/ 2} &amp;lt; \dots &amp;lt; x_{N+1/ 2} = b, \;\;\;\Delta x := x_{j+1/ 2} - x_{j-1/ 2}.
+$$&lt;/p&gt;
+
+&lt;p&gt;Next, we integrate $\eqref{eq:conslaw2}$ over each cell $I_{j}$:
+$$
+\begin{align}
+  \int_{x_{j-1/ 2}}^{x_{j+1/ 2}} (u_{t} + f(u)_{x})\;dx &amp;amp;= 0\notag\\&lt;br /&gt;
+  \Delta x \frac{d\bar{u}_{j}}{dt} + f(u_{j+1/ 2}^{-}) - f(u_{j-1/ 2}^{+}) &amp;amp;= 0\notag\\&lt;br /&gt;
+  \frac{d\bar{u}_{j}}{dt} + \frac{f(u_{j+1/ 2}) - f(u_{j-1/ 2})}{\Delta x} &amp;amp;= 0
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;Here, $\bar{u}_{j}$ denotes the cell average of $u$ in cell $I_{j}$: $\bar{u}_{j} := \frac{1}{\Delta x}\int_{I_{j}} u\;dx$. If our goal is to solve for the cell averages $\bar{u}_{j}$, you might notice that the second term poses a problem as it is formulated in terms of pointwise values of $u$ at $x_{j-1/ 2}$ and $x_{j+1/ 2}$ rather than $\bar{u}_{j}$. The finite volume scheme remedies this by introducing a &lt;em&gt;numerical flux function&lt;/em&gt; which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$:
+$$
+\begin{equation}
+  \frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left(\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) - \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})\right) = 0.
+  \label{eq:finitevol}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;Essentially, we approximate $u$ by its average in each cell. This approximation is not so well defined as the points $x_{j+1/ 2}$, which lie at the intersection between the two cells $I_{j}$ and $I_{j+1}$. Thus, $\hat{f}$ can be viewed in this context as a function which takes in the dual values at the cell interfaces and returns a single, physically relevant value.&lt;/p&gt;
+
+&lt;p&gt;The only thing left to do to turn $\eqref{eq:finitevol}$ into a usable scheme is to discretize the time derivative. The simplest option is to use a first-order finite difference. In doing so, we arrive at the explicit first-order finite volume scheme.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 3.&lt;/strong&gt; &lt;em&gt;The explicit first-order finite volume scheme in space and time is given by
+$$
+\begin{equation}
+  \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+  \label{eq:finitevol2}
+\end{equation}
+$$
+where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Notice that we haven&amp;rsquo;t specified what, exactly, the flux function $\hat{f}$ is yet. The choice of $\hat{f}$ is immensely important as it will determine many properties of our scheme, such as convergence to the entropy solution. Before stating some possible choices of $\hat{f}$, we will first go the properties $\hat{f}$ must satisfy in order to converge to the entropy solution.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 4.&lt;/strong&gt; &lt;em&gt;A&lt;/em&gt; &lt;strong&gt;monotone scheme&lt;/strong&gt; &lt;em&gt;is one that can be written in the form
+$$
+\begin{equation}
+  \bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}),
+\end{equation}
+$$
+where $\mathcal{H}$ is a nondecreasing function in all arguments. In particular, the monotone scheme on the three-point stencil $\{\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}\}$ is given by $\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;This is all well and good, but why should we care about monotone schemes? To begin with, they have a number of remarkable properties that guarantee our numerical solution behaves &amp;ldquo;nicely.&amp;rdquo;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 4.&lt;/strong&gt; &lt;em&gt;Monotone schemes satisfy the following properties:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Local maximum principle.&lt;/strong&gt;
+$$
+\min_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \leqslant \mathcal{H}(\bar{u})_{j} \leqslant \max_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \;\;\;\forall j.
+$$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Total variation diminishing property.&lt;/strong&gt;
+$$
+||\mathcal{H}(\bar{u})||_{BV} \leqslant ||\bar{u}||_{BV},
+$$
+&lt;em&gt;where the bounded variation seminorm is given by $||u||_{BV} = \sum_{j} |u_{j} - u_{j-1}|$.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Entropy solution.&lt;/strong&gt; &lt;em&gt;Monotone schemes converge to the entropy solution with a rate in $\ell^{1}$ of half-order. This bound is sharp.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Roughly speaking, the local maximum principle tells us that our cell averages at $t^{n+1}$ cannot be larger or smaller than our averages at $t^{n}$ around the stencil $\{\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}\}$. The total variation diminishing property tells us that our cell averages can only decrease in bounded variation. In particular, this means that our cell averages at $t^{n+1}$ cannot be more oscillatory than our cell averages at $t^{n}$. We will see soon some schemes which violate this property and tend to produce spurious oscillations in the numerical solution. The last property is of course self-explanatory: by using a monotone scheme, we are guaranteed to converge to the entropy solution!&lt;/p&gt;
+
+&lt;p&gt;We would like for the finite volume scheme in $\eqref{eq:finitevol2}$ to be a monotone scheme, and our goal is now to choose a function $\hat{f}$ in order to achieve this. We have
+$$
+\mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right).
+$$&lt;/p&gt;
+
+&lt;p&gt;$\mathcal{H}$ must be nondecreasing in each argument, so we compute its partial derivatives:
+$$
+\begin{align}
+  \mathcal{H}_{1} &amp;amp;= \frac{\Delta t}{\Delta x} \hat{f}_{1}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})\label{eq:monotone1}\\&lt;br /&gt;
+  \mathcal{H}_{2} &amp;amp;= 1 - \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right)\label{eq:monotone2}\\&lt;br /&gt;
+  \mathcal{H}_{3} &amp;amp;= -\frac{\Delta t}{\Delta x} \hat{f}_{2}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})\label{eq:monotone3}.
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;Here, $\hat{f}_{1}$ denotes the partial derivative of $\hat{f}$ with respect to the first argument, and so on. If $\hat{f}$ is increasing in the first argument and decreasing in the second argument, then $\eqref{eq:monotone1}$ and $\eqref{eq:monotone3}$ will be nonnegative. Furthermore, if
+$$
+\frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right) \leqslant 1,
+$$&lt;/p&gt;
+
+&lt;p&gt;then $\eqref{eq:monotone2}$ will also be nonnegative. This last condition is merely a restriction on our time step. By choosing $\Delta t$ small enough, we can always satisfy this condition. The first two conditions tell us that we merely need to choose our numerical flux function $\hat{f}$ such that it is increasing in its first argument and decreasing in its second argument.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proposition 1.&lt;/strong&gt; &lt;em&gt;If $\hat{f}$ satifies the following conditions:&lt;/em&gt;&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;$\hat{f}$ is Lipschitz continuous in all arguments.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;em&gt;$\hat{f}(u,u) = f(u)$. This is known as the consistency condition.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;em&gt;$\hat{f}$ is increasing in the first argument and decreasing in the second argument,
+then the scheme $\eqref{eq:finitevol2}$ is monotone.&lt;/em&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;We will not discuss the first two conditions here, but suffice it to say that these properties are very easy to check.&lt;/p&gt;
+
+&lt;h3 id=&#34;2-1-1-numerical-flux-functions&#34;&gt;&lt;strong&gt;2.1.1 Numerical Flux Functions&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;p&gt;We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Friedrichs flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \frac{1}{2}\left( f(u_{j}) + f(u_{j+1}) - \alpha(u_{j+1} - u_{j}) \right),
+\end{equation}
+$$
+where $\alpha = \max_{u} |f&amp;rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&amp;rsquo;(u)|$.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Godunov flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u) &amp;amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\&lt;br /&gt;
+\max_{\bar{u}_{j} \geqslant u \geqslant \bar{u}_{j+1}} f(u) &amp;amp;\bar{u}_{j} &amp;gt; \bar{u}_{j+1}.
+\end{cases}
+\end{equation}
+$$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Engquist-Osher flux.&lt;/strong&gt;
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\int_{0}^{\bar{u}_{j}} \max\{f&amp;rsquo;(u),0\}\;du + \int_{0}^{\bar{u}_{j+1}} \min\{f&amp;rsquo;(u),0\}\;du.
+\end{align}
+$$&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Roe flux.&lt;/strong&gt;
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+f(\bar{u}_{j}) &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\&lt;br /&gt;
+f(\bar{u}_{j+1}) &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} &amp;lt; 0.
+\end{cases}
+\end{equation}
+$$&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;Lax-Wendroff flux.&lt;/strong&gt;
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\&lt;br /&gt;
+&amp;amp;\frac{\Delta t}{2\Delta x}f&amp;rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
+\end{align}
+$$&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Three-phase flow simulations in one dimension</title>
+      <link>/publication/undergrad-paper/</link>
+      <pubDate>Tue, 18 Mar 2014 00:00:00 -0400</pubDate>
+      
+      <guid>/publication/undergrad-paper/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

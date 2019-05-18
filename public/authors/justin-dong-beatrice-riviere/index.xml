@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Justin Dong, Beatrice Riviere on Justin Dong</title>
+    <link>/authors/justin-dong-beatrice-riviere/</link>
+    <description>Recent content in Justin Dong, Beatrice Riviere on Justin Dong</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 12 Aug 2016 00:00:00 -0400</lastBuildDate>
+    
+	<atom:link href="/authors/justin-dong-beatrice-riviere/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>A semi-implicit method for incompressible three-phase flow in porous media</title>
+      <link>/publication/journal-article/</link>
+      <pubDate>Fri, 12 Aug 2016 00:00:00 -0400</pubDate>
+      
+      <guid>/publication/journal-article/</guid>
+      <description>In this paper, we present a semi-implicit method for the incompressible three-phase flow equations in two dimensions. In particular, a high-order discontinuous Galerkin spatial discretization is coupled with a backward Euler discretization in time.</description>
+    </item>
+    
+  </channel>
+</rss>
