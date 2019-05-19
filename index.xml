@@ -36,65 +36,145 @@
     </item>
     
     <item>
-      <title>Approximation Properties of Neural Networks</title>
-      <link>/post/jupyter/</link>
+      <title>Numerical Methods for Conservation Laws (Part 2)</title>
+      <link>/post/conservation-laws-2/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/jupyter/</guid>
+      <guid>/post/conservation-laws-2/</guid>
       <description>
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;from IPython.core.display import Image
-Image(&#39;https://www.python.org/static/community_logos/python-logo-master-v3-TM-flattened.png&#39;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;1-high-order-finite-volume-methods&#34;&gt;&lt;strong&gt;1. High Order Finite Volume Methods&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&#34;./academic_0_0.png&#34; alt=&#34;png&#34; /&gt;&lt;/p&gt;
+&lt;p&gt;Last time, we established that the first order finite volume scheme is given by
+$$
+\begin{equation}
+  \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+  \label{eq:finitevol2}
+\end{equation}
+$$
+where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$. Here, $\hat{f}$ is the &lt;em&gt;numerical flux function&lt;/em&gt; which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;print(&amp;quot;Welcome to Academic!&amp;quot;)
-&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;More generally, we can view the quantity $\bar{u}_{j}$ as a first order (zero degree polynomial) reconstruction of $u(x)$ in cell $I_{j}$ using the cell average. The same can be said of $\bar{u}_{j+1}$ in cell $I_{j+1}$. By approximating $u(x_{j+1/ 2}^{-}) = u_{j+1/ 2}^{-} \approx \bar{u}_{j}$ on the left &amp;ldquo;side&amp;rdquo; of $x_{j+1/ 2}$ and $u(x_{j+1/ 2}^{+}) = u_{j+1/ 2}^{+} \approx \bar{u}_{j+1}$ on the right side of $x_{j+1/ 2}$, the numerical flux has a natural interpretation as $f(u_{j+1/ 2}) \approx \hat{f}(u_{j+1/ 2}^{-}, u_{j+1/ 2}^{+})$. We reconcile the two reconstructions at $x_{j+1/ 2}$ by utilizing the numerical flux function. Figure 1 illustrates this concept.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code&gt;Welcome to Academic!
-&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;install-python-and-jupyter&#34;&gt;Install Python and Jupyter&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://www.anaconda.com/distribution/#download-section&#34; target=&#34;_blank&#34;&gt;Install Anaconda&lt;/a&gt; which includes Python 3 and Jupyter notebook.&lt;/p&gt;
 
-&lt;p&gt;Otherwise, for advanced users, install Jupyter notebook with &lt;code&gt;pip3 install jupyter&lt;/code&gt;.&lt;/p&gt;
+&lt;figure&gt;
 
-&lt;h2 id=&#34;create-a-new-blog-post-as-usual-https-sourcethemes-com-academic-docs-managing-content-create-a-blog-post&#34;&gt;Create a new blog post &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#create-a-blog-post&#34; target=&#34;_blank&#34;&gt;as usual&lt;/a&gt;&lt;/h2&gt;
+&lt;img src=&#34;gallery/reconstruction0.png&#34; alt=&#34;**Figure 1:** First order reconstruction. We reconstruct $u$ using a zero degree polynomial (i.e. constant functions) in each cell.&#34; width=&#34;600px&#34; /&gt;
 
-&lt;p&gt;Run the following commands in your Terminal, substituting &lt;code&gt;&amp;lt;MY_WEBSITE_FOLDER&amp;gt;&lt;/code&gt; and &lt;code&gt;my-post&lt;/code&gt; with the file path to your Academic website folder and a name for your blog post (without spaces), respectively:&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;
-hugo new  --kind post post/my-post
-cd &amp;lt;MY_WEBSITE_FOLDER&amp;gt;/content/post/my-post/
-&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;create-or-upload-a-jupyter-notebook&#34;&gt;Create or upload a Jupyter notebook&lt;/h2&gt;
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 1:&lt;/strong&gt; First order reconstruction. We reconstruct $u$ using a zero degree polynomial (i.e. constant functions) in each cell.
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
 
-&lt;p&gt;Run the following command to start Jupyter within your new blog post folder. Then create a new Jupyter notebook (&lt;em&gt;New &amp;gt; Python Notebook&lt;/em&gt;) or upload a notebook.&lt;/p&gt;
+&lt;/figure&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter notebook
-&lt;/code&gt;&lt;/pre&gt;
+&lt;h2 id=&#34;1-1-polynomial-reconstruction&#34;&gt;&lt;strong&gt;1.1 Polynomial Reconstruction&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;h2 id=&#34;convert-notebook-to-markdown&#34;&gt;Convert notebook to Markdown&lt;/h2&gt;
+&lt;p&gt;Viewing the finite volume scheme as a reconstruction procedure using the cell averages is key to developing higher order methods. Using $\eqref{eq:finitevol2}$, we have $u_{j+1/ 2}^{-} = \bar{u}_{j} + \mathcal{O}(\Delta x)$. Suppose we want to develop a third-order finite volume scheme now. In particular, we would like to have
+$$
+u_{j+1/ 2}^{-} = \mathcal{F}(\bar{u}_{j-p}, \dots, \bar{u}_{j+q}) + \mathcal{O}(\Delta x^{3}),
+$$&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&#34;language-bash&#34;&gt;jupyter nbconvert Untitled.ipynb --to markdown --NbConvertApp.output_files_dir=.
+&lt;p&gt;where $p$ and $q$ are integers to be chosen by us. It stands to reason that if we want a third-order reconstruction of $u(x)$ in cell $I_{j}$, we need to use three &amp;ldquo;pieces&amp;rdquo; of information: $u_{j+1/ 2}^{-} \approx \mathcal{F}(\bar{u}_{j-1}, \bar{u}_{j}, \bar{u}_{j+1})$. In other words, we are seeking a degree two polynomial $p_{j}(x) = ax^{2} + bx + c$ in $I_{j}$. In other to fully determine this polynomial, i.e. solve for $a,b,c$, we require three equations. A natural condition to impose on $p_{j}$ is that is preserves cell averages over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$:
+$$
+\begin{equation}
+    \frac{1}{\Delta x} \int_{I_{i}} p_{j}(x)\;dx = \bar{u}_{i}, \;\;\;i \in \{j-1,j,j+1\}.
+\end{equation}
+$$&lt;/p&gt;
 
-# Copy the contents of Untitled.md and append it to index.md:
-cat Untitled.md | tee -a index.md
+&lt;p&gt;We then take $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2})$. Similarly, we take $u_{j+1/ 2}^{+} = p_{j+1}(x_{j+1/ 2})$. Figure 2 demonstrates how the third-order reconstruction porcedure works.&lt;/p&gt;
 
-# Remove the temporary file:
-rm Untitled.md
-&lt;/code&gt;&lt;/pre&gt;
 
-&lt;h2 id=&#34;edit-your-post-metadata&#34;&gt;Edit your post metadata&lt;/h2&gt;
 
-&lt;p&gt;Open &lt;code&gt;index.md&lt;/code&gt; in your text editor and edit the title etc. in the &lt;a href=&#34;https://sourcethemes.com/academic/docs/front-matter/&#34; target=&#34;_blank&#34;&gt;front matter&lt;/a&gt; according to your preference.&lt;/p&gt;
 
-&lt;p&gt;To set a &lt;a href=&#34;https://sourcethemes.com/academic/docs/managing-content/#featured-image&#34; target=&#34;_blank&#34;&gt;featured image&lt;/a&gt;, place an image named &lt;code&gt;featured&lt;/code&gt; into your post&amp;rsquo;s folder.&lt;/p&gt;
+&lt;figure&gt;
 
-&lt;p&gt;For other tips, such as using math, see the guide on &lt;a href=&#34;https://sourcethemes.com/academic/docs/writing-markdown-latex/&#34; target=&#34;_blank&#34;&gt;writing content with Academic&lt;/a&gt;.&lt;/p&gt;
+&lt;img src=&#34;gallery/reconstruction2.png&#34; alt=&#34;**Figure 2:** Third order reconstruction. We reconstruct $u$ using a quadratic function defined in the stencil $\\{I\_{j-1}, I\_{j}, I\_{j&amp;#43;1}\\}$ and enforce that the quadratic function maintains cell averages across the stencil. We take $u\_{j&amp;#43;1/ 2}^{-} \approx p\_{j}(x\_{j&amp;#43;1 /2})$ and $u\_{j&amp;#43;1/ 2}^{&amp;#43;} \approx p\_{j&amp;#43;1}(x\_{j&amp;#43;1/ 2})$ (not pictured here).&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 2:&lt;/strong&gt; Third order reconstruction. We reconstruct $u$ using a quadratic function defined in the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$ and enforce that the quadratic function maintains cell averages across the stencil. We take $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1 /2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$ (not pictured here).
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 1.&lt;/strong&gt; &lt;em&gt;The order $k$ in space finite volume scheme is given by
+$$
+\begin{equation}
+    \frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left( \hat{f}(u_{j+1/ 2}^{-}, u_{j+1/ 2}^{+}) - \hat{f}(u_{j-1/ 2}^{-}, u_{j-1/ 2}^{+}) \right) = 0
+    \label{eq:finitevolk}
+\end{equation}
+$$
+where $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1/ 2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$. The polynomial $p_{j}$ is reconstructed from the stencil $\{\bar{u}_{j-p}, \dots, \bar{u}_{j+q}\}$ and satifies the $q-p+1$ conditions&lt;/em&gt;
+$$
+\frac{1}{\Delta x} \int_{I_{i}} p_{j}(x)\;dx = \bar{u}_{i}, \;\;\;i \in \{j-p, \dots, j+q\}.
+$$&lt;/p&gt;
+
+&lt;p&gt;For concreteness, we will work with the third-order scheme. It is a straightforward (if tedious) pen and paper exercise to compute the parameters $a,b,c$ for the polynomial $p_{j}(x) = ax^{2}+bx+c$. However, notice that the scheme $\eqref{eq:finitevolk}$ only requires the evaluation of the polynomials at the endpoints of the cells. For the third order scheme, this amounts to the following formulae:
+$$
+\begin{align}
+    u_{j+1/ 2}^{-} &amp;amp;= p_{j}(x_{j+1/ 2}) = -\frac{1}{6}\bar{u}_{j-1} + \frac{5}{6}\bar{u}_{j} + \frac{1}{3}\bar{u}_{j+1}\\&lt;br /&gt;
+    u_{j+1/ 2}^{+} &amp;amp;= p_{j+1}(x_{j+1/ 2}) = \frac{1}{3}\bar{u}_{j} + \frac{5}{6}\bar{u}_{j+1} - \frac{1}{6}\bar{u}_{j+2}.
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;This formulae can be found in a number of references, e.g. Chapter 4 of &lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;[2]&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Before moving on, we should make note of two very important issues here. The first is that $\eqref{eq:finitevolk}$ is only a &lt;em&gt;semidiscrete&lt;/em&gt; scheme &amp;ndash; we haven&amp;rsquo;t discretized time yet! Recall that for the first order scheme we used an explicit first-order time discretization. But if we use this time discretization here, then we&amp;rsquo;ll be pairing a third-order in space discretization with a first-order in time discretization. Should we expect such a scheme to be stable? Furthermore, we&amp;rsquo;ll have to reduce our time step commensurately to ensure that the error in the time discretization error does not dominate.&lt;/p&gt;
+
+&lt;p&gt;Second, we haven&amp;rsquo;t said anything about the convergence properties (or any other properties for that matter) of the higher order finite volume schemes. Recall that the Lax-Wendroff flux resulted in a second-order scheme which was neither monotone nor total variation diminishing (TVD). It&amp;rsquo;s unclear what will happen when we apply $\eqref{eq:finitevolk}$ to actually solve a conservation law.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-2-third-order-runge-kutta-time-integration&#34;&gt;&lt;strong&gt;1.2 Third Order Runge-Kutta Time Integration&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;In all of the examples that follow, we will use a third order Runge-Kutta (RK3) discretization in time. For our purposes, this discretization is conditionally stable with some necessary restriction on the time step as with all explicit schemes. If we pair the RK3 discretization with a spatial discretization higher than third order accuracy, we may have to decrease the time step further.&lt;/p&gt;
+
+&lt;p&gt;The setting for the RK3 discretization is as follows: consider the semidiscrete scheme
+$$
+\frac{d\bar{u}_{j}}{dt} + \mathcal{L}(\bar{u}_{j}) = 0,
+$$&lt;/p&gt;
+
+&lt;p&gt;where $\mathcal{L}$ is the spatial operator associated with the flux terms.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 2.&lt;/strong&gt; &lt;em&gt;The third order Runge-Kutta time discretization is given by&lt;/em&gt;
+$$
+\begin{align}
+    \bar{u}_{j}^{(1)} &amp;amp;= \bar{u}_{j}^{n} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}, t^{n})\notag\\&lt;br /&gt;
+    \bar{u}_{j}^{(2)} &amp;amp;= \frac{3}{4}\bar{u}_{j}^{n} + \frac{1}{4}\left( \bar{u}_{j}^{(1)} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{(1)}, \dots, \bar{u}_{j+q}^{(1)}, t^{n} + \Delta t) \right)\notag\\&lt;br /&gt;
+    \bar{u}_{j}^{n+1} &amp;amp;= \frac{1}{3}\bar{u}_{j}^{n} + \frac{2}{3}\left( \bar{u}_{j}^{(2)} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{(2)}, \dots, \bar{u}_{j+q}^{(2)}, t^{n} + \frac{1}{2}\Delta t) \right).\notag
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;The choice of coefficients in the above scheme is deliberate. In fact, with these coefficients, the RK3 time discretization can be shown to be TVD.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Proposition 1.&lt;/strong&gt; &lt;em&gt;The third order Runge-Kutta time discretization is TVD when paired with a spatial scheme that is also TVD.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Interestingly, there are many examples of time discretizations which are not TVD, even when paired with a TVD spatial scheme. We refer the reader to the seminal work of Sigal Gottlieb and Chi-Wang Shu in &lt;a href=&#34;https://doi.org/10.1090/S0025-5718-98-00913-2&#34; target=&#34;_blank&#34;&gt;[1]&lt;/a&gt; for a much more in-depth discussion of TVD Runge-Kutta schemes.&lt;/p&gt;
+
+&lt;h2 id=&#34;1-3-a-first-attempt-at-implementation&#34;&gt;&lt;strong&gt;1.3 A First Attempt at Implementation&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on GitHub. Figure&lt;/p&gt;
+
+&lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;[1] Gottlieb, Sigal, and Chi-Wang Shu. &amp;ldquo;&lt;a href=&#34;https://doi.org/10.1090/S0025-5718-98-00913-2&#34; target=&#34;_blank&#34;&gt;Total variation diminishing Runge-Kutta schemes&lt;/a&gt;.&amp;rdquo; Mathematics of computation of the American Mathematical Society 67.221 (1998): 73-85.&lt;/p&gt;
+
+&lt;p&gt;[2] Johnson, B. Cockburn C., and C-W. Shu E. Tadmor. &amp;ldquo;&lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;Advanced numerical approximation of nonlinear hyperbolic equations&lt;/a&gt;.&amp;rdquo; (1997).&lt;/p&gt;
 </description>
     </item>
     
@@ -317,7 +397,7 @@ $$&lt;/p&gt;
     </item>
     
     <item>
-      <title>Numerical Methods for Conservation Laws</title>
+      <title>Numerical Methods for Conservation Laws (Part 1)</title>
       <link>/post/conservation-laws-1/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       
@@ -667,6 +747,49 @@ $$
 &amp;amp;\frac{\Delta t}{2\Delta x}f&amp;rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
 \end{align}
 $$&lt;/p&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;2-2-implementation&#34;&gt;&lt;strong&gt;2.2 Implementation&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Without further ado, we will implement the first-order finite volume method using all five of the aforementioned numerical fluxes for Burgers equation with $u(x,0) = \sin{x}$. All of the source code is publicly available on GitHub. Figure 2 shows the finite volume solutions at $T=1.5$.&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;gallery/finiteVolumeBurgers.png&#34; alt=&#34;**Figure 2:** Solution of Burgers equation with sine initial data using the first-order finite volume method.&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 2:&lt;/strong&gt; Solution of Burgers equation with sine initial data using the first-order finite volume method.
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;The first observation we make is that there is little difference between the Roe, Godunov, and Engquist-Osher fluxes, at least for this example problem. The Godunov and Engquist-Osher fluxes lead to monotone schemes which converge to the entropy solution. The Roe flux does not lead to a monotone scheme, and in very rare cases may provide solutions with the incorrect shock speed. Nevertheless, in most cases the Roe scheme works well and is a popular choice for the numerical flux.&lt;/p&gt;
+
+&lt;p&gt;Next, the Lax-Friedrichs flux is noticeably more dissipative than any of the other results. It is known to &amp;ldquo;smear&amp;rdquo; discontinuities and add numerical diffusion. However, the Lax-Friedrichs flux is a very popular choice for the numerical flux since is leads to a monotone scheme and is straightforward to implement.&lt;/p&gt;
+
+&lt;p&gt;Lastly, the Lax-Wendroff flux is&amp;hellip;problematic, to say the least. Notice that the numerical solution develops spurious (nonphysical) oscillations in the vicinity of the shock at $x=\pi$. If the Lax-Wendroff scheme converges, it converges to a weak solution, but the scheme is not monotone and does not exhibit the total variation-diminishing (TVD) property. Lax-Wendroff is actually a &lt;em&gt;second-order method&lt;/em&gt; in disguise, but we&amp;rsquo;ll discuss this much later and how the order of a numerical method is related to the TVD property for conservation laws.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-key-takeaways&#34;&gt;&lt;strong&gt;3. Key Takeaways&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;If I haven&amp;rsquo;t bored you to death by this point, you should have a basic understanding of weak solutions for conservation laws and the mathematical foundations for discontinuous solutions. The study of such solutions is important because they occur frequently in fluid dynamics and other related fields. You should also be able to implement a basic first-order finite volume scheme for a variety of one-dimensional conservation laws.&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ve only covered first-order schemes in this post, and you might have already guessed that these methods converge too slowly to be of much use for practical problems. Next time, we&amp;rsquo;ll cover higher order finite volume methods for conservation laws and touch on some of the theory regarding higher-order methods (remember how I said the Lax-Wendroff flux actually yields a second-order method? We&amp;rsquo;ll circle back to that soon). Unfortunately, there&amp;rsquo;s no free lunch and higher order methods come with their own set of issues.&lt;/p&gt;
+
+&lt;h3 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;/li&gt;
 &lt;/ol&gt;
 </description>
     </item>

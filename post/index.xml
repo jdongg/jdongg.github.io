@@ -12,16 +12,16 @@
     
     
     <item>
-      <title>Approximation Properties of Neural Networks</title>
-      <link>/post/jupyter/</link>
+      <title>Numerical Methods for Conservation Laws (Part 2)</title>
+      <link>/post/conservation-laws-2/</link>
       <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
       
-      <guid>/post/jupyter/</guid>
-      <description>A brief look at some of the fundamental approximation theory behind artificial neural networks.</description>
+      <guid>/post/conservation-laws-2/</guid>
+      <description>A look at higher order finite volume methods for conservation laws.</description>
     </item>
     
     <item>
-      <title>Numerical Methods for Conservation Laws</title>
+      <title>Numerical Methods for Conservation Laws (Part 1)</title>
       <link>/post/conservation-laws-1/</link>
       <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
       

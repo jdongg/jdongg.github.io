@@ -117,7 +117,7 @@
   
   <meta property="og:site_name" content="Justin Dong">
   <meta property="og:url" content="/post/conservation-laws-1/">
-  <meta property="og:title" content="Numerical Methods for Conservation Laws | Justin Dong">
+  <meta property="og:title" content="Numerical Methods for Conservation Laws (Part 1) | Justin Dong">
   <meta property="og:description" content="An introduction to solving nonlinear conservation laws."><meta property="og:image" content="/post/conservation-laws-1/featured.jpg">
   <meta property="og:locale" content="en-us">
   
@@ -130,10 +130,10 @@
 
   
 
-  <title>Numerical Methods for Conservation Laws | Justin Dong</title>
+  <title>Numerical Methods for Conservation Laws (Part 1) | Justin Dong</title>
 
   <script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
   MathJax.Hub.Config({
   tex2jax: {
     inlineMath: [['$','$'], ['\\(','\\)']],
@@ -460,7 +460,7 @@
   <div class="row">
     <div class="col-6">
       <div class="split-header-content">
-        <h1 itemprop="name">Numerical Methods for Conservation Laws</h1>
+        <h1 itemprop="name">Numerical Methods for Conservation Laws (Part 1)</h1>
 
         
         <p class="page-subtitle">An introduction to solving nonlinear conservation laws.</p>
@@ -507,7 +507,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    16 min read
+    18 min read
   </span>
   
 
@@ -547,7 +547,7 @@
   <ul class="share">
     <li>
       <a class="twitter"
-         href="https://twitter.com/intent/tweet?text=Numerical%20Methods%20for%20Conservation%20Laws&amp;url=%2fpost%2fconservation-laws-1%2f"
+         href="https://twitter.com/intent/tweet?text=Numerical%20Methods%20for%20Conservation%20Laws%20%28Part%201%29&amp;url=%2fpost%2fconservation-laws-1%2f"
          target="_blank" rel="noopener">
         <i class="fab fa-twitter"></i>
       </a>
@@ -561,21 +561,21 @@
     </li>
     <li>
       <a class="linkedin"
-         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fconservation-laws-1%2f&amp;title=Numerical%20Methods%20for%20Conservation%20Laws"
+         href="https://www.linkedin.com/shareArticle?mini=true&amp;url=%2fpost%2fconservation-laws-1%2f&amp;title=Numerical%20Methods%20for%20Conservation%20Laws%20%28Part%201%29"
          target="_blank" rel="noopener">
         <i class="fab fa-linkedin-in"></i>
       </a>
     </li>
     <li>
       <a class="weibo"
-         href="http://service.weibo.com/share/share.php?url=%2fpost%2fconservation-laws-1%2f&amp;title=Numerical%20Methods%20for%20Conservation%20Laws"
+         href="http://service.weibo.com/share/share.php?url=%2fpost%2fconservation-laws-1%2f&amp;title=Numerical%20Methods%20for%20Conservation%20Laws%20%28Part%201%29"
          target="_blank" rel="noopener">
         <i class="fab fa-weibo"></i>
       </a>
     </li>
     <li>
       <a class="email"
-         href="mailto:?subject=Numerical%20Methods%20for%20Conservation%20Laws&amp;body=%2fpost%2fconservation-laws-1%2f">
+         href="mailto:?subject=Numerical%20Methods%20for%20Conservation%20Laws%20%28Part%201%29&amp;body=%2fpost%2fconservation-laws-1%2f">
         <i class="fas fa-envelope"></i>
       </a>
     </li>
@@ -595,7 +595,7 @@
 </div>
 
 <div class="article-container d-xl-none">
-  <h1 itemprop="name">Numerical Methods for Conservation Laws</h1>
+  <h1 itemprop="name">Numerical Methods for Conservation Laws (Part 1)</h1>
 
   
   <p class="page-subtitle">An introduction to solving nonlinear conservation laws.</p>
@@ -642,7 +642,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    16 min read
+    18 min read
   </span>
   
 
@@ -1071,6 +1071,49 @@ $$
 $$</p></li>
 </ol>
 
+<h2 id="2-2-implementation"><strong>2.2 Implementation</strong></h2>
+
+<p>Without further ado, we will implement the first-order finite volume method using all five of the aforementioned numerical fluxes for Burgers equation with $u(x,0) = \sin{x}$. All of the source code is publicly available on GitHub. Figure 2 shows the finite volume solutions at $T=1.5$.</p>
+
+
+
+
+<figure>
+
+<img src="gallery/finiteVolumeBurgers.png" alt="**Figure 2:** Solution of Burgers equation with sine initial data using the first-order finite volume method." />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    <strong>Figure 2:</strong> Solution of Burgers equation with sine initial data using the first-order finite volume method.
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>The first observation we make is that there is little difference between the Roe, Godunov, and Engquist-Osher fluxes, at least for this example problem. The Godunov and Engquist-Osher fluxes lead to monotone schemes which converge to the entropy solution. The Roe flux does not lead to a monotone scheme, and in very rare cases may provide solutions with the incorrect shock speed. Nevertheless, in most cases the Roe scheme works well and is a popular choice for the numerical flux.</p>
+
+<p>Next, the Lax-Friedrichs flux is noticeably more dissipative than any of the other results. It is known to &ldquo;smear&rdquo; discontinuities and add numerical diffusion. However, the Lax-Friedrichs flux is a very popular choice for the numerical flux since is leads to a monotone scheme and is straightforward to implement.</p>
+
+<p>Lastly, the Lax-Wendroff flux is&hellip;problematic, to say the least. Notice that the numerical solution develops spurious (nonphysical) oscillations in the vicinity of the shock at $x=\pi$. If the Lax-Wendroff scheme converges, it converges to a weak solution, but the scheme is not monotone and does not exhibit the total variation-diminishing (TVD) property. Lax-Wendroff is actually a <em>second-order method</em> in disguise, but we&rsquo;ll discuss this much later and how the order of a numerical method is related to the TVD property for conservation laws.</p>
+
+<h2 id="3-key-takeaways"><strong>3. Key Takeaways</strong></h2>
+
+<p>If I haven&rsquo;t bored you to death by this point, you should have a basic understanding of weak solutions for conservation laws and the mathematical foundations for discontinuous solutions. The study of such solutions is important because they occur frequently in fluid dynamics and other related fields. You should also be able to implement a basic first-order finite volume scheme for a variety of one-dimensional conservation laws.</p>
+
+<p>We&rsquo;ve only covered first-order schemes in this post, and you might have already guessed that these methods converge too slowly to be of much use for practical problems. Next time, we&rsquo;ll cover higher order finite volume methods for conservation laws and touch on some of the theory regarding higher-order methods (remember how I said the Lax-Wendroff flux actually yields a second-order method? We&rsquo;ll circle back to that soon). Unfortunately, there&rsquo;s no free lunch and higher order methods come with their own set of issues.</p>
+
+<h3 id="references"><strong>References</strong></h3>
+
+<ol>
+<li></li>
+</ol>
+
     </div>
 
     
@@ -1078,6 +1121,10 @@ $$</p></li>
 <div class="article-tags">
   
   <a class="badge badge-light" href="/tags/numerical-pde/">Numerical PDE</a>
+  
+  <a class="badge badge-light" href="/tags/conservation-laws/">Conservation Laws</a>
+  
+  <a class="badge badge-light" href="/tags/finite-volume-method/">Finite Volume Method</a>
   
 </div>
 
