@@ -168,7 +168,82 @@ $$&lt;/p&gt;
 
 &lt;h2 id=&#34;1-3-a-first-attempt-at-implementation&#34;&gt;&lt;strong&gt;1.3 A First Attempt at Implementation&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on GitHub. Figure&lt;/p&gt;
+&lt;p&gt;Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on GitHub. Figure 3 shows a complete simulation of Burgers equation up to $T=2$ using this scheme.&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;gallery/fv3bad.gif&#34; alt=&#34;**Figure 3:** The third order finite volume scheme applied to Burgers equation.&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 3:&lt;/strong&gt; The third order finite volume scheme applied to Burgers equation.
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;Yikes. On first glance, it appears our scheme performs reasonably well before the appearance of the shock but develops spurious oscillations after the shock. We can also compute the errors in the $\ell^{1}$ norm:
+$$
+||\bar{u} - \bar{u}_{e}||_{\ell^{1}} = \frac{1}{N} \sum_{j=1}^{N} |\bar{u}_{j} - \bar{u}_{e,j}|.
+$$&lt;/p&gt;
+
+&lt;p&gt;Figure 4 describes how the $\ell^{1}$ error decreases as we increase the number of grid points. Before the appearance of the shock, our scheme displays third order accuracy as expected. But after the appearance of the shock, the accuracy is reduced to first order.&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;gallery/convergencefv3bad.png&#34; alt=&#34;**Figure 4:** The third order finite volume scheme applied to Burgers equation.&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 4:&lt;/strong&gt; The third order finite volume scheme applied to Burgers equation.
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;p&gt;So, what on earth is going on here? The driving idea behind higher order schemes is that we hope to converge to the exact (entropy) solution faster than the original first order scheme. In the presence of shocks and discontinuities, though, it seems as if our third-order scheme hasn&amp;rsquo;t given us any benefits. Indeed, it actually introduces oscillations, which is arguably worse than the first order scheme which we recall was provably monotone.&lt;/p&gt;
+
+&lt;h2 id=&#34;2-godunov-s-theorem&#34;&gt;&lt;strong&gt;2. Godunov&amp;rsquo;s Theorem&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;Our initial results are actually not altogether unexpected and are actually a result of Godunov&amp;rsquo;s Theorem.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 3.&lt;/strong&gt; &lt;em&gt;A linear scheme is one that can be written in the form
+$$
+\bar{u}_{j}^{n+1} = \sum_{\ell=-k}^{k} c_{\ell}(\lambda) \bar{u}_{j+\ell}^{n}, \;\;\;\lambda = \frac{\Delta t}{\Delta x}
+$$
+when applied to a linear conservation law.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;It&amp;rsquo;s worth noting that all of the finite volume schemes we have considered thus far are linear schemes (a fact which can easily be verified with pen and paper).&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Theorem 1. (Godunov)&lt;/strong&gt; &lt;em&gt;A linear scheme is monotone if and only if it is total variation diminishing (TVD). Moreover, linear TVD schemes are at most first-order accurate.&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;There&amp;rsquo;s quite a bit to digest here, but we&amp;rsquo;ll start with the first statement. Recall from last time that monotone schemes converge to the entropy solution and are also TVD. Godunov&amp;rsquo;s Theorem states that for &lt;em&gt;linear&lt;/em&gt; schemes, the notion of being monotone is equivalent to being TVD. The second statement is much deeper: it tells us that if we want to construct a linear monotone scheme, then it must be first-order accurate. In particular, we posit that the third-order finite volume scheme is neither monotone nor TVD.&lt;/p&gt;
+
+&lt;p&gt;In fact, monotone schemes are at most first-order accurate regardless of whether the scheme is linear or not. This suggests that we simply can&amp;rsquo;t develop high order monotone schemes. However, having only a TVD scheme is still desirable as it essentially guarantees our scheme will not generate spurious oscillations. And yet, Godunov&amp;rsquo;s Theorem tells us that if we stick to linear schemes, we can&amp;rsquo;t develop high order TVD schemes either.&lt;/p&gt;
+
+&lt;p&gt;Nevertheless, it is still possible to enforce the TVD property on the third-order finite volume scheme. To do so, we employ a post-processing step known as &lt;em&gt;flux limiting&lt;/em&gt;. This results in a nonlinear TVD scheme which is does not produce spurious oscillations.&lt;/p&gt;
+
+&lt;h2 id=&#34;3-slope-limiting&#34;&gt;&lt;strong&gt;3. Slope Limiting&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero.&lt;/p&gt;
 
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 
