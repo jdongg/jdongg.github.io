@@ -505,7 +505,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    8 min read
+    13 min read
   </span>
   
 
@@ -638,7 +638,7 @@
   
   <span class="middot-divider"></span>
   <span class="article-reading-time">
-    8 min read
+    13 min read
   </span>
   
 
@@ -882,14 +882,14 @@ $$</p>
 
 <figure>
 
-<img src="gallery/convergencefv3bad.png" alt="**Figure 4:** The third order finite volume scheme applied to Burgers equation." />
+<img src="gallery/convergencefv3bad.png" alt="**Figure 4:** Errors in the $\ell^{1}$ norm of the third order finite volume scheme before and after the formation of the shock in Burgers equation." />
 
 
 
 <figcaption data-pre="Figure " data-post=":" >
   
   <p>
-    <strong>Figure 4:</strong> The third order finite volume scheme applied to Burgers equation.
+    <strong>Figure 4:</strong> Errors in the $\ell^{1}$ norm of the third order finite volume scheme before and after the formation of the shock in Burgers equation.
     
     
     
@@ -922,7 +922,116 @@ when applied to a linear conservation law.</em></p>
 
 <h2 id="3-slope-limiting"><strong>3. Slope Limiting</strong></h2>
 
-<p>The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero.</p>
+<p>The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero. The procedure is as follows.</p>
+
+<ol>
+<li><p>Given $\{u_{j+1/ 2}^{\pm}\}$ and the cell averages $\{\bar{u}_{j}\}$, define
+$$
+\begin{align}
+\tilde{u}_{j} = u_{j+1/ 2}^{-} - \bar{u}_{j}, \;\;\;\;\;\tilde{\tilde{u}}_{j} = \bar{u}_{j} - u_{j-1/ 2}^{+}.
+\end{align}
+$$</p></li>
+
+<li><p>Compute the modified quantities $\tilde{u}_{j}^{\text{mod}}$ and $\tilde{\tilde{u}}_{j}^{\text{mod}}$ according to
+$$
+\begin{align}
+\tilde{u}_{j}^{\text{mod}} &amp;= \text{minmod}\{\tilde{u}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\}\\<br />
+\tilde{\tilde{u}}_{j}^{\text{mod}} &amp;= \text{minmod}\{\tilde{\tilde{u}}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\},
+\end{align}
+$$
+where the $\text{minmod}$ function is defined as
+$$
+\begin{equation}
+\text{minmod}(a_{1},\dots,a_{n}) = \begin{cases}
+    s \cdot \min_{j} a_{j}, &amp;s = \text{sgn}(a_{1}) = \dots = \text{sgn}(a_{n})\\<br />
+    0, &amp;\text{else}.
+\end{cases}
+\end{equation}
+$$</p></li>
+
+<li><p>Compute the modified reconstructed values $u_{j+1/ 2}^{\pm,\text{mod}}$ according to
+$$
+\begin{align}
+u_{j+1/ 2}^{-,\text{mod}} = \bar{u}_{j} + \tilde{u}_{j}^{\text{mod}}, \;\;\;\;\;u_{j-1/ 2}^{+,\text{mod}} = \bar{u}_{j} - \tilde{\tilde{u}}_{j}^{\text{mod}}.
+\end{align}
+$$</p></li>
+</ol>
+
+<p>The procedure outline above is known as the <strong>generalized MUSCL (monotone upwind scheme for conservation laws) limiter.</strong> Note that the quantities $\bar{u}_{j+1} - \bar{u}_{j}$ and $\bar{u}_{j} - \bar{u}_{j-1}$ are crude approximations to the gradient over stencil $\{I_{j}, I_{j+1}\}$ and $\{I_{j-1}, I_{j}\}$. In the case of oscillations in our numerical solution, these two quantities will have opposite signs, in which case the $\text{minmod}$ function returns $0$ and the modified quantities $u_{j+1/ 2}^{\pm,\text{mod}}$ are set to the cell average. This is equivalent to the original first order finite volume scheme we studied last time! Hence, in the presence of shocks and discontinuities, we might expect the generalized MUSCL scheme to be first order accurate.</p>
+
+<p>Now, let&rsquo;s consider the case when the $\text{minmod}$ function returns the first argument. We carefully note that this situation occurs when $\{\bar{u}_{j}\}$ is monotone over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$. Then we have $u_{j+1/ 2}^{\pm,\text{mod}} = u_{j+1/ 2}^{\pm}$ and the high order finite volume scheme is unchanged. Thus, in <em>smooth, monotone regions</em> the generalized MUSCL limiter maintains original high order accuracy of the scheme.</p>
+
+<p>Lastly, we must consider what happens near smooth extrema. For instance, $u(x,0) = \sin{x}$ has smooth extrema at $x=\pi/2$ (maximum) and $x=3\pi/2$ (minimum). As consecutive gradients have opposite sign at local extrema, the $\text{minmod}$ function will return $0$ and the scheme is again reduced to first order. Stanley Osher proved the following result:</p>
+
+<p><strong>Theorem 2.</strong> <em>TVD schemes are at most first-order accurate near smooth extrema.</em></p>
+
+<p>This seems like a problem since plenty of smooth solutions have smooth extrema. We&rsquo;ll discuss shortly how to develop slope limiters which do not have this drawback, but first, it would be prudent to discuss to discuss the properties of the generalized MUSCL limiter. When paired with this limiter, the finite volume scheme is actually TVD. The proof is due to Ami Harten.</p>
+
+<p><strong>Lemma 1. (Harten)</strong> <em>If a scheme can be written in the form
+$$
+\begin{equation}
+    \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} + C_{j+1/ 2}(\bar{u}_{j+1}^{n} - \bar{u}_{j}^{n}) - D_{j-1/ 2}(\bar{u}_{j}^{n} - \bar{u}_{j-1}^{n})
+\end{equation}
+$$
+where $C_{j+1/ 2}, D_{j+1/ 2} \geqslant 0$ and $C_{j+1/ 2} + D_{j+1/ 2} \leqslant 1$, then the scheme is TVD.</em></p>
+
+<p>Harten&rsquo;s Lemma is the key to proving that the finite volume MUSCL scheme is TVD.</p>
+
+<p><strong>Proposition 1.</strong> <em>The finite volume scheme with generalized MUSCL limiter is TVD.</em></p>
+
+<p>Without further ado, we present the results using the MUSCL limiter. Voila! At first glance, all appears to be well. The nonphysical oscillations have been removed entirely from our numerical solution.</p>
+
+
+
+
+<figure>
+
+<img src="gallery/fv3muscl.gif" alt="**Figure 5:** The third order finite volume scheme with generalized MUSCL limiter applied to Burgers equation." />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    <strong>Figure 5:</strong> The third order finite volume scheme with generalized MUSCL limiter applied to Burgers equation.
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p>The next step is to verify that we are indeed getting the expected rates of convergence. There are three scenarios to consider: (i) the solution is smooth everywhere (we&rsquo;ll consider the case when $T=0.3$) (ii) the solution develops a shock and we compute the $\ell^{1}$ error over the entire computational grid (we&rsquo;ll consider the case $T=1.5$ here) (iii) the solution develops a shock and we compute the $\ell^{1}$ error excluding a small region around the shock.</p>
+
+<p>In the first scenario, we expect a reduced rate of convergence due to the presence of smooth extrema in the solution. In the second scenario, the order of convergence should be reduced to first order. Finally, in the third scenario, the solution is actually piecewise monotone and so we might expect to maintain the original third order accuracy if compute errors away from the shock.</p>
+
+<p>Indeed, Figure 6 shows these three scenarios exactly. Before the shock, the overall order of accuracy is somewhere between 2 and 3; at the two extrema, the order is reduced to 1 but everywhere else, it is close to 3, leading to a suboptimal order of accuracy. After the shock, the order of accuracy is 1 overall, but when considering only cells at a distance 0.5 away from the shock at $x=\pi$, the order of accuracy is 3.</p>
+
+<p>This isn&rsquo;t such a bad place to be, then. Near shocks, the mathematical theory tells us that we can <em>never</em> do better than first order accuracy, but we&rsquo;ve managed to construct a scheme which is TVD and capable of giving higher order accuracy everywhere the solution is smooth. In the end, this is all we can really ask for. In the remaining posts, we will consider the different types of high order schemes which can be used to numerically solve nonlinear conservation laws.</p>
+
+
+
+
+<figure>
+
+<img src="gallery/convergencefv3muscl.png" alt="**Figure 6:** Error in the $\ell^{1}$ norm of the third order finite volume MUSCL scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&#39;s)." />
+
+
+
+<figcaption data-pre="Figure " data-post=":" >
+  
+  <p>
+    <strong>Figure 6:</strong> Error in the $\ell^{1}$ norm of the third order finite volume MUSCL scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&rsquo;s).
+    
+    
+    
+  </p> 
+</figcaption>
+
+</figure>
+
+<p><strong>Under construction&hellip;</strong></p>
 
 <h2 id="references"><strong>References</strong></h2>
 
