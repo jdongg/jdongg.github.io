@@ -45,7 +45,7 @@
 
 &lt;h2 id=&#34;1-high-order-finite-volume-methods&#34;&gt;&lt;strong&gt;1. High Order Finite Volume Methods&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;Last time, we established that the first order finite volume scheme is given by
+&lt;p&gt;Last time, we established that the explicit first order finite volume scheme is given by
 $$
 \begin{equation}
   \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
@@ -84,14 +84,14 @@ $$
 u_{j+1/ 2}^{-} = \mathcal{F}(\bar{u}_{j-p}, \dots, \bar{u}_{j+q}) + \mathcal{O}(\Delta x^{3}),
 $$&lt;/p&gt;
 
-&lt;p&gt;where $p$ and $q$ are integers to be chosen by us. It stands to reason that if we want a third-order reconstruction of $u(x)$ in cell $I_{j}$, we need to use three &amp;ldquo;pieces&amp;rdquo; of information: $u_{j+1/ 2}^{-} \approx \mathcal{F}(\bar{u}_{j-1}, \bar{u}_{j}, \bar{u}_{j+1})$. In other words, we are seeking a degree two polynomial $p_{j}(x) = ax^{2} + bx + c$ in $I_{j}$. In other to fully determine this polynomial, i.e. solve for $a,b,c$, we require three equations. A natural condition to impose on $p_{j}$ is that is preserves cell averages over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$:
+&lt;p&gt;where $p$ and $q$ are integers to be chosen by us. It stands to reason that if we want a third-order reconstruction of $u(x)$ in cell $I_{j}$, we need to use three &amp;ldquo;pieces&amp;rdquo; of information: $u_{j+1/ 2}^{-} \approx \mathcal{F}(\bar{u}_{j-1}, \bar{u}_{j}, \bar{u}_{j+1})$. In other words, we are seeking a degree two polynomial $p_{j}(x) = ax^{2} + bx + c$ in $I_{j}$ such that $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2}) + \mathcal{O}(\Delta x^{3})$. In order to fully determine this polynomial, i.e. solve for $a,b,c$, we require three equations. A natural condition to impose on $p_{j}$ is that it preserves cell averages over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$:
 $$
 \begin{equation}
     \frac{1}{\Delta x} \int_{I_{i}} p_{j}(x)\;dx = \bar{u}_{i}, \;\;\;i \in \{j-1,j,j+1\}.
 \end{equation}
 $$&lt;/p&gt;
 
-&lt;p&gt;We then take $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2})$. Similarly, we take $u_{j+1/ 2}^{+} = p_{j+1}(x_{j+1/ 2})$. Figure 2 demonstrates how the third-order reconstruction porcedure works.&lt;/p&gt;
+&lt;p&gt;We then take $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2})$. Similarly, we take $u_{j+1/ 2}^{+} = p_{j+1}(x_{j+1/ 2})$. Figure 2 demonstrates how the third-order reconstruction procedure works.&lt;/p&gt;
 
 
 
@@ -121,7 +121,7 @@ $$
     \label{eq:finitevolk}
 \end{equation}
 $$
-where $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1/ 2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$. The polynomial $p_{j}$ is reconstructed from the stencil $\{\bar{u}_{j-p}, \dots, \bar{u}_{j+q}\}$ and satifies the $q-p+1$ conditions&lt;/em&gt;
+where $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1/ 2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$. The degree $k-1$ polynomial $p_{j}$ is reconstructed from the stencil $\{\bar{u}_{j-p}, \dots, \bar{u}_{j+q}\}$ and satifies the $q+p+1$ conditions&lt;/em&gt;
 $$
 \frac{1}{\Delta x} \int_{I_{i}} p_{j}(x)\;dx = \bar{u}_{i}, \;\;\;i \in \{j-p, \dots, j+q\}.
 $$&lt;/p&gt;
@@ -129,14 +129,14 @@ $$&lt;/p&gt;
 &lt;p&gt;For concreteness, we will work with the third-order scheme. It is a straightforward (if tedious) pen and paper exercise to compute the parameters $a,b,c$ for the polynomial $p_{j}(x) = ax^{2}+bx+c$. However, notice that the scheme $\eqref{eq:finitevolk}$ only requires the evaluation of the polynomials at the endpoints of the cells. For the third order scheme, this amounts to the following formulae:
 $$
 \begin{align}
-    u_{j+1/ 2}^{-} &amp;amp;= p_{j}(x_{j+1/ 2}) = -\frac{1}{6}\bar{u}_{j-1} + \frac{5}{6}\bar{u}_{j} + \frac{1}{3}\bar{u}_{j+1}\\&lt;br /&gt;
-    u_{j+1/ 2}^{+} &amp;amp;= p_{j+1}(x_{j+1/ 2}) = \frac{1}{3}\bar{u}_{j} + \frac{5}{6}\bar{u}_{j+1} - \frac{1}{6}\bar{u}_{j+2}.
+    u_{j+1/ 2}^{-} &amp;amp;= p_{j}(x_{j+1/ 2}) = -\frac{1}{6}\bar{u}_{j-1} + \frac{5}{6}\bar{u}_{j} + \frac{1}{3}\bar{u}_{j+1}\label{eq:recon1}\\&lt;br /&gt;
+    u_{j+1/ 2}^{+} &amp;amp;= p_{j+1}(x_{j+1/ 2}) = \frac{1}{3}\bar{u}_{j} + \frac{5}{6}\bar{u}_{j+1} - \frac{1}{6}\bar{u}_{j+2}.\label{eq:recon2}
 \end{align}
 $$&lt;/p&gt;
 
-&lt;p&gt;This formulae can be found in a number of references, e.g. Chapter 4 of &lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;[2]&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;These formulae can be found in a number of references, e.g. Chapter 4 of &lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;[3]&lt;/a&gt;.&lt;/p&gt;
 
-&lt;p&gt;Before moving on, we should make note of two very important issues here. The first is that $\eqref{eq:finitevolk}$ is only a &lt;em&gt;semidiscrete&lt;/em&gt; scheme &amp;ndash; we haven&amp;rsquo;t discretized time yet! Recall that for the first order scheme we used an explicit first-order time discretization. But if we use this time discretization here, then we&amp;rsquo;ll be pairing a third-order in space discretization with a first-order in time discretization. Should we expect such a scheme to be stable? Furthermore, we&amp;rsquo;ll have to reduce our time step commensurately to ensure that the error in the time discretization error does not dominate.&lt;/p&gt;
+&lt;p&gt;Before moving on, we should make note of two very important issues here. The first is that $\eqref{eq:finitevolk}$ is only a &lt;em&gt;semidiscrete&lt;/em&gt; scheme &amp;ndash; we haven&amp;rsquo;t discretized time yet! Recall that for the first order scheme we used an explicit first-order time discretization. But if we use this time discretization here, then we&amp;rsquo;ll be pairing a third-order in space discretization with a first-order in time discretization. Should we expect such a scheme to be stable? Furthermore, we&amp;rsquo;ll have to reduce our time step commensurately to ensure that the error in the time discretization does not dominate.&lt;/p&gt;
 
 &lt;p&gt;Second, we haven&amp;rsquo;t said anything about the convergence properties (or any other properties for that matter) of the higher order finite volume schemes. Recall that the Lax-Wendroff flux resulted in a second-order scheme which was neither monotone nor total variation diminishing (TVD). It&amp;rsquo;s unclear what will happen when we apply $\eqref{eq:finitevolk}$ to actually solve a conservation law.&lt;/p&gt;
 
@@ -168,7 +168,48 @@ $$&lt;/p&gt;
 
 &lt;h2 id=&#34;1-3-a-first-attempt-at-implementation&#34;&gt;&lt;strong&gt;1.3 A First Attempt at Implementation&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on GitHub. Figure 3 shows a complete simulation of Burgers equation up to $T=2$ using this scheme.&lt;/p&gt;
+&lt;p&gt;Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on &lt;a href=&#34;https://github.com/jdongg/numCL&#34; target=&#34;_blank&#34;&gt;GitHub&lt;/a&gt;. There are actually relatively few changes that must be made to the first order code. The main time-stepping loop is as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;t = 0.0
+while t &amp;lt; T:
+	# alpha for the Lax-Friedrichs flux
+	A  = np.amax(np.amax(u0))
+
+	# first RK stage
+	um,up = polynomial_reconstruction(u0)
+	fR = lf_flux(um,up,A)
+	fL = np.roll(fR,1)
+	u = u0 - dt/dx*(fR - fL)
+
+	# second RK stage
+	um,up = polynomial_reconstruction(u)
+	fR = lf_flux(um,up,A)  
+	fL = np.roll(fR,1)
+	u = 3.0/4.0*u0 + 1.0/4.0*(u - dt/dx*(fR - fL))
+
+	# third RK stage
+	um,up = polynomial_reconstruction(u)
+	fR = lf_flux(um,up,A)   
+	fL = np.roll(fR,1)
+	u = 1.0/3.0*u0 + 2.0/3.0*(u - dt/dx*(fR - fL))
+
+	# increment time step
+	u0 = u
+	t = t+dt
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Aside from having the three stages for the Runge-Kutta time-stepping, the only real addition to the code is the polynomial reconstruction using the cell averages. Using $\eqref{eq:recon1}$ and $\eqref{eq:recon2}$, the polynomial reconstruction is easily implemented with the following lines:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def polynomial_reconstruction(u):
+
+	# compute u_{j+1/2}^{-} and u_{j+1/2}^{+}
+	um = -1.0/6.0*np.roll(u,1) + 5.0/6.0*u + 1.0/3.0*np.roll(u,-1)
+	up = 1.0/3.0*u + 5.0/6.0*np.roll(u,-1) - 1.0/6.0*np.roll(u,-2)
+
+	return um, up
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Figure 3 shows a complete simulation of Burgers equation up to $T=2$ using this scheme.&lt;/p&gt;
 
 
 
@@ -219,7 +260,7 @@ $$&lt;/p&gt;
 
 &lt;/figure&gt;
 
-&lt;p&gt;So, what on earth is going on here? The driving idea behind higher order schemes is that we hope to converge to the exact (entropy) solution faster than the original first order scheme. In the presence of shocks and discontinuities, though, it seems as if our third-order scheme hasn&amp;rsquo;t given us any benefits. Indeed, it actually introduces oscillations, which is arguably worse than the first order scheme which we recall was provably monotone.&lt;/p&gt;
+&lt;p&gt;So, what on earth is going on here? The driving idea behind higher order schemes is that we hope to converge to the exact (entropy) solution faster than the original first order scheme. In the presence of shocks and discontinuities, though, it seems as if our third-order scheme hasn&amp;rsquo;t given us any benefits. Indeed, it actually introduces oscillations, which is arguably worse than the first order scheme which we recall was provably monotone and TVD.&lt;/p&gt;
 
 &lt;h2 id=&#34;2-godunov-s-theorem&#34;&gt;&lt;strong&gt;2. Godunov&amp;rsquo;s Theorem&lt;/strong&gt;&lt;/h2&gt;
 
@@ -239,11 +280,13 @@ when applied to a linear conservation law.&lt;/em&gt;&lt;/p&gt;
 
 &lt;p&gt;In fact, monotone schemes are at most first-order accurate regardless of whether the scheme is linear or not. This suggests that we simply can&amp;rsquo;t develop high order monotone schemes. However, having only a TVD scheme is still desirable as it essentially guarantees our scheme will not generate spurious oscillations. And yet, Godunov&amp;rsquo;s Theorem tells us that if we stick to linear schemes, we can&amp;rsquo;t develop high order TVD schemes either.&lt;/p&gt;
 
-&lt;p&gt;Nevertheless, it is still possible to enforce the TVD property on the third-order finite volume scheme. To do so, we employ a post-processing step known as &lt;em&gt;flux limiting&lt;/em&gt;. This results in a nonlinear TVD scheme which is does not produce spurious oscillations.&lt;/p&gt;
+&lt;p&gt;Nevertheless, it is still possible to enforce the TVD property on the third-order finite volume scheme. To do so, we employ a post-processing step known as &lt;em&gt;slope limiting&lt;/em&gt;. This results in a nonlinear TVD scheme which is does not produce spurious oscillations.&lt;/p&gt;
 
 &lt;h2 id=&#34;3-slope-limiting&#34;&gt;&lt;strong&gt;3. Slope Limiting&lt;/strong&gt;&lt;/h2&gt;
 
-&lt;p&gt;The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero. The procedure is as follows.&lt;/p&gt;
+&lt;h2 id=&#34;3-1-generalized-muscl-limiter&#34;&gt;&lt;strong&gt;3.1 Generalized MUSCL Limiter&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero in these regions. The procedure is as follows.&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;p&gt;Given $\{u_{j+1/ 2}^{\pm}\}$ and the cell averages $\{\bar{u}_{j}\}$, define
@@ -264,7 +307,7 @@ where the $\text{minmod}$ function is defined as
 $$
 \begin{equation}
 \text{minmod}(a_{1},\dots,a_{n}) = \begin{cases}
-    s \cdot \min_{j} a_{j}, &amp;amp;s = \text{sgn}(a_{1}) = \dots = \text{sgn}(a_{n})\\&lt;br /&gt;
+    s \cdot \min_{j} |a_{j}|, &amp;amp;s = \text{sgn}(a_{1}) = \dots = \text{sgn}(a_{n})\\&lt;br /&gt;
     0, &amp;amp;\text{else}.
 \end{cases}
 \end{equation}
@@ -278,15 +321,15 @@ u_{j+1/ 2}^{-,\text{mod}} = \bar{u}_{j} + \tilde{u}_{j}^{\text{mod}}, \;\;\;\;\;
 $$&lt;/p&gt;&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;The procedure outline above is known as the &lt;strong&gt;generalized MUSCL (monotone upwind scheme for conservation laws) limiter.&lt;/strong&gt; Note that the quantities $\bar{u}_{j+1} - \bar{u}_{j}$ and $\bar{u}_{j} - \bar{u}_{j-1}$ are crude approximations to the gradient over stencil $\{I_{j}, I_{j+1}\}$ and $\{I_{j-1}, I_{j}\}$. In the case of oscillations in our numerical solution, these two quantities will have opposite signs, in which case the $\text{minmod}$ function returns $0$ and the modified quantities $u_{j+1/ 2}^{\pm,\text{mod}}$ are set to the cell average. This is equivalent to the original first order finite volume scheme we studied last time! Hence, in the presence of shocks and discontinuities, we might expect the generalized MUSCL scheme to be first order accurate.&lt;/p&gt;
+&lt;p&gt;The procedure outlined above is known as the &lt;strong&gt;generalized MUSCL (monotone upwind scheme for conservation laws) limiter.&lt;/strong&gt; Note that the quantities $\bar{u}_{j+1} - \bar{u}_{j}$ and $\bar{u}_{j} - \bar{u}_{j-1}$ are crude approximations to the gradient over stencil $\{I_{j}, I_{j+1}\}$ and $\{I_{j-1}, I_{j}\}$. In the case of oscillations in our numerical solution, these two quantities will have opposite signs, in which case the $\text{minmod}$ function returns $0$ and the modified quantities $u_{j+1/ 2}^{\pm,\text{mod}}$ are set to the cell average. This is equivalent to the original first order finite volume scheme we studied last time! Hence, in the presence of shocks and discontinuities, we might expect the generalized MUSCL scheme to be first order accurate.&lt;/p&gt;
 
-&lt;p&gt;Now, let&amp;rsquo;s consider the case when the $\text{minmod}$ function returns the first argument. We carefully note that this situation occurs when $\{\bar{u}_{j}\}$ is monotone over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$. Then we have $u_{j+1/ 2}^{\pm,\text{mod}} = u_{j+1/ 2}^{\pm}$ and the high order finite volume scheme is unchanged. Thus, in &lt;em&gt;smooth, monotone regions&lt;/em&gt; the generalized MUSCL limiter maintains original high order accuracy of the scheme.&lt;/p&gt;
+&lt;p&gt;Now, let&amp;rsquo;s consider the case when the $\text{minmod}$ function returns the first argument. We carefully note that this situation occurs when $\{\bar{u}_{j}\}$ is monotone over the stencils $\{I_{j-1}, I_{j}, I_{j+1}\}$. Then we have $u_{j+1/ 2}^{\pm,\text{mod}} = u_{j+1/ 2}^{\pm}$ and the high order finite volume scheme is unchanged. Thus, in &lt;em&gt;smooth, monotone regions&lt;/em&gt; the generalized MUSCL limiter maintains original high order accuracy of the scheme.&lt;/p&gt;
 
 &lt;p&gt;Lastly, we must consider what happens near smooth extrema. For instance, $u(x,0) = \sin{x}$ has smooth extrema at $x=\pi/2$ (maximum) and $x=3\pi/2$ (minimum). As consecutive gradients have opposite sign at local extrema, the $\text{minmod}$ function will return $0$ and the scheme is again reduced to first order. Stanley Osher proved the following result:&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Theorem 2.&lt;/strong&gt; &lt;em&gt;TVD schemes are at most first-order accurate near smooth extrema.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;This seems like a problem since plenty of smooth solutions have smooth extrema. We&amp;rsquo;ll discuss shortly how to develop slope limiters which do not have this drawback, but first, it would be prudent to discuss to discuss the properties of the generalized MUSCL limiter. When paired with this limiter, the finite volume scheme is actually TVD. The proof is due to Ami Harten.&lt;/p&gt;
+&lt;p&gt;This seems like a problem since plenty of smooth solutions have smooth extrema. We&amp;rsquo;ll discuss shortly how to develop slope limiters which do not have this drawback, but first, it would be prudent to discuss to discuss the properties of the generalized MUSCL limiter. When paired with this limiter, the finite volume scheme is actually TVD. The proof is due to Ami Harten [&lt;a href=&#34;http://arrow.utias.utoronto.ca/~groth/aer1319/Handouts/Additional_Reading_Material/JCP-1983-harten.pdf&#34; target=&#34;_blank&#34;&gt;2&lt;/a&gt;].&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;Lemma 1. (Harten)&lt;/strong&gt; &lt;em&gt;If a scheme can be written in the form
 $$
@@ -300,7 +343,43 @@ where $C_{j+1/ 2}, D_{j+1/ 2} \geqslant 0$ and $C_{j+1/ 2} + D_{j+1/ 2} \leqslan
 
 &lt;p&gt;&lt;strong&gt;Proposition 1.&lt;/strong&gt; &lt;em&gt;The finite volume scheme with generalized MUSCL limiter is TVD.&lt;/em&gt;&lt;/p&gt;
 
-&lt;p&gt;Without further ado, we present the results using the MUSCL limiter. Voila! At first glance, all appears to be well. The nonphysical oscillations have been removed entirely from our numerical solution.&lt;/p&gt;
+&lt;p&gt;Without further ado, we present the results using the MUSCL limiter. The only change from the previous third-order code is to add the MUSCL limiter:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def muscl_limiter(um, up, u):
+
+	# gradients to be adjusted
+	ut  = um - u
+	utt = u - np.roll(up,1)
+
+	ut_m = minmod(ut, np.roll(u,-1)-u, u-np.roll(u,1))
+	utt_m = minmod(utt, np.roll(u,-1)-u, u-np.roll(u,1))
+
+	# modify the cell reconstructions using ut and utt
+	um_mod = u + ut_m
+	up_mod = u - utt_m
+	up_mod = np.roll(up_mod,-1)
+
+	return um_mod, up_mod
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The $\text{minmod}$ function is easily implemented as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def minmod(a, b, c):
+	
+	# check whether a, b, and c are the same sign
+	signs = ((np.sign(a)==np.sign(b)) &amp;amp; (np.sign(b)==np.sign(c)) &amp;amp; (np.sign(c)==np.sign(a)))
+
+	# compute minimum magnitudes of {a,b,c}
+	vals = np.concatenate((a,b,c), axis=1)
+	mins = np.amin(np.abs(vals), axis=1)
+
+	# compute the minmod
+	m = signs*np.sign(a)*np.reshape(mins,(len(vals),1))
+
+	return m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Figure 5 contains the results. Voila! At first glance, all appears to be well. The nonphysical oscillations have been removed entirely from our numerical solution.&lt;/p&gt;
 
 
 
@@ -352,13 +431,100 @@ where $C_{j+1/ 2}, D_{j+1/ 2} \geqslant 0$ and $C_{j+1/ 2} + D_{j+1/ 2} \leqslan
 
 &lt;/figure&gt;
 
-&lt;p&gt;&lt;strong&gt;Under construction&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-2-total-variation-bounded-tvb-limiter&#34;&gt;&lt;strong&gt;3.2 Total-Variation Bounded (TVB) Limiter&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;But first, we consider how to remedy the issue of suboptimal convergence near &lt;em&gt;smooth&lt;/em&gt; extrema. Recall that the issue here is that consecutive gradients have different signs and the $\text{minmod}$ function return zero. In fact, recall that Theorem 2 tells us we can have at most first order accuracy near smooth extrema. If we relax the TVD constraint even further, it is possible to obtain uniformly high-order accurate schemes near smooth extrema.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Definition 4.&lt;/strong&gt; If $TV(\bar{u}^{n}) \leqslant B$ for some fixed $B&amp;gt;0$ depending only on $TV(\bar{u}^{0})$ and $n$ and $\Delta t$ such that $n\Delta t &amp;lt; T$, then the scheme is said to be &lt;strong&gt;total variation bounded&lt;/strong&gt; (TVB) in $0 \leqslant t \leqslant T$.&lt;/p&gt;
+
+&lt;p&gt;It is clear that all TVD schemes are TVB. For TVB schemes, one can show that there exists a subsequence in $L^{1}_{\text{loc}}$ that converges to a weak solution of the conservation law.&lt;/p&gt;
+
+&lt;p&gt;In order to turn to generalized MUSCL limiter into a scheme that is TVB, we need only make a small adjustment. Namely, we define
+$$
+\begin{align}
+    \tilde{u}_{j}^{\text{mod}} &amp;amp;= \overline{\text{minmod}}\{\tilde{u}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\}\\&lt;br /&gt;
+    \tilde{\tilde{u}}_{j}^{\text{mod}} &amp;amp;= \overline{\text{minmod}}\{\tilde{\tilde{u}}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\},
+\end{align}
+$$&lt;/p&gt;
+
+&lt;p&gt;where the modified minmod function $\overline{\text{minmod}}$ is defined by
+$$
+\begin{equation}
+    \overline{\text{minmod}}(a_{1}, \dots, a_{n}) = \begin{cases}
+        a_{1}, &amp;amp;|a_{1}| \leqslant M\Delta x^{2}\\&lt;br /&gt;
+        \text{minmod}(a_{1}, \dots, a_{n}) &amp;amp;\text{else}.
+    \end{cases}
+\end{equation}
+$$&lt;/p&gt;
+
+&lt;p&gt;Here, $M&amp;gt;0$ is a parameter to be chosen by us. Essentially, the TVB limiter first checks whether $u_{j+1/ 2}^{-}$ is sufficiently close to $\bar{u}_{j}$. If so, then the modified $\text{minmod}$ function returns the first argument even if consecutive gradients have different signs, thus ensuring that the scheme retains high-order accuracy around smooth extrema [&lt;a href=&#34;https://www.ams.org/journals/mcom/1987-49-179/S0025-5718-1987-0890256-5/S0025-5718-1987-0890256-5.pdf&#34; target=&#34;_blank&#34;&gt;4&lt;/a&gt;]. The implementation is quite straightforward:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-python&#34;&gt;def minmod2(a, b, c, dx, M):
+	
+	# check whether a, b, and c are the same sign
+	signs = ((np.sign(a)==np.sign(b)) &amp;amp; (np.sign(b)==np.sign(c)) &amp;amp; (np.sign(c)==np.sign(a)))
+
+	# compute minimum magnitudes of {a,b,c}
+	vals = np.concatenate((a,b,c), axis=1)
+	mins = np.amin(np.abs(vals), axis=1)
+
+	# check whether first argument is sufficiently small
+	a1 = (np.abs(a) &amp;lt;= M*dx**2)
+	a2 = (np.abs(a) &amp;gt; M*dx**2)
+
+	# compute the minmod
+	m = a1*a + a2*signs*np.sign(a)*np.reshape(mins,(len(vals),1))
+
+	return m
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;We won&amp;rsquo;t show plots of the numerical solution here as they wouldn&amp;rsquo;t be discernible from the plots of the MUSCL limiter to the naked eye. Instead, Figure 7 shows the convergence rates for the TVB limiter. We note that before the shock forms, the order of accuracy is now 3 as expected, even in the presence of smooth extrema.&lt;/p&gt;
+
+
+
+
+&lt;figure&gt;
+
+&lt;img src=&#34;gallery/convergencefv3tvb.png&#34; alt=&#34;**Figure 7:** Error in the $\ell^{1}$ norm of the third order finite volume TVB scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;#39;s).&#34; /&gt;
+
+
+
+&lt;figcaption data-pre=&#34;Figure &#34; data-post=&#34;:&#34; &gt;
+  
+  &lt;p&gt;
+    &lt;strong&gt;Figure 7:&lt;/strong&gt; Error in the $\ell^{1}$ norm of the third order finite volume TVB scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;rsquo;s).
+    
+    
+    
+  &lt;/p&gt; 
+&lt;/figcaption&gt;
+
+&lt;/figure&gt;
+
+&lt;h2 id=&#34;4-key-takeaways&#34;&gt;&lt;strong&gt;4. Key Takeaways&lt;/strong&gt;&lt;/h2&gt;
+
+&lt;p&gt;To summarize, we implemented a third order finite volume scheme for a one-dimensional scalar conservation law. Without any modifications, this scheme was not TVD and introduced new extrema in our numerical solution that were not seen in the first order finite volume scheme. We touched on Godunov&amp;rsquo;s Theorem, which describes the fundamental limits of accuracy of linear monotone schemes.&lt;/p&gt;
+
+&lt;p&gt;We were able to develop a TVD slope limiter to remove the spurious oscillations in our high order numerical solution but noted that the limiter degraded the order of accuracy of our scheme near smooth extrema. In fact, we learned that &lt;em&gt;all&lt;/em&gt; TVD schemes are at most first order near smooth extrema. To develop a truly high order scheme in the presence of smooth extrema, we turned to the TVB limiter.&lt;/p&gt;
+
+&lt;p&gt;It is worth emphasizing once more than when we talk about &amp;ldquo;high order&amp;rdquo; schemes for nonlinear conservation laws, we generally mean that the scheme maintains high order accuracy in smooth regions, is first order accurate in the vicinity of shocks and discontinuities, and is total variation diminishing (does not introduce any new extrema/spurious oscillations). Next time, we will cover essentially non-oscillatory finite volume schemes which essentially remove spurious oscillations by performing the polynomial reconstruction step in a clever way rather than post-processing the reconstruction as with the slope limiters we have seen in this post.&lt;/p&gt;
 
 &lt;h2 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h2&gt;
 
 &lt;p&gt;[1] Gottlieb, Sigal, and Chi-Wang Shu. &amp;ldquo;&lt;a href=&#34;https://doi.org/10.1090/S0025-5718-98-00913-2&#34; target=&#34;_blank&#34;&gt;Total variation diminishing Runge-Kutta schemes&lt;/a&gt;.&amp;rdquo; Mathematics of computation of the American Mathematical Society 67.221 (1998): 73-85.&lt;/p&gt;
 
-&lt;p&gt;[2] Johnson, B. Cockburn C., and C-W. Shu E. Tadmor. &amp;ldquo;&lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;Advanced numerical approximation of nonlinear hyperbolic equations&lt;/a&gt;.&amp;rdquo; (1997).&lt;/p&gt;
+&lt;p&gt;[2] Harten, Ami. &amp;ldquo;&lt;a href=&#34;http://arrow.utias.utoronto.ca/~groth/aer1319/Handouts/Additional_Reading_Material/JCP-1983-harten.pdf&#34; target=&#34;_blank&#34;&gt;High resolution schemes for hyperbolic conservation laws&lt;/a&gt;.&amp;rdquo; Journal of computational physics 49.3 (1983): 357-393.&lt;/p&gt;
+
+&lt;p&gt;[3] Johnson, B. Cockburn C., and C-W. Shu E. Tadmor. &amp;ldquo;&lt;a href=&#34;https://doi.org/10.1007/BFb0096351&#34; target=&#34;_blank&#34;&gt;Advanced numerical approximation of nonlinear hyperbolic equations&lt;/a&gt;.&amp;rdquo; (1997).&lt;/p&gt;
+
+&lt;p&gt;[4] Shu, Chi-Wang. &amp;ldquo;TVB uniformly high-order schemes for conservation laws.&amp;rdquo; Mathematics of Computation 49.179 (1987): 105-121.&lt;/p&gt;
+
+&lt;h3 id=&#34;codes-resources&#34;&gt;&lt;strong&gt;Codes &amp;amp; Resources&lt;/strong&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/jdongg/numCL&#34; target=&#34;_blank&#34;&gt;NumCL repository on GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Figures 1 and 2 were created using &lt;a href=&#34;https://www.mathcha.io/&#34; target=&#34;_blank&#34;&gt;Mathcha&lt;/a&gt;, an online math editor with a convenient GUI that even allows you to export figures to TikZ.&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
@@ -1047,11 +1213,9 @@ while t &amp;lt; T:
 
 &lt;h3 id=&#34;references&#34;&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/h3&gt;
 
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;LeVeque, Randall J. &lt;a href=&#34;http://staff.washington.edu/rjl/book2/sample.pdf&#34; target=&#34;_blank&#34;&gt;Finite volume methods for hyperbolic problems&lt;/a&gt;. Vol. 31. Cambridge university press, 2002.&lt;/p&gt;&lt;/li&gt;
+&lt;p&gt;[1] LeVeque, Randall J. &lt;a href=&#34;http://staff.washington.edu/rjl/book2/sample.pdf&#34; target=&#34;_blank&#34;&gt;Finite volume methods for hyperbolic problems&lt;/a&gt;. Vol. 31. Cambridge university press, 2002.&lt;/p&gt;
 
-&lt;li&gt;&lt;p&gt;LeVeque, Randall J. &lt;a href=&#34;https://pdfs.semanticscholar.org/1470/c6f43c769572c4cfc94ffc9c5710484ff1e5.pdf&#34; target=&#34;_blank&#34;&gt;Numerical methods for conservation laws&lt;/a&gt;. Vol. 132. Basel: Birkhäuser, 1992.&lt;/p&gt;&lt;/li&gt;
-&lt;/ol&gt;
+&lt;p&gt;[2] LeVeque, Randall J. &lt;a href=&#34;https://pdfs.semanticscholar.org/1470/c6f43c769572c4cfc94ffc9c5710484ff1e5.pdf&#34; target=&#34;_blank&#34;&gt;Numerical methods for conservation laws&lt;/a&gt;. Vol. 132. Basel: Birkhäuser, 1992.&lt;/p&gt;
 
 &lt;h3 id=&#34;codes&#34;&gt;&lt;strong&gt;Codes&lt;/strong&gt;&lt;/h3&gt;
 
