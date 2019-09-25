@@ -6,7 +6,7 @@
     <description>Recent content in Authors on Justin Dong</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/authors/index.xml" rel="self" type="application/rss+xml" />
     
@@ -14,10 +14,10 @@
     <item>
       <title></title>
       <link>/authors/admin/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/authors/admin/</guid>
-      <description>I am a third year Ph.D. student in the Division of Applied Mathematics at Brown University. My research interests include scientific computing and numerical analysis of high-order methods for PDEs, especially as they pertain to problems in computational fluid dynamics. Presently, I am working on deep neural networks applied to PDEs with my advisor, Professor Mark Ainsworth. I am a recipient of the NSF Graduate Research Fellowship.
+      <description>I am a third year Ph.D. student in the Division of Applied Mathematics at Brown University. My research interests include scientific computing and numerical analysis of high-order methods for PDEs, especially as they pertain to problems in computational fluid dynamics. Presently, I am researching the use of deep neural networks to solve PDEs with my advisor, Professor Mark Ainsworth. I am a recipient of the NSF Graduate Research Fellowship.
 I am interested in increasing the participation of historically underrepresented groups in higher mathematics.</description>
     </item>
     

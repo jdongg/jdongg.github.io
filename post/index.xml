@@ -6,15 +6,24 @@
     <description>Recent content in Posts on Justin Dong</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 05 Feb 2019 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sat, 18 May 2019 00:00:00 +0000</lastBuildDate>
     
 	<atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
+      <title>APMA Mentoring Program -- Guidelines for Mentors</title>
+      <link>/post/mentoring/</link>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/post/mentoring/</guid>
+      <description>Some tips for new mentors in the APMA Undergrad/Grad Mentorship program.</description>
+    </item>
+    
+    <item>
       <title>Numerical Methods for Conservation Laws (Part 2)</title>
       <link>/post/conservation-laws-2/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
+      <pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/conservation-laws-2/</guid>
       <description>A look at higher order finite volume methods for conservation laws.</description>
@@ -23,7 +32,7 @@
     <item>
       <title>Numerical Methods for Conservation Laws (Part 1)</title>
       <link>/post/conservation-laws-1/</link>
-      <pubDate>Wed, 20 Apr 2016 00:00:00 +0000</pubDate>
+      <pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate>
       
       <guid>/post/conservation-laws-1/</guid>
       <description>An introduction to solving nonlinear conservation laws.</description>
