@@ -22,10 +22,10 @@ where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{
 &lt;figure id="figure-figure-1-first-order-reconstruction-we-reconstruct-u-using-a-zero-degree-polynomial-ie-constant-functions-in-each-cell">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 1:** First order reconstruction. We reconstruct $u$ using a zero degree polynomial (i.e. constant functions) in each cell." srcset="
-/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_28f415c47f9e8e8b649e7dc32b38eb35.webp 400w,
+/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_3dd6a7fb69f2908f78dfeb443306b47a.webp 400w,
 /post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_93f84a25fa56048185fc377117fe85f5.webp 760w,
 /post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_28f415c47f9e8e8b649e7dc32b38eb35.webp"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_3dd6a7fb69f2908f78dfeb443306b47a.webp"
 width="600px"
 height="597"
 loading="lazy" data-zoomable />&lt;/div>
@@ -47,10 +47,10 @@ $$&lt;/p>
 &lt;figure id="figure-figure-2-third-order-reconstruction-we-reconstruct-u-using-a-quadratic-function-defined-in-the-stencil-i_j-1-i_j-i_j1-and-enforce-that-the-quadratic-function-maintains-cell-averages-across-the-stencil-we-take-u_j1-2--approx-p_jx_j1-2-and-u_j1-2-approx-p_j1x_j1-2-not-pictured-here">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 2:** Third order reconstruction. We reconstruct $u$ using a quadratic function defined in the stencil $\\{I\_{j-1}, I\_{j}, I\_{j&amp;#43;1}\\}$ and enforce that the quadratic function maintains cell averages across the stencil. We take $u\_{j&amp;#43;1/ 2}^{-} \approx p\_{j}(x\_{j&amp;#43;1 /2})$ and $u\_{j&amp;#43;1/ 2}^{&amp;#43;} \approx p\_{j&amp;#43;1}(x\_{j&amp;#43;1/ 2})$ (not pictured here)." srcset="
-/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_364851be5bc4b146768e279d55f029e1.webp 400w,
+/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_aee47c75ddf852c943c1abaa51782278.webp 400w,
 /post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_1b6692142b4942f38643ab62f40dd390.webp 760w,
 /post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_364851be5bc4b146768e279d55f029e1.webp"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_aee47c75ddf852c943c1abaa51782278.webp"
 width="760"
 height="436"
 loading="lazy" data-zoomable />&lt;/div>
@@ -149,10 +149,10 @@ $$&lt;/p>
 &lt;figure id="figure-figure-4-errors-in-the-ell1-norm-of-the-third-order-finite-volume-scheme-before-and-after-the-formation-of-the-shock-in-burgers-equation">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 4:** Errors in the $\ell^{1}$ norm of the third order finite volume scheme before and after the formation of the shock in Burgers equation." srcset="
-/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_d9778bbcecebf45591356a52fa494601.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_cdfe0955ea9568a4b7b5b9404d911f40.webp 400w,
 /post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_44352467c5073d1bae0594fa9a35ed9a.webp 760w,
 /post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_d9778bbcecebf45591356a52fa494601.webp"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_cdfe0955ea9568a4b7b5b9404d911f40.webp"
 width="760"
 height="423"
 loading="lazy" data-zoomable />&lt;/div>
@@ -271,10 +271,10 @@ loading="lazy" data-zoomable />&lt;/div>
 &lt;figure id="figure-figure-6-error-in-the-ell1-norm-of-the-third-order-finite-volume-muscl-scheme-before-the-shock-blue-line-with-squares-after-the-shock-over-the-entire-domain-red-line-with-circles-and-after-the-shock-but-excluding-a-small-region-around-xpi-red-line-with-xs">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 6:** Error in the $\ell^{1}$ norm of the third order finite volume MUSCL scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;#39;s)." srcset="
-/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_7ca02971c653dd83eebcc35cca24e2b7.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_e0f2fc4d5de314f9fcdd7536fb6f5d92.webp 400w,
 /post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_907d0388ea5d53841e4645f3ae5ac83b.webp 760w,
 /post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_7ca02971c653dd83eebcc35cca24e2b7.webp"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_e0f2fc4d5de314f9fcdd7536fb6f5d92.webp"
 width="760"
 height="436"
 loading="lazy" data-zoomable />&lt;/div>
@@ -323,10 +323,10 @@ $$&lt;/p>
 &lt;figure id="figure-figure-7-error-in-the-ell1-norm-of-the-third-order-finite-volume-tvb-scheme-before-the-shock-blue-line-with-squares-after-the-shock-over-the-entire-domain-red-line-with-circles-and-after-the-shock-but-excluding-a-small-region-around-xpi-red-line-with-xs">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 7:** Error in the $\ell^{1}$ norm of the third order finite volume TVB scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;#39;s)." srcset="
-/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1af842f0dbce75afdcc02c8d77947a50.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_f7a16ccc5652f6decc1c0604f7457de1.webp 400w,
 /post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_7a3be10b56feac8f6c583317e15b3dee.webp 760w,
 /post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1af842f0dbce75afdcc02c8d77947a50.webp"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_f7a16ccc5652f6decc1c0604f7457de1.webp"
 width="760"
 height="422"
 loading="lazy" data-zoomable />&lt;/div>
@@ -699,10 +699,10 @@ $$&lt;/p>
 &lt;figure id="figure-figure-2-solution-of-burgers-equation-with-sine-initial-data-using-the-first-order-finite-volume-method">
 &lt;div class="d-flex justify-content-center">
 &lt;div class="w-100" >&lt;img alt="**Figure 2:** Solution of Burgers equation with sine initial data using the first-order finite volume method." srcset="
-/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_ed13937a009d03abc2b1bca94414c2df.webp 400w,
+/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_894b124910dfc58e93ea8a3af7e7074a.webp 400w,
 /post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_278e562f9606b727c9ab336afefbe866.webp 760w,
 /post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-src="https://jdongg.github.io/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_ed13937a009d03abc2b1bca94414c2df.webp"
+src="https://jdongg.github.io/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_894b124910dfc58e93ea8a3af7e7074a.webp"
 width="760"
 height="535"
 loading="lazy" data-zoomable />&lt;/div>
