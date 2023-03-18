@@ -91,7 +91,7 @@
   
   
   
-  <link rel="stylesheet" href="/css/academic.min.14f38d01b187403f4ba554110145b2b5.css">
+  <link rel="stylesheet" href="/css/academic.min.6ad95d4eefa70b6647d32a24b4e43d9e.css">
 
   
 
@@ -724,43 +724,34 @@
   <div class="article-container">
 
     <div class="article-style" itemprop="articleBody">
-      
-
-<h2 id="1-conservation-laws"><strong>1. Conservation Laws</strong></h2>
-
+      <h2 id="1-conservation-laws"><strong>1. Conservation Laws</strong></h2>
 <p>In this post, we&rsquo;ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form
 $$
 \begin{equation}
-  \begin{cases}
-    u_{t} + f(u)_{x} = 0 &amp;\text{in}\;\mathbb{R} \times [0,\infty)\\<br />
-    u(x,0) = u_{0}(x) &amp;\text{on}\;\mathbb{R} \times \{t=0\}.
-  \end{cases}
-  \label{eq:conslaw}
+\begin{cases}
+u_{t} + f(u)_{x} = 0 &amp;\text{in};\mathbb{R} \times [0,\infty)\\\
+u(x,0) = u_{0}(x) &amp;\text{on};\mathbb{R} \times \{t=0\}.
+\end{cases}
+\label{eq:conslaw}
 \end{equation}
 $$</p>
-
 <p>Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &ndash; typically called the <em>flux function</em> &ndash; is sufficiently smooth. As their name suggests, conservation laws preserve mass. We often think of the quantity $u$ as the density of some fluid, in which case $\int_{\mathbb{R}} u(x,t)dx$ may be viewed as the mass of fluid. If we assume that $u$ is compactly supported in $x$ (i.e. it is nonzero outside of some compact set in $x$, a reasonable assumption as the fluid should have finite mass) and $f(0) = 0$, then taking derivatives over time yields
 $$
 \begin{align}
-  \frac{\partial}{\partial t} \int_{-\infty}^{\infty} u(x,t)\;dx &amp;= \int_{-\infty}^{\infty} \frac{\partial u}{\partial t}\;dx = -\int_{-\infty}^{\infty} \frac{\partial f(u)}{\partial x}\;dx\notag\\<br />
-  &amp;= f(u(-\infty)) - f(u(\infty)) = 0.\notag
+\frac{\partial}{\partial t} \int_{-\infty}^{\infty} u(x,t);dx &amp;= \int_{-\infty}^{\infty} \frac{\partial u}{\partial t};dx = -\int_{-\infty}^{\infty} \frac{\partial f(u)}{\partial x};dx\notag\\\
+&amp;= f(u(-\infty)) - f(u(\infty)) = 0.\notag
 \end{align}
 $$</p>
-
-<p>The above computation implies that $\int_{\mathbb{R}} u(x,t)\;dx = \int_{\mathbb{R}} u(x,0)\;dx$: the mass of $u$ is conserved over time.</p>
-
+<p>The above computation implies that $\int_{\mathbb{R}} u(x,t);dx = \int_{\mathbb{R}} u(x,0);dx$: the mass of $u$ is conserved over time.</p>
 <p>To gain some intuition for how solutions of this PDE might behave, we&rsquo;ll first consider the simplest conservation law there is: the linear advection equation. Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. The PDE &ldquo;transports&rdquo; the initial profile in the $x$ direction. In particular, we note that the solution to the <em>linear</em> conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&rsquo;t particularly interesting to begin with.</p>
-
 <p>Next, let&rsquo;s consider a simple nonlinear conservation law:
 $$
 \begin{cases}
-  u_{t} + uu_{x} = 0 &amp;\text{in}\;\mathbb{R} \times [0,\infty)\\<br />
-  u(x,0) = \sin{x} &amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+u_{t} + uu_{x} = 0 &amp;\text{in};\mathbb{R} \times [0,\infty)\\\
+u(x,0) = \sin{x} &amp;\text{on};\mathbb{R} \times \{t=0\}.
 \end{cases}
 $$</p>
-
 <p>The initial condition is as smooth as possible now: $\sin{x} \in C_{x}^{\infty}(\mathbb{R})$. But what can we say about $u(x,t)$? Should we still expect it to be smooth in $x$? It turns out that the answer is a resounding <em>no</em>. In fact, solutions to the above nonlinear PDE (known as <em>Burgers equation</em>) are not even $C_{x}^{0}(\mathbb{R})$! The exact mathematical cause of this phenomena is due to the crossing of something called characteristic curves, but we will first consider a more intuitive explanation.</p>
-
 <p>We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. For $0 \leqslant x \leqslant \pi$, the sine wave is positive and the solution travels forward. For $\pi &lt; x \leqslant 2\pi$, the sine wave is negative and the solution travels backwards. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.
 
 
@@ -782,372 +773,316 @@ $$</p>
 </figcaption>
 
 </figure></p>
-
 <p>Shocks such as the one above occur naturally in many settings, for instance high-speed compressible flows and aeroacoustics. However, a natural question we might ask next is how discontinuities and shocks fit with our notion of the classical solution of a PDE. For instance, the linear advection equation contains a first-order time derivative and a first-order spatial derivative. Naturally, we should require that $u \in C_{x,t}^{1}(\mathbb{R} \times [0,\infty))$ &ndash; our solution should be once differentiable in space and time. Consider, though, the linear advection equation with $u(x,0) = 𝟙_{\{x \leqslant 0\}}$. You&rsquo;ll probably agree with me that the only possible solution to this problem is $u(x,t) = 𝟙_{\{x \leqslant t\}}$, and yet this &ldquo;solution&rdquo; is not even continuous let alone differentiable. Before moving on to numerical solvers, we will spend some time developing alternative notions of PDE solutions that are capable of admitting discontinuities and shocks.</p>
-
-<h2 id="1-2-weak-solutions-of-conservation-laws"><strong>1.2 Weak Solutions of Conservation Laws</strong></h2>
-
+<h2 id="12-weak-solutions-of-conservation-laws"><strong>1.2 Weak Solutions of Conservation Laws</strong></h2>
 <p><strong>Definition 1.</strong> <em>We call $u(x,t)$ a</em> <strong>weak solution</strong> <em>of the conservation law $\eqref{eq:conslaw}$ if</em>
 $$
 \begin{equation}
-  \int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
-  \label{eq:weaksol}
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x};dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0);dx
+\label{eq:weaksol}
 \end{equation}
 $$</p>
-
 <p><em>for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.</em></p>
-
 <p>We refer to $\varphi$ as a test function. It is smooth in both space and time and compactly supported, i.e. $\varphi$ is zero outside of some compact set in space and time. Let&rsquo;s break down what&rsquo;s actually going on in the definition of the weak solution. The most notable feature is that if $u$ is a weak solution, it does <em>not</em> have to be differentiable in space or time since the definition only contains derivatives of $\varphi$!</p>
-
 <p>So how do we arrive at this definition? First, we multiply the entire conservation law by $\varphi$:
 $$
 u_{t}\varphi + f(u)_{x}\varphi = 0.
 $$</p>
-
 <p>Then, we integrate in time over $[0,\infty)$ and in space over the entire real line:
 $$
-\int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi\;dxdt = 0
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi;dxdt = 0
 $$</p>
-
 <p>The last step is to integrate the first term by parts in time and the second term by parts in space:
 $$
 \begin{align}
-  \int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\<br />
-  \int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi\;dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x}\;dxdt
+\int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\\
+\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi;dxdt &amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x};dxdt
 \end{align}
 $$</p>
-
 <p>Most of the boundary terms vanish because $\varphi$ has compact support: we have $\varphi(\pm \infty,t) = \varphi(x,\pm\infty) = 0$. Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
 $$
-\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x}\;dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0)\;dx
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x};dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0);dx
 $$</p>
-
 <p>But <em>why</em> do we do this? The idea is that rather than consider pointwise values of $u(x,t)$, we consider averaged values of $u(x,t)$ against test functions. If you&rsquo;ve taken a functional analysis course, you can view the integration against a test function as the evaluation of a distribution induced by $u_{t}$ and $f(u)_{x}$. We note that all classical solutions ($C_{x,t}^{1}$ solutions that satisfy the PDE in a pointwise sense) are weak solutions but the converse is certainly not true.</p>
-
 <p>It is straightforward to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution of the linear advection equation with $u(x,0) = 𝟙_{\{x \leqslant 0\}}$. However, the definition $\eqref{eq:weaksol}$ of quite cumbersome to work with and we would like to develop a more convenient way to verify whether we have a weak solution or not. Notice that $u(x,t) = 𝟙_{\{x\leqslant t\}}$ as well as the solution of Burgers equation in Figure 1 are piecewise smooth and only discontinuous at a single point that may (in the case of linear advection) or may not (in the case of Burgers equation) change with time. In this case, we can say much more about the structure of the weak solution.</p>
-
 <p><strong>Theorem 1. (Rankine-Hugoniot)</strong> <em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is a weak solution of $\eqref{eq:conslaw}$ if and only if
 $$
 \begin{equation}
-  x&rsquo;(t) = \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}},
-  \label{eq:RH}
+x&rsquo;(t) = \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}},
+\label{eq:RH}
 \end{equation}
 $$
 where $x&rsquo;(t)$ is the speed of the discontinuity and $u^{\pm}$ are the values of $u$ along each side of the shock.</em></p>
-
 <p>Condition $\eqref{eq:RH}$ is referred to as the <strong>Rankine-Hugoniot jump condition</strong>.</p>
-
 <p><strong>Example 1.</strong> <em>Let&rsquo;s return to the linear advection equation and use the jump condition to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution. We have $x&rsquo;(t) = 1$, $u^{-} = 1$, and $u^{+} = 0$. Then
 $$
 \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}} = \frac{u^{-} - u^{+}}{u^{-} - u^{+}} = 1
 $$
 and the jump condition is satisfied.</em></p>
-
 <p>Thus, the Rankine-Hugoniot condition is a handy way for us to verify whether something is a weak solution. It turns out that solutions to conservation laws often have the structure required by Theorem 1 &ndash; that is, they are piecewise smooth except along finitely many curves of discontinuity.</p>
-
 <p>By relaxing the definition of the solution, we are able to admit much less smooth solutions to $\eqref{eq:conslaw}$. However, we will see weak solutions need not be unique! Consider Burgers equation with the initial condition $u(x,0) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&gt;0\}}$. It is straightforward to verify that $u(x,t) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&gt;0\}}$ as well as
 $$
 u(x,t) = \begin{cases}
-  -1 &amp;x \leqslant -t\\<br />
-  \frac{x}{t} &amp;-t &lt; x \leqslant t\\<br />
-  1 &amp;x &gt; t
+-1 &amp;x \leqslant -t\\\
+\frac{x}{t} &amp;-t &lt; x \leqslant t\\\
+1 &amp;x &gt; t
 \end{cases}
 $$
 are both weak solutions. The first weak solution does not change at all with time, so our intuition might tell us that this solution does not make much physical sense. But what about the second weak solution? At the very least, we need to establish more stringent criteria for our weak solutions in order to pick out the physically relevant solution.</p>
-
-<h2 id="1-3-entropy-solutions-of-conservation-laws"><strong>1.3 Entropy Solutions of Conservation Laws</strong></h2>
-
+<h2 id="13-entropy-solutions-of-conservation-laws"><strong>1.3 Entropy Solutions of Conservation Laws</strong></h2>
 <p>Consider the slightly modified PDE given by
 $$
 \begin{equation}
-  \begin{cases}
-    u^{(\varepsilon)}_{t} + f(u^{(\varepsilon)})_{x} = \varepsilon u^{(\varepsilon)}_{xx} &amp;\text{in}\;\mathbb{R} \times (0,\infty)\\<br />
-    u^{(\varepsilon)}(x,0) = u_{0}(x) &amp;\text{on}\;\mathbb{R} \times \{t=0\}.
-    \label{eq:viscosityPDE}
-  \end{cases}
+\begin{cases}
+u^{(\varepsilon)}_{t} + f(u^{(\varepsilon)})_{x} = \varepsilon u^{(\varepsilon)}_{xx} &amp;\text{in};\mathbb{R} \times (0,\infty)\\\
+u^{(\varepsilon)}(x,0) = u_{0}(x) &amp;\text{on};\mathbb{R} \times \{t=0\}.
+\label{eq:viscosityPDE}
+\end{cases}
 \end{equation}
 $$</p>
-
 <p>This PDE is <em>parabolic</em> and it turns out that the solution $u^{(\varepsilon)}$, if it exists, is smooth and unique.</p>
-
 <p><strong>Definition 2.</strong> <em>The entropy solution of $\eqref{eq:conslaw}$ is defined as
 $$
 u(x,t) = \lim_{\varepsilon \to 0} u^{(\varepsilon)}(x,t).
 $$
 This limit, if it exists, is unique and is a weak solution of  $\eqref{eq:conslaw}$.</em></p>
-
 <p>Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. There are alternative definitions based on the notions of <em>entropy flux</em> and <em>entropy flux functions</em>, but we&rsquo;ll skip right to the chase here. Thanks to the work of Oleinik and Lax, we have a quick way to identify entropy solutions.</p>
-
 <p><strong>Theorem 2. (Oleinik Entropy Condition)</strong> <em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is the entropy solution if and only if
 $$
 \begin{equation}
-  \frac{f(u) - f(u^{-})}{u - u^{-}} \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant \frac{f(u^{+}) - f(u)}{u^{+} - u}
-  \label{eq:oleinik}
+\frac{f(u) - f(u^{-})}{u - u^{-}} \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant \frac{f(u^{+}) - f(u)}{u^{+} - u}
+\label{eq:oleinik}
 \end{equation}
 $$
 for all $u$ between $u^{-}$ and $u^{+}$.</em></p>
-
 <p>Again, $u^{-}$ and $u^{+}$ denote the values of $u$ on each side of the shock $x(t)$. However, we can simplify $\eqref{eq:oleinik}$ even further if we have a <em>convex</em> conservation law, which is simply the case when $f(u)$ is convex. For Burgers equation, we have $f(u) = u^{2}/2$, which is indeed convex. The Lax Entropy condition tells us the following.</p>
-
 <p><strong>Theorem 3. (Lax Entropy Condition)</strong> <em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Suppose also that $f$ is convex. Then $u$ is the entropy solution if and only if
 $$
 \begin{equation}
-  f&rsquo;(u^{-}) \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant f&rsquo;(u^{+}).
-  \label{eq:lax}
+f&rsquo;(u^{-}) \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant f&rsquo;(u^{+}).
+\label{eq:lax}
 \end{equation}
 $$
 In particular, $\eqref{eq:lax}$ is equivalent to requiring that $u^{-} &gt; u^{+}$.</em></p>
-
 <p>The Lax Entropy condition tells us that for convex conservation laws, the value of the weak solution on the left side of the shock ($u^{-}$) must be larger than the value of the solution on the right side of the shock ($u^{+}$) in order for the weak solution to be an entropy solution. The physical intuition behind the entropy solution is related to the entropy of a fluid in gas dynamics: in smooth flows, the entropy remains constant along particle paths, and if the particle crosses a shock, the entropy may only jump to a <em>higher</em> value. Entropy is inversely proportional to density, and so the density $u$ can only jump to lower values along a shock.</p>
-
 <p>We&rsquo;ve spent a lot of time now developing the main ideas of weak solutions for conservation laws. We can concretely define what it means to have discontinuous solutions of $\eqref{eq:conslaw}$ and impose conditions to guarantee the uniqueness of this solution. Great. We can finally move on to numerical methods for solving conservation laws. In developing such schemes, our goal will be to ensure that our scheme converges (in some sense) to the entropy solution.</p>
-
 <h2 id="2-monotone-schemes"><strong>2. Monotone Schemes</strong></h2>
-
 <p>First, a cautionary tale in constructing numerical methods for conservation laws. We consider Burgers equation with the initial condition $u(x,0) = 𝟙_{\{x \geqslant 0\}}$ and the following finite difference scheme:
 $$
 u_{j}^{n+1} = u_{j}^{n} - \frac{\Delta t}{\Delta x} u_{j}^{n}(u_{j}^{n} - u_{j-1}^{n}).
 $$</p>
-
 <p>Initially, we have $u_{j}^{0} = 𝟙_{\{x_{j} \geqslant 0\}}$. However, this scheme returns $u_{j}^{n} = u_{j}^{0}$ for all $n$ and $j$, so the scheme converges to $u(x,t) = u(x,0)$. But in the preceding sections, we established that this can&rsquo;t even be a weak solution (indeed, the Rankine-Hugoniot condition is not satisfied).</p>
-
 <p>Clearly, we must exercise caution in constructing schemes to solve $\eqref{eq:conslaw}$. We have just seen that a perfectly reasonable-looking finite difference scheme (at least, at first glance) fails to converge to a weak solution, let alone the correct entropy solution. In other cases, it may be possible that a scheme converges to a weak solution but not an entropy solution. We will circle back to this idea shortly.</p>
-
-<h2 id="2-1-the-finite-volume-method"><strong>2.1 The Finite Volume Method</strong></h2>
-
+<h2 id="21-the-finite-volume-method"><strong>2.1 The Finite Volume Method</strong></h2>
 <p>We begin by introducing the <strong>finite volume method</strong>, which discretizes the spatial domain into cells (intervals in 1D, rectangles or other polygons in 2D), and computes an approximation to the average of the solution in each cell. The precise formulation is as follows: consider a bounded, open, connected domain $\Omega = (a,b) \subset \mathbb{R}$ and a finite stopping time $T$, and consider the conservation law given by
 $$
 \begin{equation}
-  \begin{cases}
-    u_{t} + f(u)_{x} = 0 &amp;\text{in}\;\Omega \times (0,T)\\<br />
-    u(x,0) = u_{0}(x) &amp;\text{on}\;\Omega \times \{t=0\}.
-  \end{cases}
-  \label{eq:conslaw2}
+\begin{cases}
+u_{t} + f(u)_{x} = 0 &amp;\text{in};\Omega \times (0,T)\\\
+u(x,0) = u_{0}(x) &amp;\text{on};\Omega \times \{t=0\}.
+\end{cases}
+\label{eq:conslaw2}
 \end{equation}
 $$</p>
-
 <p>We discretize $\Omega$ into equally-sized cells $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$:
 $$
-a = x_{1/ 2} &lt; x_{3/ 2} &lt; \dots &lt; x_{N+1/ 2} = b, \;\;\;\Delta x := x_{j+1/ 2} - x_{j-1/ 2}.
+a = x_{1/ 2} &lt; x_{3/ 2} &lt; \dots &lt; x_{N+1/ 2} = b, ;;;\Delta x := x_{j+1/ 2} - x_{j-1/ 2}.
 $$</p>
-
 <p>Next, we integrate $\eqref{eq:conslaw2}$ over each cell $I_{j}$:
 $$
 \begin{align}
-  \int_{x_{j-1/ 2}}^{x_{j+1/ 2}} (u_{t} + f(u)_{x})\;dx &amp;= 0\notag\\<br />
-  \Delta x \frac{d\bar{u}_{j}}{dt} + f(u_{j+1/ 2}^{-}) - f(u_{j-1/ 2}^{+}) &amp;= 0\notag\\<br />
-  \frac{d\bar{u}_{j}}{dt} + \frac{f(u_{j+1/ 2}) - f(u_{j-1/ 2})}{\Delta x} &amp;= 0
+\int_{x_{j-1/ 2}}^{x_{j+1/ 2}} (u_{t} + f(u)_{x});dx &amp;= 0\notag\\\
+\Delta x \frac{d\bar{u}_{j}}{dt} + f(u_{j+1/ 2}^{-}) - f(u_{j-1/ 2}^{+}) &amp;= 0\notag\\\
+\frac{d\bar{u}_{j}}{dt} + \frac{f(u_{j+1/ 2}) - f(u_{j-1/ 2})}{\Delta x} &amp;= 0
 \end{align}
 $$</p>
-
-<p>Here, $\bar{u}_{j}$ denotes the cell average of $u$ in cell $I_{j}$: $\bar{u}_{j} := \frac{1}{\Delta x}\int_{I_{j}} u\;dx$. If our goal is to solve for the cell averages $\bar{u}_{j}$, you might notice that the second term poses a problem as it is formulated in terms of pointwise values of $u$ at $x_{j-1/ 2}$ and $x_{j+1/ 2}$ rather than $\bar{u}_{j}$. In the first finite volume scheme we consider, we will approximate $u$ in $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$ by the cell average $\bar{u}_{j}$ in $I_{j}$.</p>
-
+<p>Here, $\bar{u}_{j}$ denotes the cell average of $u$ in cell $I_{j}$: $\bar{u}_{j} := \frac{1}{\Delta x}\int_{I_{j}} u;dx$. If our goal is to solve for the cell averages $\bar{u}_{j}$, you might notice that the second term poses a problem as it is formulated in terms of pointwise values of $u$ at $x_{j-1/ 2}$ and $x_{j+1/ 2}$ rather than $\bar{u}_{j}$. In the first finite volume scheme we consider, we will approximate $u$ in $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$ by the cell average $\bar{u}_{j}$ in $I_{j}$.</p>
 <p>This approximation is not so well defined as the points $x_{j+1/ 2}$, which lie at the intersection between the two cells $I_{j}$ and $I_{j+1}$. The finite volume scheme remedies this by introducing a <em>numerical flux function</em> which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$:
 $$
 \begin{equation}
-  \frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left(\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) - \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})\right) = 0.
-  \label{eq:finitevol}
+\frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left(\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) - \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})\right) = 0.
+\label{eq:finitevol}
 \end{equation}
 $$</p>
-
 <p>Thus, $\hat{f}$ can be viewed in this context as a function which takes in the dual values at the cell interfaces and returns a single, physically relevant value. This will be important when we try to develop higher order finite volume schemes later.</p>
-
 <p>For now, the only thing left to do to turn $\eqref{eq:finitevol}$ into a usable scheme is to discretize the time derivative. The simplest option is to use a first-order finite difference. In doing so, we arrive at the explicit first-order finite volume scheme.</p>
-
 <p><strong>Definition 3.</strong> <em>The explicit first-order finite volume scheme in space and time is given by
 $$
 \begin{equation}
-  \bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
-  \label{eq:finitevol2}
+\bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+\label{eq:finitevol2}
 \end{equation}
 $$
 where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$.</em></p>
-
 <p>Notice that we haven&rsquo;t specified what, exactly, the flux function $\hat{f}$ is yet. The choice of $\hat{f}$ is immensely important as it will determine many properties of our scheme, such as convergence to the entropy solution. Before stating some possible choices of $\hat{f}$, we will first cover the properties $\hat{f}$ must satisfy in order to converge to the entropy solution.</p>
-
 <p><strong>Definition 4.</strong> <em>A</em> <strong>monotone scheme</strong> <em>is one that can be written in the form
 $$
 \begin{equation}
-  \bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}),
+\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}),
 \end{equation}
 $$
 where $\mathcal{H}$ is a nondecreasing function in all arguments. In particular, the monotone scheme on the three-point stencil $\{\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}\}$ is given by $\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$.</em></p>
-
 <p>This is all well and good, but why should we care about monotone schemes? To begin with, they have a number of remarkable properties that guarantee our numerical solution behaves &ldquo;nicely.&rdquo;</p>
-
 <p><strong>Theorem 4.</strong> <em>Monotone schemes satisfy the following properties:</em></p>
-
 <ol>
-<li><p><strong>Local maximum principle.</strong>
+<li>
+<p><strong>Local maximum principle.</strong>
 $$
-\min_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \leqslant \mathcal{H}(\bar{u})_{j} \leqslant \max_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \;\;\;\forall j.
-$$</p></li>
-
-<li><p><strong>Total variation diminishing property.</strong>
+\min_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \leqslant \mathcal{H}(\bar{u})_{j} \leqslant \max_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} ;;;\forall j.
+$$</p>
+</li>
+<li>
+<p><strong>Total variation diminishing property.</strong>
 $$
 ||\mathcal{H}(\bar{u})||_{BV} \leqslant ||\bar{u}||_{BV},
 $$
-<em>where the bounded variation seminorm is given by $||u||_{BV} = \sum_{j} |u_{j} - u_{j-1}|$.</em></p></li>
-
-<li><p><strong>Entropy solution.</strong> <em>Monotone schemes converge to the entropy solution with a rate in $\ell^{1}$ of half-order. This bound is sharp.</em></p></li>
+<em>where the bounded variation seminorm is given by $||u||_{BV} = \sum_{j} |u_{j} - u_{j-1}|$.</em></p>
+</li>
+<li>
+<p><strong>Entropy solution.</strong> <em>Monotone schemes converge to the entropy solution with a rate in $\ell^{1}$ of half-order. This bound is sharp.</em></p>
+</li>
 </ol>
-
 <p>Roughly speaking, the local maximum principle tells us that our cell averages at $t^{n+1}$ cannot be larger or smaller than our averages at $t^{n}$ around the stencil $\{\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}\}$. The total variation diminishing property tells us that our cell averages can only decrease in bounded variation. In particular, this means that our cell averages at $t^{n+1}$ cannot be more oscillatory than our cell averages at $t^{n}$. We will see soon some schemes which violate this property and tend to produce spurious oscillations in the numerical solution. The last property is of course self-explanatory: by using a monotone scheme, we are guaranteed to converge to the entropy solution!</p>
-
 <p>We would like for the finite volume scheme in $\eqref{eq:finitevol2}$ to be a monotone scheme, and our goal now is to choose a function $\hat{f}$ in order to achieve this. We have
 $$
 \mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right).
 $$</p>
-
 <p>$\mathcal{H}$ must be nondecreasing in each argument, so we compute its partial derivatives:
 $$
 \begin{align}
-  \mathcal{H}_{1} &amp;= \frac{\Delta t}{\Delta x} \hat{f}_{1}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})\label{eq:monotone1}\\<br />
-  \mathcal{H}_{2} &amp;= 1 - \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right)\label{eq:monotone2}\\<br />
-  \mathcal{H}_{3} &amp;= -\frac{\Delta t}{\Delta x} \hat{f}_{2}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})\label{eq:monotone3}.
+\mathcal{H}_{1} &amp;= \frac{\Delta t}{\Delta x} \hat{f}_{1}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})\label{eq:monotone1}\\\
+\mathcal{H}_{2} &amp;= 1 - \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right)\label{eq:monotone2}\\\
+\mathcal{H}_{3} &amp;= -\frac{\Delta t}{\Delta x} \hat{f}_{2}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})\label{eq:monotone3}.
 \end{align}
 $$</p>
-
 <p>Here, $\hat{f}_{1}$ denotes the partial derivative of $\hat{f}$ with respect to the first argument, and so on. If $\hat{f}$ is increasing in the first argument and decreasing in the second argument, then $\eqref{eq:monotone1}$ and $\eqref{eq:monotone3}$ will be nonnegative. Furthermore, if
 $$
 \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right) \leqslant 1,
 $$</p>
-
 <p>then $\eqref{eq:monotone2}$ will also be nonnegative. This last condition is merely a restriction on our time step. By choosing $\Delta t$ small enough, we can always satisfy this condition. The first two conditions tell us that we merely need to choose our numerical flux function $\hat{f}$ such that it is increasing in its first argument and decreasing in its second argument.</p>
-
 <p><strong>Proposition 1.</strong> <em>If $\hat{f}$ satifies the following conditions:</em></p>
-
 <ol>
-<li><p><em>$\hat{f}$ is Lipschitz continuous in all arguments.</em></p></li>
-
-<li><p><em>$\hat{f}(u,u) = f(u)$. This is known as the consistency condition.</em></p></li>
-
-<li><p><em>$\hat{f}$ is increasing in the first argument and decreasing in the second argument,</em></p></li>
+<li>
+<p><em>$\hat{f}$ is Lipschitz continuous in all arguments.</em></p>
+</li>
+<li>
+<p><em>$\hat{f}(u,u) = f(u)$. This is known as the consistency condition.</em></p>
+</li>
+<li>
+<p><em>$\hat{f}$ is increasing in the first argument and decreasing in the second argument,</em></p>
+</li>
 </ol>
-
 <p><em>then the scheme $\eqref{eq:finitevol2}$ is monotone.</em></p>
-
 <p>We will not discuss the first two conditions here, but suffice it to say that these properties are very easy to check.</p>
-
-<h3 id="2-1-1-numerical-flux-functions"><strong>2.1.1 Numerical Flux Functions</strong></h3>
-
+<h3 id="211-numerical-flux-functions"><strong>2.1.1 Numerical Flux Functions</strong></h3>
 <p>We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.</p>
-
 <ol>
-<li><p><strong>Lax-Friedrichs flux.</strong>
+<li>
+<p><strong>Lax-Friedrichs flux.</strong>
 $$
 \begin{equation}
 \hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \frac{1}{2}\left( f(u_{j}) + f(u_{j+1}) - \alpha(u_{j+1} - u_{j}) \right),
 \end{equation}
 $$
-where $\alpha = \max_{u} |f&rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&rsquo;(u)|$.</p></li>
-
-<li><p><strong>Godunov flux.</strong>
+where $\alpha = \max_{u} |f&rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&rsquo;(u)|$.</p>
+</li>
+<li>
+<p><strong>Godunov flux.</strong>
 $$
 \begin{equation}
 \hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
-\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u), &amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\<br />
+\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u), &amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\\
 \max_{\bar{u}_{j} \geqslant u \geqslant \bar{u}_{j+1}} f(u), &amp;\bar{u}_{j} &gt; \bar{u}_{j+1}.
 \end{cases}
 \end{equation}
-$$</p></li>
-
-<li><p><strong>Engquist-Osher flux.</strong>
+$$</p>
+</li>
+<li>
+<p><strong>Engquist-Osher flux.</strong>
 $$
 \begin{align}
-\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\int_{0}^{\bar{u}_{j}} \max\{f&rsquo;(u),0\}\;du + \int_{0}^{\bar{u}_{j+1}} \min\{f&rsquo;(u),0\}\;du.
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\int_{0}^{\bar{u}_{j}} \max\{f&rsquo;(u),0\};du + \int_{0}^{\bar{u}_{j+1}} \min\{f&rsquo;(u),0\};du.
 \end{align}
-$$</p></li>
+$$</p>
+</li>
 </ol>
-
 <p>There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.</p>
-
-<ol>
-<li><p><strong>Roe flux.</strong>
+<ol start="4">
+<li>
+<p><strong>Roe flux.</strong>
 $$
 \begin{equation}
 \hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
-f(\bar{u}_{j}), &amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\<br />
+f(\bar{u}_{j}), &amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\\
 f(\bar{u}_{j+1}), &amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} &lt; 0.
 \end{cases}
 \end{equation}
-$$</p></li>
-
-<li><p><strong>Lax-Wendroff flux.</strong>
+$$</p>
+</li>
+<li>
+<p><strong>Lax-Wendroff flux.</strong>
 $$
 \begin{align}
-\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\<br />
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\\
 &amp;\frac{\Delta t}{2\Delta x}f&rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
 \end{align}
-$$</p></li>
+$$</p>
+</li>
 </ol>
-
-<h2 id="2-2-implementation"><strong>2.2 Implementation</strong></h2>
-
-<p>Without further ado, we will implement the first-order finite volume method using all five of the aforementioned numerical fluxes for Burgers equation with $u(x,0) = \sin{x}$. All of the source code is publicly available on <a href="https://github.com/jdongg/numCL" target="_blank">GitHub</a> in both a MATLAB and Python implementation. For convenience, we will explain the Python implementation here. First, we initialize the parameters of the scheme.</p>
-
-<pre><code class="language-python"># specify domain
-a = 0
-b = 2*np.pi
-
-# initial condition: u(x,0) = alpha + beta*sin(x)
-alpha = 0.0
-beta  = 1.0
-
-# number of grid points in spatial discretization
-N  = 80
-
-# setup grid points
-x = np.linspace(a,b,N)     
-dx = (b-a)/(N-1);  
-
-# stopping time
-T = 1.5
-</code></pre>
-
-<p>Next, we compute the cell averages of the initial condition, $\bar{u}_{j}^{0}$. This is accomplished by integrating the initial condiiton over each cell $I_{j}$:</p>
-
-<pre><code class="language-python"># setup array to store cell averages; due to periodicity, we omit the last cell
-u = np.zeros((len(x)-1,1)); 
-
-# returns the initial condition of the PDE
-def initial_condition(z, alpha, beta):
-    return alpha + beta*np.sin(z)
-
-# compute cell averages at t=0
-for i in range(0,N-1):
-    u[i] = (1.0/dx)*integrate.quad(initial_condition, x[i], x[i+1], args=(alpha,beta))[0]
-</code></pre>
-
-<p>Next, we must choose an appropriate time step for the scheme. Since we are using an explicit time-stepping scheme, we must choose an appropriately small time step (recall that explicit time-stepping is conditionally stable). For the purposes of example, we choose
+<h2 id="22-implementation"><strong>2.2 Implementation</strong></h2>
+<p>Without further ado, we will implement the first-order finite volume method using all five of the aforementioned numerical fluxes for Burgers equation with $u(x,0) = \sin{x}$. All of the source code is publicly available on <a href="https://github.com/jdongg/numCL">GitHub</a> in both a MATLAB and Python implementation. For convenience, we will explain the Python implementation here. First, we initialize the parameters of the scheme.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># specify domain</span>
+</span></span><span style="display:flex;"><span>a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>pi
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># initial condition: u(x,0) = alpha + beta*sin(x)</span>
+</span></span><span style="display:flex;"><span>alpha <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span>beta  <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># number of grid points in spatial discretization</span>
+</span></span><span style="display:flex;"><span>N  <span style="color:#f92672">=</span> <span style="color:#ae81ff">80</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># setup grid points</span>
+</span></span><span style="display:flex;"><span>x <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>linspace(a,b,N)     
+</span></span><span style="display:flex;"><span>dx <span style="color:#f92672">=</span> (b<span style="color:#f92672">-</span>a)<span style="color:#f92672">/</span>(N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># stopping time</span>
+</span></span><span style="display:flex;"><span>T <span style="color:#f92672">=</span> <span style="color:#ae81ff">1.5</span>
+</span></span></code></pre></div><p>Next, we compute the cell averages of the initial condition, $\bar{u}_{j}^{0}$. This is accomplished by integrating the initial condiiton over each cell $I_{j}$:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#75715e"># setup array to store cell averages; due to periodicity, we omit the last cell</span>
+</span></span><span style="display:flex;"><span>u <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>zeros((len(x)<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">1</span>)); 
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># returns the initial condition of the PDE</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">def</span> <span style="color:#a6e22e">initial_condition</span>(z, alpha, beta):
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> alpha <span style="color:#f92672">+</span> beta<span style="color:#f92672">*</span>np<span style="color:#f92672">.</span>sin(z)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e"># compute cell averages at t=0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> i <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">0</span>,N<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>):
+</span></span><span style="display:flex;"><span>    u[i] <span style="color:#f92672">=</span> (<span style="color:#ae81ff">1.0</span><span style="color:#f92672">/</span>dx)<span style="color:#f92672">*</span>integrate<span style="color:#f92672">.</span>quad(initial_condition, x[i], x[i<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>], args<span style="color:#f92672">=</span>(alpha,beta))[<span style="color:#ae81ff">0</span>]
+</span></span></code></pre></div><p>Next, we must choose an appropriate time step for the scheme. Since we are using an explicit time-stepping scheme, we must choose an appropriately small time step (recall that explicit time-stepping is conditionally stable). For the purposes of example, we choose
 $$
 \frac{\Delta t}{\Delta x} \max_{u} |f&rsquo;(u)| = \frac{1}{2}.
 $$</p>
-
 <p>The last step is to perform the time-stepping, whereby for each time step we must compute the numerical fluxes $\hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$ and $\hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})$:</p>
-
-<pre><code class="language-python">t = 0.0
-while t &lt; T:
-    # alpha for the Lax-Friedrichs flux
-    A  = np.amax(np.amax(u));
-
-    # compute numerical fluxes fhat_{j+1/2}
-    um = u
-    up = np.roll(u,-1)
-    fR = lf_flux(um, up, A)
-
-    # compute numerical fluxes fhat_{j-1/2} (assuming periodic BCs)
-    fL = np.roll(fR,1)
-
-    # first order explicit time-stepping
-    u -= dt/dx*(fR - fL)
-
-    # increment time step
-    t = t+dt
-</code></pre>
-
-<p>Each of the numerical fluxes in Section 2.1.1 have been implemented and can be viewed on <a href="https://github.com/jdongg/numCL" target="_blank">GitHub</a>. Figure 2 shows the finite volume solutions at $T=1.5$.</p>
-
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span>t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.0</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">while</span> t <span style="color:#f92672">&lt;</span> T:
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># alpha for the Lax-Friedrichs flux</span>
+</span></span><span style="display:flex;"><span>    A  <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>amax(np<span style="color:#f92672">.</span>amax(u));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># compute numerical fluxes fhat_{j+1/2}</span>
+</span></span><span style="display:flex;"><span>    um <span style="color:#f92672">=</span> u
+</span></span><span style="display:flex;"><span>    up <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>roll(u,<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    fR <span style="color:#f92672">=</span> lf_flux(um, up, A)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># compute numerical fluxes fhat_{j-1/2} (assuming periodic BCs)</span>
+</span></span><span style="display:flex;"><span>    fL <span style="color:#f92672">=</span> np<span style="color:#f92672">.</span>roll(fR,<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># first order explicit time-stepping</span>
+</span></span><span style="display:flex;"><span>    u <span style="color:#f92672">-=</span> dt<span style="color:#f92672">/</span>dx<span style="color:#f92672">*</span>(fR <span style="color:#f92672">-</span> fL)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e"># increment time step</span>
+</span></span><span style="display:flex;"><span>    t <span style="color:#f92672">=</span> t<span style="color:#f92672">+</span>dt
+</span></span></code></pre></div><p>Each of the numerical fluxes in Section 2.1.1 have been implemented and can be viewed on <a href="https://github.com/jdongg/numCL">GitHub</a>. Figure 2 shows the finite volume solutions at $T=1.5$.</p>
 
 
 
@@ -1168,30 +1103,18 @@ while t &lt; T:
 </figcaption>
 
 </figure>
-
 <p>The first observation we make is that there is little difference between the Roe, Godunov, and Engquist-Osher fluxes, at least for this example problem. The Godunov and Engquist-Osher fluxes lead to monotone schemes which converge to the entropy solution. The Roe flux does not lead to a monotone scheme, and in very rare cases may provide solutions with the incorrect shock speed. Nevertheless, in most cases the Roe scheme works well and is a popular choice for the numerical flux.</p>
-
 <p>Next, the Lax-Friedrichs flux is noticeably more dissipative than any of the other results. It is known to &ldquo;smear&rdquo; discontinuities and add numerical diffusion. However, the Lax-Friedrichs flux is a very popular choice for the numerical flux since it leads to a monotone scheme and is straightforward to implement.</p>
-
 <p>Lastly, the Lax-Wendroff flux is&hellip;problematic, to say the least. Notice that the numerical solution develops spurious (nonphysical) oscillations in the vicinity of the shock at $x=\pi$. If the Lax-Wendroff scheme converges, it converges to a weak solution, but the scheme is not monotone and does not exhibit the total variation-diminishing (TVD) property. Lax-Wendroff is actually a <em>second-order method</em> in disguise, but we&rsquo;ll discuss this much later and how the order of a numerical method is related to the TVD property for conservation laws.</p>
-
 <h2 id="3-key-takeaways"><strong>3. Key Takeaways</strong></h2>
-
 <p>If I haven&rsquo;t bored you to death by this point, you should have a basic understanding of weak solutions for conservation laws and the mathematical foundations for discontinuous solutions. The study of such solutions is important because they occur frequently in fluid dynamics and other related fields. You should also be able to implement a basic first-order finite volume scheme for a variety of one-dimensional conservation laws.</p>
-
 <p>We&rsquo;ve only covered first-order schemes in this post, and you might have already guessed that these methods converge too slowly to be of much use for practical problems. Next time, we&rsquo;ll cover higher order finite volume methods for conservation laws and touch on some of the theory regarding higher-order methods (remember how I said the Lax-Wendroff flux actually yields a second-order method? We&rsquo;ll circle back to that soon). Unfortunately, there&rsquo;s no free lunch and higher order methods come with their own set of issues.</p>
-
 <p>Below are two texts by Randy LeVeque which are helpful in fleshing out much of the details of the Theorems given in this post. I&rsquo;ve found them to be immensely helpful in my Ph.D. studies.</p>
-
 <h3 id="references"><strong>References</strong></h3>
-
-<p>[1] LeVeque, Randall J. <a href="http://staff.washington.edu/rjl/book2/sample.pdf" target="_blank">Finite volume methods for hyperbolic problems</a>. Vol. 31. Cambridge university press, 2002.</p>
-
-<p>[2] LeVeque, Randall J. <a href="https://pdfs.semanticscholar.org/1470/c6f43c769572c4cfc94ffc9c5710484ff1e5.pdf" target="_blank">Numerical methods for conservation laws</a>. Vol. 132. Basel: Birkhäuser, 1992.</p>
-
+<p>[1] LeVeque, Randall J. <a href="http://staff.washington.edu/rjl/book2/sample.pdf">Finite volume methods for hyperbolic problems</a>. Vol. 31. Cambridge university press, 2002.</p>
+<p>[2] LeVeque, Randall J. <a href="https://pdfs.semanticscholar.org/1470/c6f43c769572c4cfc94ffc9c5710484ff1e5.pdf">Numerical methods for conservation laws</a>. Vol. 132. Basel: Birkhäuser, 1992.</p>
 <h3 id="codes"><strong>Codes</strong></h3>
-
-<p><a href="https://github.com/jdongg/numCL" target="_blank">NumCL repository on GitHub</a></p>
+<p><a href="https://github.com/jdongg/numCL">NumCL repository on GitHub</a></p>
 
     </div>
 
@@ -1251,10 +1174,8 @@ while t &lt; T:
           
           
           
-            
-          
           <li>
-            <a itemprop="sameAs" href="/#contact" >
+            <a itemprop="sameAs" href="mailto:justin_dong@brown.edu" >
               <i class="fas fa-envelope"></i>
             </a>
           </li>
@@ -1301,7 +1222,7 @@ while t &lt; T:
             
           
           <li>
-            <a itemprop="sameAs" href="/files/JustinDongCV.pdf" >
+            <a itemprop="sameAs" href="/uploads/resume.pdf" >
               <i class="ai ai-cv"></i>
             </a>
           </li>
@@ -1469,7 +1390,7 @@ while t &lt; T:
     
     
     
-    <script src="/js/academic.min.3258b3a711acd6208568ec000de4beec.js"></script>
+    <script src="/js/academic.min.bb4ed6bd82f71fbec8ad86bae941aa05.js"></script>
 
   </body>
 </html>
