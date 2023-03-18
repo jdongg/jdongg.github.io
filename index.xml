@@ -1,60 +1,838 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Justin Dong</title>
-    <link>/</link>
-    <description>Recent content on Justin Dong</description>
-    <generator>Source Themes Academic (https://sourcethemes.com/academic/)</generator>
-    <language>en-us</language>
-    <lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate>
-    
-	    <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
-    
-    
-    <item>
-      <title>Slides</title>
-      <link>/slides/</link>
-      <pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate>
-      
-      <guid>/slides/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Projects</title>
-      <link>/project/</link>
-      <pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate>
-      
-      <guid>/project/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Posts</title>
-      <link>/post/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/post/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Publications</title>
-      <link>/publication/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/publication/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>Recent &amp; Upcoming Talks</title>
-      <link>/talk/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>/talk/</guid>
-      <description></description>
-    </item>
-    
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Justin Dong</title><link>https://jdongg.github.io/</link><atom:link href="https://jdongg.github.io/index.xml" rel="self" type="application/rss+xml"/><description>Justin Dong</description><generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 01 Jun 2030 13:00:00 +0000</lastBuildDate><image><url>https://jdongg.github.io/media/icon_hu0b7a4cb9992c9ac0e91bd28ffd38dd00_9727_512x512_fill_lanczos_center_3.png</url><title>Justin Dong</title><link>https://jdongg.github.io/</link></image><item><title>Example Talk</title><link>https://jdongg.github.io/talk/example-talk/</link><pubDate>Sat, 01 Jun 2030 13:00:00 +0000</pubDate><guid>https://jdongg.github.io/talk/example-talk/</guid><description>&lt;div class="alert alert-note">
+&lt;div>
+Click on the &lt;strong>Slides&lt;/strong> button above to view the built-in slides feature.
+&lt;/div>
+&lt;/div>
+&lt;p>Slides can be added in a few ways:&lt;/p>
+&lt;ul>
+&lt;li>&lt;strong>Create&lt;/strong> slides using Wowchemy&amp;rsquo;s &lt;a href="https://wowchemy.com/docs/managing-content/#create-slides" target="_blank" rel="noopener">&lt;em>Slides&lt;/em>&lt;/a> feature and link using &lt;code>slides&lt;/code> parameter in the front matter of the talk file&lt;/li>
+&lt;li>&lt;strong>Upload&lt;/strong> an existing slide deck to &lt;code>static/&lt;/code> and link using &lt;code>url_slides&lt;/code> parameter in the front matter of the talk file&lt;/li>
+&lt;li>&lt;strong>Embed&lt;/strong> your slides (e.g. Google Slides) or presentation video on this page using &lt;a href="https://wowchemy.com/docs/writing-markdown-latex/" target="_blank" rel="noopener">shortcodes&lt;/a>.&lt;/li>
+&lt;/ul>
+&lt;p>Further event details, including &lt;a href="https://wowchemy.com/docs/writing-markdown-latex/" target="_blank" rel="noopener">page elements&lt;/a> such as image galleries, can be added to the body of this page.&lt;/p></description></item><item><title>Galerkin neural network approximation of singularly-perturbed elliptic systems</title><link>https://jdongg.github.io/publication/cmame-article/</link><pubDate>Fri, 01 Jul 2022 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/publication/cmame-article/</guid><description>&lt;p>.&lt;/p></description></item><item><title>Galerkin neural networks: A framework for approximating variational equations with error control</title><link>https://jdongg.github.io/publication/sisc-article/</link><pubDate>Fri, 01 Jan 2021 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/publication/sisc-article/</guid><description>&lt;p>.&lt;/p></description></item><item><title>Numerical Methods for Conservation Laws (Part 2)</title><link>https://jdongg.github.io/post/conservation-laws-2/</link><pubDate>Sat, 18 May 2019 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/post/conservation-laws-2/</guid><description>&lt;h2 id="1-high-order-finite-volume-methods">&lt;strong>1. High Order Finite Volume Methods&lt;/strong>&lt;/h2>
+&lt;p>Last time, we established that the explicit first order finite volume scheme is given by
+$$
+\begin{equation}
+\bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+\label{eq:finitevol2}
+\end{equation}
+$$
+where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$. Here, $\hat{f}$ is the &lt;em>numerical flux function&lt;/em> which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$.&lt;/p>
+&lt;p>More generally, we can view the quantity $\bar{u}_{j}$ as a first order (zero degree polynomial) reconstruction of $u(x)$ in cell $I_{j}$ using the cell average. The same can be said of $\bar{u}_{j+1}$ in cell $I_{j+1}$. By approximating $u(x_{j+1/ 2}^{-}) = u_{j+1/ 2}^{-} \approx \bar{u}_{j}$ on the left &amp;ldquo;side&amp;rdquo; of $x_{j+1/ 2}$ and $u(x_{j+1/ 2}^{+}) = u_{j+1/ 2}^{+} \approx \bar{u}_{j+1}$ on the right side of $x_{j+1/ 2}$, the numerical flux has a natural interpretation as $f(u_{j+1/ 2}) \approx \hat{f}(u_{j+1/ 2}^{-}, u_{j+1/ 2}^{+})$. We reconcile the two reconstructions at $x_{j+1/ 2}$ by utilizing the numerical flux function. Figure 1 illustrates this concept.&lt;/p>
+&lt;figure id="figure-figure-1-first-order-reconstruction-we-reconstruct-u-using-a-zero-degree-polynomial-ie-constant-functions-in-each-cell">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 1:** First order reconstruction. We reconstruct $u$ using a zero degree polynomial (i.e. constant functions) in each cell." srcset="
+/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_28f415c47f9e8e8b649e7dc32b38eb35.webp 400w,
+/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_93f84a25fa56048185fc377117fe85f5.webp 760w,
+/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction0_hu1bf577608615b9d3e7fdf0e5d3da81a5_116692_28f415c47f9e8e8b649e7dc32b38eb35.webp"
+width="600px"
+height="597"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 1:&lt;/strong> First order reconstruction. We reconstruct $u$ using a zero degree polynomial (i.e. constant functions) in each cell.
+&lt;/figcaption>&lt;/figure>
+&lt;h2 id="11-polynomial-reconstruction">&lt;strong>1.1 Polynomial Reconstruction&lt;/strong>&lt;/h2>
+&lt;p>Viewing the finite volume scheme as a reconstruction procedure using the cell averages is key to developing higher order methods. Using $\eqref{eq:finitevol2}$, we have $u_{j+1/ 2}^{-} = \bar{u}_{j} + \mathcal{O}(\Delta x)$. Suppose we want to develop a third-order finite volume scheme now. In particular, we would like to have
+$$
+u_{j+1/ 2}^{-} = \mathcal{F}(\bar{u}_{j-p}, \dots, \bar{u}_{j+q}) + \mathcal{O}(\Delta x^{3}),
+$$&lt;/p>
+&lt;p>where $p$ and $q$ are integers to be chosen by us. It stands to reason that if we want a third-order reconstruction of $u(x)$ in cell $I_{j}$, we need to use three &amp;ldquo;pieces&amp;rdquo; of information: $u_{j+1/ 2}^{-} \approx \mathcal{F}(\bar{u}_{j-1}, \bar{u}_{j}, \bar{u}_{j+1})$. In other words, we are seeking a degree two polynomial $p_{j}(x) = ax^{2} + bx + c$ in $I_{j}$ such that $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2}) + \mathcal{O}(\Delta x^{3})$. In order to fully determine this polynomial, i.e. solve for $a,b,c$, we require three equations. A natural condition to impose on $p_{j}$ is that it preserves cell averages over the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$:
+$$
+\begin{equation}
+\frac{1}{\Delta x} \int_{I_{i}} p_{j}(x);dx = \bar{u}_{i}, ;;;i \in \{j-1,j,j+1\}.
+\end{equation}
+$$&lt;/p>
+&lt;p>We then take $u_{j+1/ 2}^{-} = p_{j}(x_{j+1/ 2})$. Similarly, we take $u_{j+1/ 2}^{+} = p_{j+1}(x_{j+1/ 2})$. Figure 2 demonstrates how the third-order reconstruction procedure works.&lt;/p>
+&lt;figure id="figure-figure-2-third-order-reconstruction-we-reconstruct-u-using-a-quadratic-function-defined-in-the-stencil-i_j-1-i_j-i_j1-and-enforce-that-the-quadratic-function-maintains-cell-averages-across-the-stencil-we-take-u_j1-2--approx-p_jx_j1-2-and-u_j1-2-approx-p_j1x_j1-2-not-pictured-here">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 2:** Third order reconstruction. We reconstruct $u$ using a quadratic function defined in the stencil $\\{I\_{j-1}, I\_{j}, I\_{j&amp;#43;1}\\}$ and enforce that the quadratic function maintains cell averages across the stencil. We take $u\_{j&amp;#43;1/ 2}^{-} \approx p\_{j}(x\_{j&amp;#43;1 /2})$ and $u\_{j&amp;#43;1/ 2}^{&amp;#43;} \approx p\_{j&amp;#43;1}(x\_{j&amp;#43;1/ 2})$ (not pictured here)." srcset="
+/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_364851be5bc4b146768e279d55f029e1.webp 400w,
+/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_1b6692142b4942f38643ab62f40dd390.webp 760w,
+/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/reconstruction2_huceb416020f1fd8ea80b2e56bb3cb876e_132078_364851be5bc4b146768e279d55f029e1.webp"
+width="760"
+height="436"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 2:&lt;/strong> Third order reconstruction. We reconstruct $u$ using a quadratic function defined in the stencil $\{I_{j-1}, I_{j}, I_{j+1}\}$ and enforce that the quadratic function maintains cell averages across the stencil. We take $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1 /2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$ (not pictured here).
+&lt;/figcaption>&lt;/figure>
+&lt;p>&lt;strong>Definition 1.&lt;/strong> &lt;em>The order $k$ in space finite volume scheme is given by
+$$
+\begin{equation}
+\frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left( \hat{f}(u_{j+1/ 2}^{-}, u_{j+1/ 2}^{+}) - \hat{f}(u_{j-1/ 2}^{-}, u_{j-1/ 2}^{+}) \right) = 0
+\label{eq:finitevolk}
+\end{equation}
+$$
+where $u_{j+1/ 2}^{-} \approx p_{j}(x_{j+1/ 2})$ and $u_{j+1/ 2}^{+} \approx p_{j+1}(x_{j+1/ 2})$. The degree $k-1$ polynomial $p_{j}$ is reconstructed from the stencil $\{\bar{u}_{j-p}, \dots, \bar{u}_{j+q}\}$ and satifies the $q+p+1$ conditions&lt;/em>
+$$
+\frac{1}{\Delta x} \int_{I_{i}} p_{j}(x);dx = \bar{u}_{i}, ;;;i \in \{j-p, \dots, j+q\}.
+$$&lt;/p>
+&lt;p>For concreteness, we will work with the third-order scheme. It is a straightforward (if tedious) pen and paper exercise to compute the parameters $a,b,c$ for the polynomial $p_{j}(x) = ax^{2}+bx+c$. However, notice that the scheme $\eqref{eq:finitevolk}$ only requires the evaluation of the polynomials at the endpoints of the cells. For the third order scheme, this amounts to the following formulae:
+$$
+\begin{align}
+u_{j+1/ 2}^{-} &amp;amp;= p_{j}(x_{j+1/ 2}) = -\frac{1}{6}\bar{u}_{j-1} + \frac{5}{6}\bar{u}_{j} + \frac{1}{3}\bar{u}_{j+1}\label{eq:recon1}\\\
+u_{j+1/ 2}^{+} &amp;amp;= p_{j+1}(x_{j+1/ 2}) = \frac{1}{3}\bar{u}_{j} + \frac{5}{6}\bar{u}_{j+1} - \frac{1}{6}\bar{u}_{j+2}.\label{eq:recon2}
+\end{align}
+$$&lt;/p>
+&lt;p>These formulae can be found in a number of references, e.g. Chapter 4 of &lt;a href="https://doi.org/10.1007/BFb0096351" target="_blank" rel="noopener">[3]&lt;/a>.&lt;/p>
+&lt;p>Before moving on, we should make note of two very important issues here. The first is that $\eqref{eq:finitevolk}$ is only a &lt;em>semidiscrete&lt;/em> scheme &amp;ndash; we haven&amp;rsquo;t discretized time yet! Recall that for the first order scheme we used an explicit first-order time discretization. But if we use this time discretization here, then we&amp;rsquo;ll be pairing a third-order in space discretization with a first-order in time discretization. Should we expect such a scheme to be stable? Furthermore, we&amp;rsquo;ll have to reduce our time step commensurately to ensure that the error in the time discretization does not dominate.&lt;/p>
+&lt;p>Second, we haven&amp;rsquo;t said anything about the convergence properties (or any other properties for that matter) of the higher order finite volume schemes. Recall that the Lax-Wendroff flux resulted in a second-order scheme which was neither monotone nor total variation diminishing (TVD). It&amp;rsquo;s unclear what will happen when we apply $\eqref{eq:finitevolk}$ to actually solve a conservation law.&lt;/p>
+&lt;h2 id="12-third-order-runge-kutta-time-integration">&lt;strong>1.2 Third Order Runge-Kutta Time Integration&lt;/strong>&lt;/h2>
+&lt;p>In all of the examples that follow, we will use a third order Runge-Kutta (RK3) discretization in time. For our purposes, this discretization is conditionally stable with some necessary restriction on the time step as with all explicit schemes. If we pair the RK3 discretization with a spatial discretization higher than third order accuracy, we may have to decrease the time step further.&lt;/p>
+&lt;p>The setting for the RK3 discretization is as follows: consider the semidiscrete scheme
+$$
+\frac{d\bar{u}_{j}}{dt} + \mathcal{L}(\bar{u}_{j}) = 0,
+$$&lt;/p>
+&lt;p>where $\mathcal{L}$ is the spatial operator associated with the flux terms.&lt;/p>
+&lt;p>&lt;strong>Definition 2.&lt;/strong> &lt;em>The third order Runge-Kutta time discretization is given by&lt;/em>
+$$
+\begin{align}
+\bar{u}_{j}^{(1)} &amp;amp;= \bar{u}_{j}^{n} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}, t^{n})\notag\\\
+\bar{u}_{j}^{(2)} &amp;amp;= \frac{3}{4}\bar{u}_{j}^{n} + \frac{1}{4}\left( \bar{u}_{j}^{(1)} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{(1)}, \dots, \bar{u}_{j+q}^{(1)}, t^{n} + \Delta t) \right)\notag\\\
+\bar{u}_{j}^{n+1} &amp;amp;= \frac{1}{3}\bar{u}_{j}^{n} + \frac{2}{3}\left( \bar{u}_{j}^{(2)} - \Delta t \mathcal{L}(\bar{u}_{j-p}^{(2)}, \dots, \bar{u}_{j+q}^{(2)}, t^{n} + \frac{1}{2}\Delta t) \right).\notag
+\end{align}
+$$&lt;/p>
+&lt;p>The choice of coefficients in the above scheme is deliberate. In fact, with these coefficients, the RK3 time discretization can be shown to be TVD.&lt;/p>
+&lt;p>&lt;strong>Proposition 1.&lt;/strong> &lt;em>The third order Runge-Kutta time discretization is TVD when paired with a spatial scheme that is also TVD.&lt;/em>&lt;/p>
+&lt;p>Interestingly, there are many examples of time discretizations which are not TVD, even when paired with a TVD spatial scheme. We refer the reader to the seminal work of Sigal Gottlieb and Chi-Wang Shu in &lt;a href="https://doi.org/10.1090/S0025-5718-98-00913-2" target="_blank" rel="noopener">[1]&lt;/a> for a much more in-depth discussion of TVD Runge-Kutta schemes.&lt;/p>
+&lt;h2 id="13-a-first-attempt-at-implementation">&lt;strong>1.3 A First Attempt at Implementation&lt;/strong>&lt;/h2>
+&lt;p>Before covering the theory of higher order spatial discretizations, it is highly illustrative to attempt a first implementation of the third order finite volume scheme with RK3 time discretization. All of the source code can be found on &lt;a href="https://github.com/jdongg/numCL" target="_blank" rel="noopener">GitHub&lt;/a>. There are actually relatively few changes that must be made to the first order code. The main time-stepping loop is as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># alpha for the Lax-Friedrichs flux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">A&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amax&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amax&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u0&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># first RK stage&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">polynomial_reconstruction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u0&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fR&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lf_flux&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fL&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u0&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">fL&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># second RK stage&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">polynomial_reconstruction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fR&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lf_flux&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fL&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">3.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">4.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">u0&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">4.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">fL&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># third RK stage&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">polynomial_reconstruction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fR&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lf_flux&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">A&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fL&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">u0&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mf">2.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">fL&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># increment time step&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u0&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">dt&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Aside from having the three stages for the Runge-Kutta time-stepping, the only real addition to the code is the polynomial reconstruction using the cell averages. Using $\eqref{eq:recon1}$ and $\eqref{eq:recon2}$, the polynomial reconstruction is easily implemented with the following lines:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">polynomial_reconstruction&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute u_{j+1/2}^{-} and u_{j+1/2}^{+}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="o">-&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">6.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mf">5.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">6.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">u&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">up&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">3.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">u&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="mf">5.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">6.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="mf">6.0&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">up&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Figure 3 shows a complete simulation of Burgers equation up to $T=2$ using this scheme.&lt;/p>
+&lt;figure id="figure-figure-3-the-third-order-finite-volume-scheme-applied-to-burgers-equation">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 3:** The third order finite volume scheme applied to Burgers equation."
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/fv3bad.gif"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 3:&lt;/strong> The third order finite volume scheme applied to Burgers equation.
+&lt;/figcaption>&lt;/figure>
+&lt;p>Yikes. On first glance, it appears our scheme performs reasonably well before the appearance of the shock but develops spurious oscillations after the shock. We can also compute the errors in the $\ell^{1}$ norm:
+$$
+||\bar{u} - \bar{u}_{e}||_{\ell^{1}} = \frac{1}{N} \sum_{j=1}^{N} |\bar{u}_{j} - \bar{u}_{e,j}|.
+$$&lt;/p>
+&lt;p>Figure 4 describes how the $\ell^{1}$ error decreases as we increase the number of grid points. Before the appearance of the shock, our scheme displays third order accuracy as expected. But after the appearance of the shock, the accuracy is reduced to first order.&lt;/p>
+&lt;figure id="figure-figure-4-errors-in-the-ell1-norm-of-the-third-order-finite-volume-scheme-before-and-after-the-formation-of-the-shock-in-burgers-equation">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 4:** Errors in the $\ell^{1}$ norm of the third order finite volume scheme before and after the formation of the shock in Burgers equation." srcset="
+/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_d9778bbcecebf45591356a52fa494601.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_44352467c5073d1bae0594fa9a35ed9a.webp 760w,
+/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3bad_hub8617d085cedbbb9051c857a6c9973ad_69230_d9778bbcecebf45591356a52fa494601.webp"
+width="760"
+height="423"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 4:&lt;/strong> Errors in the $\ell^{1}$ norm of the third order finite volume scheme before and after the formation of the shock in Burgers equation.
+&lt;/figcaption>&lt;/figure>
+&lt;p>So, what on earth is going on here? The driving idea behind higher order schemes is that we hope to converge to the exact (entropy) solution faster than the original first order scheme. In the presence of shocks and discontinuities, though, it seems as if our third-order scheme hasn&amp;rsquo;t given us any benefits. Indeed, it actually introduces oscillations, which is arguably worse than the first order scheme which we recall was provably monotone and TVD.&lt;/p>
+&lt;h2 id="2-godunovs-theorem">&lt;strong>2. Godunov&amp;rsquo;s Theorem&lt;/strong>&lt;/h2>
+&lt;p>Our initial results are actually not altogether unexpected and are actually a result of Godunov&amp;rsquo;s Theorem.&lt;/p>
+&lt;p>&lt;strong>Definition 3.&lt;/strong> &lt;em>A linear scheme is one that can be written in the form
+$$
+\bar{u}_{j}^{n+1} = \sum_{\ell=-k}^{k} c_{\ell}(\lambda) \bar{u}_{j+\ell}^{n}, ;;;\lambda = \frac{\Delta t}{\Delta x}
+$$
+when applied to a linear conservation law.&lt;/em>&lt;/p>
+&lt;p>It&amp;rsquo;s worth noting that all of the finite volume schemes we have considered thus far are linear schemes (a fact which can easily be verified with pen and paper).&lt;/p>
+&lt;p>&lt;strong>Theorem 1. (Godunov)&lt;/strong> &lt;em>A linear scheme is monotone if and only if it is total variation diminishing (TVD). Moreover, linear TVD schemes are at most first-order accurate.&lt;/em>&lt;/p>
+&lt;p>There&amp;rsquo;s quite a bit to digest here, but we&amp;rsquo;ll start with the first statement. Recall from last time that monotone schemes converge to the entropy solution and are also TVD. Godunov&amp;rsquo;s Theorem states that for &lt;em>linear&lt;/em> schemes, the notion of being monotone is equivalent to being TVD. The second statement is much deeper: it tells us that if we want to construct a linear monotone scheme, then it must be first-order accurate. In particular, we posit that the third-order finite volume scheme is neither monotone nor TVD.&lt;/p>
+&lt;p>In fact, monotone schemes are at most first-order accurate regardless of whether the scheme is linear or not. This suggests that we simply can&amp;rsquo;t develop high order monotone schemes. However, having only a TVD scheme is still desirable as it essentially guarantees our scheme will not generate spurious oscillations. And yet, Godunov&amp;rsquo;s Theorem tells us that if we stick to linear schemes, we can&amp;rsquo;t develop high order TVD schemes either.&lt;/p>
+&lt;p>Nevertheless, it is still possible to enforce the TVD property on the third-order finite volume scheme. To do so, we employ a post-processing step known as &lt;em>slope limiting&lt;/em>. This results in a nonlinear TVD scheme which is does not produce spurious oscillations.&lt;/p>
+&lt;h2 id="3-slope-limiting">&lt;strong>3. Slope Limiting&lt;/strong>&lt;/h2>
+&lt;h2 id="31-generalized-muscl-limiter">&lt;strong>3.1 Generalized MUSCL Limiter&lt;/strong>&lt;/h2>
+&lt;p>The key observation is that when nonphysical oscillations appear in the numerical solution, the gradients of the cell averages between successive cells rapidly change sign. Slope limiting procedures identify where these sign changes occur and reduce the gradient to zero in these regions. The procedure is as follows.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>Given $\{u_{j+1/ 2}^{\pm}\}$ and the cell averages $\{\bar{u}_{j}\}$, define
+$$
+\begin{align}
+\tilde{u}_{j} = u_{j+1/ 2}^{-} - \bar{u}_{j}, ;;;;;\tilde{\tilde{u}}_{j} = \bar{u}_{j} - u_{j-1/ 2}^{+}.
+\end{align}
+$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Compute the modified quantities $\tilde{u}_{j}^{\text{mod}}$ and $\tilde{\tilde{u}}_{j}^{\text{mod}}$ according to
+$$
+\begin{align}
+\tilde{u}_{j}^{\text{mod}} &amp;amp;= \text{minmod}\{\tilde{u}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\}\\\
+\tilde{\tilde{u}}_{j}^{\text{mod}} &amp;amp;= \text{minmod}\{\tilde{\tilde{u}}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\},
+\end{align}
+$$
+where the $\text{minmod}$ function is defined as
+$$
+\begin{equation}
+\text{minmod}(a_{1},\dots,a_{n}) = \begin{cases}
+s \cdot \min_{j} |a_{j}|, &amp;amp;s = \text{sgn}(a_{1}) = \dots = \text{sgn}(a_{n})\\\
+0, &amp;amp;\text{else}.
+\end{cases}
+\end{equation}
+$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>Compute the modified reconstructed values $u_{j+1/ 2}^{\pm,\text{mod}}$ according to
+$$
+\begin{align}
+u_{j+1/ 2}^{-,\text{mod}} = \bar{u}_{j} + \tilde{u}_{j}^{\text{mod}}, ;;;;;u_{j-1/ 2}^{+,\text{mod}} = \bar{u}_{j} - \tilde{\tilde{u}}_{j}^{\text{mod}}.
+\end{align}
+$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>The procedure outlined above is known as the &lt;strong>generalized MUSCL (monotone upwind scheme for conservation laws) limiter.&lt;/strong> Note that the quantities $\bar{u}_{j+1} - \bar{u}_{j}$ and $\bar{u}_{j} - \bar{u}_{j-1}$ are crude approximations to the gradient over stencil $\{I_{j}, I_{j+1}\}$ and $\{I_{j-1}, I_{j}\}$. In the case of oscillations in our numerical solution, these two quantities will have opposite signs, in which case the $\text{minmod}$ function returns $0$ and the modified quantities $u_{j+1/ 2}^{\pm,\text{mod}}$ are set to the cell average. This is equivalent to the original first order finite volume scheme we studied last time! Hence, in the presence of shocks and discontinuities, we might expect the generalized MUSCL scheme to be first order accurate.&lt;/p>
+&lt;p>Now, let&amp;rsquo;s consider the case when the $\text{minmod}$ function returns the first argument. We carefully note that this situation occurs when $\{\bar{u}_{j}\}$ is monotone over the stencils $\{I_{j-1}, I_{j}, I_{j+1}\}$. Then we have $u_{j+1/ 2}^{\pm,\text{mod}} = u_{j+1/ 2}^{\pm}$ and the high order finite volume scheme is unchanged. Thus, in &lt;em>smooth, monotone regions&lt;/em> the generalized MUSCL limiter maintains original high order accuracy of the scheme.&lt;/p>
+&lt;p>Lastly, we must consider what happens near smooth extrema. For instance, $u(x,0) = \sin{x}$ has smooth extrema at $x=\pi/2$ (maximum) and $x=3\pi/2$ (minimum). As consecutive gradients have opposite sign at local extrema, the $\text{minmod}$ function will return $0$ and the scheme is again reduced to first order. Stanley Osher proved the following result:&lt;/p>
+&lt;p>&lt;strong>Theorem 2.&lt;/strong> &lt;em>TVD schemes are at most first-order accurate near smooth extrema.&lt;/em>&lt;/p>
+&lt;p>This seems like a problem since plenty of smooth solutions have smooth extrema. We&amp;rsquo;ll discuss shortly how to develop slope limiters which do not have this drawback, but first, it would be prudent to discuss to discuss the properties of the generalized MUSCL limiter. When paired with this limiter, the finite volume scheme is actually TVD. The proof is due to Ami Harten [&lt;a href="http://arrow.utias.utoronto.ca/~groth/aer1319/Handouts/Additional_Reading_Material/JCP-1983-harten.pdf" target="_blank" rel="noopener">2&lt;/a>].&lt;/p>
+&lt;p>&lt;strong>Lemma 1. (Harten)&lt;/strong> &lt;em>If a scheme can be written in the form
+$$
+\begin{equation}
+\bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} + C_{j+1/ 2}(\bar{u}_{j+1}^{n} - \bar{u}_{j}^{n}) - D_{j-1/ 2}(\bar{u}_{j}^{n} - \bar{u}_{j-1}^{n})
+\end{equation}
+$$
+where $C_{j+1/ 2}, D_{j+1/ 2} \geqslant 0$ and $C_{j+1/ 2} + D_{j+1/ 2} \leqslant 1$, then the scheme is TVD.&lt;/em>&lt;/p>
+&lt;p>Harten&amp;rsquo;s Lemma is the key to proving that the finite volume MUSCL scheme is TVD.&lt;/p>
+&lt;p>&lt;strong>Proposition 1.&lt;/strong> &lt;em>The finite volume scheme with generalized MUSCL limiter is TVD.&lt;/em>&lt;/p>
+&lt;p>Without further ado, we present the results using the MUSCL limiter. The only change from the previous third-order code is to add the MUSCL limiter:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">muscl_limiter&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">u&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># gradients to be adjusted&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ut&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">um&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">u&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">utt&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">ut_m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">minmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">ut&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">u&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">utt_m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">minmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">utt&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">u&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># modify the cell reconstructions using ut and utt&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um_mod&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">ut_m&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">up_mod&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">utt_m&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">up_mod&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">up_mod&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">um_mod&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">up_mod&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>The $\text{minmod}$ function is easily implemented as follows:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">minmod&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># check whether a, b, and c are the same sign&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">signs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute minimum magnitudes of {a,b,c}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vals&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">concatenate&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">axis&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mins&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">abs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">axis&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute the minmod&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">signs&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mins&lt;/span>&lt;span class="p">,(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">m&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Figure 5 contains the results. Voila! At first glance, all appears to be well. The nonphysical oscillations have been removed entirely from our numerical solution.&lt;/p>
+&lt;figure id="figure-figure-5-the-third-order-finite-volume-scheme-with-generalized-muscl-limiter-applied-to-burgers-equation">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 5:** The third order finite volume scheme with generalized MUSCL limiter applied to Burgers equation."
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/fv3muscl.gif"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 5:&lt;/strong> The third order finite volume scheme with generalized MUSCL limiter applied to Burgers equation.
+&lt;/figcaption>&lt;/figure>
+&lt;p>The next step is to verify that we are indeed getting the expected rates of convergence. There are three scenarios to consider: (i) the solution is smooth everywhere (we&amp;rsquo;ll consider the case when $T=0.3$) (ii) the solution develops a shock and we compute the $\ell^{1}$ error over the entire computational grid (we&amp;rsquo;ll consider the case $T=1.5$ here) (iii) the solution develops a shock and we compute the $\ell^{1}$ error excluding a small region around the shock.&lt;/p>
+&lt;p>In the first scenario, we expect a reduced rate of convergence due to the presence of smooth extrema in the solution. In the second scenario, the order of convergence should be reduced to first order. Finally, in the third scenario, the solution is actually piecewise monotone and so we might expect to maintain the original third order accuracy if compute errors away from the shock.&lt;/p>
+&lt;p>Indeed, Figure 6 shows these three scenarios exactly. Before the shock, the overall order of accuracy is somewhere between 2 and 3; at the two extrema, the order is reduced to 1 but everywhere else, it is close to 3, leading to a suboptimal order of accuracy. After the shock, the order of accuracy is 1 overall, but when considering only cells at a distance 0.5 away from the shock at $x=\pi$, the order of accuracy is 3.&lt;/p>
+&lt;p>This isn&amp;rsquo;t such a bad place to be, then. Near shocks, the mathematical theory tells us that we can &lt;em>never&lt;/em> do better than first order accuracy, but we&amp;rsquo;ve managed to construct a scheme which is TVD and capable of giving higher order accuracy everywhere the solution is smooth. In the end, this is all we can really ask for. In the remaining posts, we will consider the different types of high order schemes which can be used to numerically solve nonlinear conservation laws.&lt;/p>
+&lt;figure id="figure-figure-6-error-in-the-ell1-norm-of-the-third-order-finite-volume-muscl-scheme-before-the-shock-blue-line-with-squares-after-the-shock-over-the-entire-domain-red-line-with-circles-and-after-the-shock-but-excluding-a-small-region-around-xpi-red-line-with-xs">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 6:** Error in the $\ell^{1}$ norm of the third order finite volume MUSCL scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;#39;s)." srcset="
+/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_7ca02971c653dd83eebcc35cca24e2b7.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_907d0388ea5d53841e4645f3ae5ac83b.webp 760w,
+/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3muscl_hufefe454483f45679efcb956514ab7e87_78070_7ca02971c653dd83eebcc35cca24e2b7.webp"
+width="760"
+height="436"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 6:&lt;/strong> Error in the $\ell^{1}$ norm of the third order finite volume MUSCL scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;rsquo;s).
+&lt;/figcaption>&lt;/figure>
+&lt;h2 id="32-total-variation-bounded-tvb-limiter">&lt;strong>3.2 Total-Variation Bounded (TVB) Limiter&lt;/strong>&lt;/h2>
+&lt;p>But first, we consider how to remedy the issue of suboptimal convergence near &lt;em>smooth&lt;/em> extrema. Recall that the issue here is that consecutive gradients have different signs and the $\text{minmod}$ function return zero. In fact, recall that Theorem 2 tells us we can have at most first order accuracy near smooth extrema. If we relax the TVD constraint even further, it is possible to obtain uniformly high-order accurate schemes near smooth extrema.&lt;/p>
+&lt;p>&lt;strong>Definition 4.&lt;/strong> If $TV(\bar{u}^{n}) \leqslant B$ for some fixed $B&amp;gt;0$ depending only on $TV(\bar{u}^{0})$ and $n$ and $\Delta t$ such that $n\Delta t &amp;lt; T$, then the scheme is said to be &lt;strong>total variation bounded&lt;/strong> (TVB) in $0 \leqslant t \leqslant T$.&lt;/p>
+&lt;p>It is clear that all TVD schemes are TVB. For TVB schemes, one can show that there exists a subsequence in $L^{1}_{\text{loc}}$ that converges to a weak solution of the conservation law.&lt;/p>
+&lt;p>In order to turn to generalized MUSCL limiter into a scheme that is TVB, we need only make a small adjustment. Namely, we define
+$$
+\begin{align}
+\tilde{u}_{j}^{\text{mod}} &amp;amp;= \overline{\text{minmod}}\{\tilde{u}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\}\\\
+\tilde{\tilde{u}}_{j}^{\text{mod}} &amp;amp;= \overline{\text{minmod}}\{\tilde{\tilde{u}}_{j}, \bar{u}_{j+1} - \bar{u}_{j}, \bar{u}_{j} - \bar{u}_{j-1}\},
+\end{align}
+$$&lt;/p>
+&lt;p>where the modified minmod function $\overline{\text{minmod}}$ is defined by
+$$
+\begin{equation}
+\overline{\text{minmod}}(a_{1}, \dots, a_{n}) = \begin{cases}
+a_{1}, &amp;amp;|a_{1}| \leqslant M\Delta x^{2}\\\
+\text{minmod}(a_{1}, \dots, a_{n}) &amp;amp;\text{else}.
+\end{cases}
+\end{equation}
+$$&lt;/p>
+&lt;p>Here, $M&amp;gt;0$ is a parameter to be chosen by us. Essentially, the TVB limiter first checks whether $u_{j+1/ 2}^{-}$ is sufficiently close to $\bar{u}_{j}$. If so, then the modified $\text{minmod}$ function returns the first argument even if consecutive gradients have different signs, thus ensuring that the scheme retains high-order accuracy around smooth extrema [&lt;a href="https://www.ams.org/journals/mcom/1987-49-179/S0025-5718-1987-0890256-5/S0025-5718-1987-0890256-5.pdf" target="_blank" rel="noopener">4&lt;/a>]. The implementation is quite straightforward:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">minmod2&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">c&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">dx&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">M&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># check whether a, b, and c are the same sign&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">signs&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">((&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">))&lt;/span> &lt;span class="o">&amp;amp;&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">==&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute minimum magnitudes of {a,b,c}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">vals&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">concatenate&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">c&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">axis&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">mins&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">abs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">),&lt;/span> &lt;span class="n">axis&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># check whether first argument is sufficiently small&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">a1&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">abs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;lt;=&lt;/span> &lt;span class="n">M&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">a2&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">abs&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span> &lt;span class="o">&amp;gt;&lt;/span> &lt;span class="n">M&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">**&lt;/span>&lt;span class="mi">2&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute the minmod&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">m&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">a1&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">a&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">a2&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">signs&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sign&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">reshape&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">mins&lt;/span>&lt;span class="p">,(&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">vals&lt;/span>&lt;span class="p">),&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">))&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">m&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>We won&amp;rsquo;t show plots of the numerical solution here as they wouldn&amp;rsquo;t be discernible from the plots of the MUSCL limiter to the naked eye. Instead, Figure 7 shows the convergence rates for the TVB limiter. We note that before the shock forms, the order of accuracy is now 3 as expected, even in the presence of smooth extrema.&lt;/p>
+&lt;figure id="figure-figure-7-error-in-the-ell1-norm-of-the-third-order-finite-volume-tvb-scheme-before-the-shock-blue-line-with-squares-after-the-shock-over-the-entire-domain-red-line-with-circles-and-after-the-shock-but-excluding-a-small-region-around-xpi-red-line-with-xs">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 7:** Error in the $\ell^{1}$ norm of the third order finite volume TVB scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;#39;s)." srcset="
+/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1af842f0dbce75afdcc02c8d77947a50.webp 400w,
+/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_7a3be10b56feac8f6c583317e15b3dee.webp 760w,
+/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-2/gallery/convergencefv3tvb_hu547aa70a16f2f4d933508c5e13e9cd73_78447_1af842f0dbce75afdcc02c8d77947a50.webp"
+width="760"
+height="422"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 7:&lt;/strong> Error in the $\ell^{1}$ norm of the third order finite volume TVB scheme before the shock (blue line with squares), after the shock over the entire domain (red line with circles), and after the shock but excluding a small region around $x=\pi$ (red line with x&amp;rsquo;s).
+&lt;/figcaption>&lt;/figure>
+&lt;h2 id="4-key-takeaways">&lt;strong>4. Key Takeaways&lt;/strong>&lt;/h2>
+&lt;p>To summarize, we implemented a third order finite volume scheme for a one-dimensional scalar conservation law. Without any modifications, this scheme was not TVD and introduced new extrema in our numerical solution that were not seen in the first order finite volume scheme. We touched on Godunov&amp;rsquo;s Theorem, which describes the fundamental limits of accuracy of linear monotone schemes.&lt;/p>
+&lt;p>We were able to develop a TVD slope limiter to remove the spurious oscillations in our high order numerical solution but noted that the limiter degraded the order of accuracy of our scheme near smooth extrema. In fact, we learned that &lt;em>all&lt;/em> TVD schemes are at most first order near smooth extrema. To develop a truly high order scheme in the presence of smooth extrema, we turned to the TVB limiter.&lt;/p>
+&lt;p>It is worth emphasizing once more than when we talk about &amp;ldquo;high order&amp;rdquo; schemes for nonlinear conservation laws, we generally mean that the scheme maintains high order accuracy in smooth regions, is first order accurate in the vicinity of shocks and discontinuities, and is total variation diminishing (does not introduce any new extrema/spurious oscillations). Next time, we will cover essentially non-oscillatory finite volume schemes which essentially remove spurious oscillations by performing the polynomial reconstruction step in a clever way rather than post-processing the reconstruction as with the slope limiters we have seen in this post.&lt;/p>
+&lt;h2 id="references">&lt;strong>References&lt;/strong>&lt;/h2>
+&lt;p>[1] Gottlieb, Sigal, and Chi-Wang Shu. &amp;ldquo;&lt;a href="https://doi.org/10.1090/S0025-5718-98-00913-2" target="_blank" rel="noopener">Total variation diminishing Runge-Kutta schemes&lt;/a>.&amp;rdquo; Mathematics of computation of the American Mathematical Society 67.221 (1998): 73-85.&lt;/p>
+&lt;p>[2] Harten, Ami. &amp;ldquo;&lt;a href="http://arrow.utias.utoronto.ca/~groth/aer1319/Handouts/Additional_Reading_Material/JCP-1983-harten.pdf" target="_blank" rel="noopener">High resolution schemes for hyperbolic conservation laws&lt;/a>.&amp;rdquo; Journal of computational physics 49.3 (1983): 357-393.&lt;/p>
+&lt;p>[3] Johnson, B. Cockburn C., and C-W. Shu E. Tadmor. &amp;ldquo;&lt;a href="https://doi.org/10.1007/BFb0096351" target="_blank" rel="noopener">Advanced numerical approximation of nonlinear hyperbolic equations&lt;/a>.&amp;rdquo; (1997).&lt;/p>
+&lt;p>[4] Shu, Chi-Wang. &amp;ldquo;TVB uniformly high-order schemes for conservation laws.&amp;rdquo; Mathematics of Computation 49.179 (1987): 105-121.&lt;/p>
+&lt;h3 id="codes--resources">&lt;strong>Codes &amp;amp; Resources&lt;/strong>&lt;/h3>
+&lt;ul>
+&lt;li>&lt;a href="https://github.com/jdongg/numCL" target="_blank" rel="noopener">NumCL repository on GitHub&lt;/a>&lt;/li>
+&lt;li>Figures 1 and 2 were created using &lt;a href="https://www.mathcha.io/" target="_blank" rel="noopener">Mathcha&lt;/a>, an online math editor with a convenient GUI that even allows you to export figures to TikZ.&lt;/li>
+&lt;/ul></description></item><item><title>Numerical Methods for Conservation Laws (Part 1)</title><link>https://jdongg.github.io/post/conservation-laws-1/</link><pubDate>Wed, 15 May 2019 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/post/conservation-laws-1/</guid><description>&lt;h2 id="1-conservation-laws">&lt;strong>1. Conservation Laws&lt;/strong>&lt;/h2>
+&lt;p>In this post, we&amp;rsquo;ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form
+$$
+\begin{equation}
+\begin{cases}
+u_{t} + f(u)_{x} = 0 &amp;\text{in}\;\mathbb{R} \times [0,\infty)\\
+u(x,0) = u_{0}(x) &amp;\text{on}\;\mathbb{R} \times \{t=0\}.
+\end{cases}
+\label{eq:conslaw}
+\end{equation}
+$$
+&lt;/p>
+&lt;p>Here, we consider the spatial domain to be the entire real line (thus, we have no boundary conditions). The function $f(u)$ &amp;ndash; typically called the &lt;em>flux function&lt;/em> &amp;ndash; is sufficiently smooth. As their name suggests, conservation laws preserve mass. We often think of the quantity $u$ as the density of some fluid, in which case $\int_{\mathbb{R}} u(x,t)dx$ may be viewed as the mass of fluid. If we assume that $u$ is compactly supported in $x$ (i.e. it is nonzero outside of some compact set in $x$, a reasonable assumption as the fluid should have finite mass) and $f(0) = 0$, then taking derivatives over time yields
+$$
+\begin{align}
+\frac{\partial}{\partial t} \int_{-\infty}^{\infty} u(x,t);dx &amp;amp;= \int_{-\infty}^{\infty} \frac{\partial u}{\partial t};dx = -\int_{-\infty}^{\infty} \frac{\partial f(u)}{\partial x};dx\notag\\\
+&amp;amp;= f(u(-\infty)) - f(u(\infty)) = 0.\notag
+\end{align}
+$$&lt;/p>
+&lt;p>The above computation implies that $\int_{\mathbb{R}} u(x,t);dx = \int_{\mathbb{R}} u(x,0);dx$: the mass of $u$ is conserved over time.&lt;/p>
+&lt;p>To gain some intuition for how solutions of this PDE might behave, we&amp;rsquo;ll first consider the simplest conservation law there is: the linear advection equation. Taking $f(u) = u$, it is evident that our solution is given by $u(x,t) = u_{0}(x-t)$. The PDE &amp;ldquo;transports&amp;rdquo; the initial profile in the $x$ direction. In particular, we note that the solution to the &lt;em>linear&lt;/em> conservation law is exactly as smooth as our initial data. That is, if $u_{0} \in C^{1}_{x}(\mathbb{R})$ then $u \in C_{x}^{1}(\mathbb{R})$ as well. We haven&amp;rsquo;t said anything particularly illuminating thus far and indeed, the linear advection equation isn&amp;rsquo;t particularly interesting to begin with.&lt;/p>
+&lt;p>Next, let&amp;rsquo;s consider a simple nonlinear conservation law:
+$$
+\begin{cases}
+u_{t} + uu_{x} = 0 &amp;amp;\text{in};\mathbb{R} \times [0,\infty)\\\
+u(x,0) = \sin{x} &amp;amp;\text{on};\mathbb{R} \times \{t=0\}.
+\end{cases}
+$$&lt;/p>
+&lt;p>The initial condition is as smooth as possible now: $\sin{x} \in C_{x}^{\infty}(\mathbb{R})$. But what can we say about $u(x,t)$? Should we still expect it to be smooth in $x$? It turns out that the answer is a resounding &lt;em>no&lt;/em>. In fact, solutions to the above nonlinear PDE (known as &lt;em>Burgers equation&lt;/em>) are not even $C_{x}^{0}(\mathbb{R})$! The exact mathematical cause of this phenomena is due to the crossing of something called characteristic curves, but we will first consider a more intuitive explanation.&lt;/p>
+&lt;p>We may view Burgers equation as an advection equation in which the speed of propagation is equal to $u$ itself. Our initial sine profile thus moves with variable speed in $x$. For $0 \leqslant x \leqslant \pi$, the sine wave is positive and the solution travels forward. For $\pi &amp;lt; x \leqslant 2\pi$, the sine wave is negative and the solution travels backwards. The animation below shows how the solution of Burgers equation evolves over time, and we see the development of a genuine discontinuity at $x=\pi$.
+&lt;figure id="figure-figure-1-solution-of-burgers-equation-with-sine-initial-data">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 1:** Solution of Burgers equation with sine initial data."
+src="https://jdongg.github.io/post/conservation-laws-1/gallery/burgers.gif"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 1:&lt;/strong> Solution of Burgers equation with sine initial data.
+&lt;/figcaption>&lt;/figure>
+&lt;/p>
+&lt;p>Shocks such as the one above occur naturally in many settings, for instance high-speed compressible flows and aeroacoustics. However, a natural question we might ask next is how discontinuities and shocks fit with our notion of the classical solution of a PDE. For instance, the linear advection equation contains a first-order time derivative and a first-order spatial derivative. Naturally, we should require that $u \in C_{x,t}^{1}(\mathbb{R} \times [0,\infty))$ &amp;ndash; our solution should be once differentiable in space and time. Consider, though, the linear advection equation with $u(x,0) = 𝟙_{\{x \leqslant 0\}}$. You&amp;rsquo;ll probably agree with me that the only possible solution to this problem is $u(x,t) = 𝟙_{\{x \leqslant t\}}$, and yet this &amp;ldquo;solution&amp;rdquo; is not even continuous let alone differentiable. Before moving on to numerical solvers, we will spend some time developing alternative notions of PDE solutions that are capable of admitting discontinuities and shocks.&lt;/p>
+&lt;h2 id="12-weak-solutions-of-conservation-laws">&lt;strong>1.2 Weak Solutions of Conservation Laws&lt;/strong>&lt;/h2>
+&lt;p>&lt;strong>Definition 1.&lt;/strong> &lt;em>We call $u(x,t)$ a&lt;/em> &lt;strong>weak solution&lt;/strong> &lt;em>of the conservation law
+$\eqref{eq:conslaw}$ if&lt;/em>
+$$
+\begin{equation}
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x};dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0);dx
+\label{eq:weaksol}
+\end{equation}
+$$&lt;/p>
+&lt;p>&lt;em>for all $\varphi \in C_{c}^{\infty}(\mathbb{R} \times \mathbb{R})$.&lt;/em>&lt;/p>
+&lt;p>We refer to $\varphi$ as a test function. It is smooth in both space and time and compactly supported, i.e. $\varphi$ is zero outside of some compact set in space and time. Let&amp;rsquo;s break down what&amp;rsquo;s actually going on in the definition of the weak solution. The most notable feature is that if $u$ is a weak solution, it does &lt;em>not&lt;/em> have to be differentiable in space or time since the definition only contains derivatives of $\varphi$!&lt;/p>
+&lt;p>So how do we arrive at this definition? First, we multiply the entire conservation law by $\varphi$:
+$$
+u_{t}\varphi + f(u)_{x}\varphi = 0.
+$$&lt;/p>
+&lt;p>Then, we integrate in time over $[0,\infty)$ and in space over the entire real line:
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u_{t}\varphi + f(u)_{x}\varphi;dxdt = 0
+$$&lt;/p>
+&lt;p>The last step is to integrate the first term by parts in time and the second term by parts in space:
+$$
+\begin{align}
+\int_{0}^{\infty} \int_{-\infty}^{\infty} u_{t}\varphi dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} u\varphi_{t}dxdt + \int_{-\infty}^{\infty} u(x,0)\varphi(x,0)dx\\\
+\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)_{x}\varphi;dxdt &amp;amp;= -\int_{0}^{\infty} \int_{-\infty}^{\infty} f(u)\varphi_{x};dxdt
+\end{align}
+$$&lt;/p>
+&lt;p>Most of the boundary terms vanish because $\varphi$ has compact support: we have $\varphi(\pm \infty,t) = \varphi(x,\pm\infty) = 0$. Note that in integrating by parts, we pass the derivatives from $u$ onto the test function. Altogether, we obtain
+$$
+\int_{0}^{\infty}\int_{-\infty}^{\infty} u\varphi_{t} + f(u)\varphi_{x};dxdt = -\int_{-\infty}^{\infty} u(x,0)\varphi(x,0);dx
+$$&lt;/p>
+&lt;p>But &lt;em>why&lt;/em> do we do this? The idea is that rather than consider pointwise values of $u(x,t)$, we consider averaged values of $u(x,t)$ against test functions. If you&amp;rsquo;ve taken a functional analysis course, you can view the integration against a test function as the evaluation of a distribution induced by $u_{t}$ and $f(u)_{x}$. We note that all classical solutions ($C_{x,t}^{1}$ solutions that satisfy the PDE in a pointwise sense) are weak solutions but the converse is certainly not true.&lt;/p>
+&lt;p>It is straightforward to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution of the linear advection equation with $u(x,0) = 𝟙_{\{x \leqslant 0\}}$. However, the definition $\eqref{eq:weaksol}$ of quite cumbersome to work with and we would like to develop a more convenient way to verify whether we have a weak solution or not. Notice that $u(x,t) = 𝟙_{\{x\leqslant t\}}$ as well as the solution of Burgers equation in Figure 1 are piecewise smooth and only discontinuous at a single point that may (in the case of linear advection) or may not (in the case of Burgers equation) change with time. In this case, we can say much more about the structure of the weak solution.&lt;/p>
+&lt;p>&lt;strong>Theorem 1. (Rankine-Hugoniot)&lt;/strong> &lt;em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is a weak solution of $\eqref{eq:conslaw}$ if and only if
+$$
+\begin{equation}
+x&amp;rsquo;(t) = \frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}},
+\label{eq:RH}
+\end{equation}
+$$
+where $x&amp;rsquo;(t)$ is the speed of the discontinuity and $u^{\pm}$ are the values of $u$ along each side of the shock.&lt;/em>&lt;/p>
+&lt;p>Condition $\eqref{eq:RH}$ is referred to as the &lt;strong>Rankine-Hugoniot jump condition&lt;/strong>.&lt;/p>
+&lt;p>&lt;strong>Example 1.&lt;/strong> &lt;em>Let&amp;rsquo;s return to the linear advection equation and use the jump condition to verify that $𝟙_{\{x\leqslant t\}}$ is a weak solution. We have $x&amp;rsquo;(t) = 1$, $u^{-} = 1$, and $u^{+} = 0$. Then
+$$
+\frac{f(u^{-}) - f(u^{+})}{u^{-} - u^{+}} = \frac{u^{-} - u^{+}}{u^{-} - u^{+}} = 1
+$$
+and the jump condition is satisfied.&lt;/em>&lt;/p>
+&lt;p>Thus, the Rankine-Hugoniot condition is a handy way for us to verify whether something is a weak solution. It turns out that solutions to conservation laws often have the structure required by Theorem 1 &amp;ndash; that is, they are piecewise smooth except along finitely many curves of discontinuity.&lt;/p>
+&lt;p>By relaxing the definition of the solution, we are able to admit much less smooth solutions to $\eqref{eq:conslaw}$. However, we will see weak solutions need not be unique! Consider Burgers equation with the initial condition $u(x,0) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$. It is straightforward to verify that $u(x,t) = -𝟙_{\{x\leqslant 0\}} + 𝟙_{\{x&amp;gt;0\}}$ as well as
+$$
+u(x,t) = \begin{cases}
+-1 &amp;amp;x \leqslant -t\\\
+\frac{x}{t} &amp;amp;-t &amp;lt; x \leqslant t\\\
+1 &amp;amp;x &amp;gt; t
+\end{cases}
+$$
+are both weak solutions. The first weak solution does not change at all with time, so our intuition might tell us that this solution does not make much physical sense. But what about the second weak solution? At the very least, we need to establish more stringent criteria for our weak solutions in order to pick out the physically relevant solution.&lt;/p>
+&lt;h2 id="13-entropy-solutions-of-conservation-laws">&lt;strong>1.3 Entropy Solutions of Conservation Laws&lt;/strong>&lt;/h2>
+&lt;p>Consider the slightly modified PDE given by
+$$
+\begin{equation}
+\begin{cases}
+u^{(\varepsilon)}_{t} + f(u^{(\varepsilon)})_{x} = \varepsilon u^{(\varepsilon)}_{xx} &amp;amp;\text{in};\mathbb{R} \times (0,\infty)\\\
+u^{(\varepsilon)}(x,0) = u_{0}(x) &amp;amp;\text{on};\mathbb{R} \times \{t=0\}.
+\label{eq:viscosityPDE}
+\end{cases}
+\end{equation}
+$$&lt;/p>
+&lt;p>This PDE is &lt;em>parabolic&lt;/em> and it turns out that the solution $u^{(\varepsilon)}$, if it exists, is smooth and unique.&lt;/p>
+&lt;p>&lt;strong>Definition 2.&lt;/strong> &lt;em>The entropy solution of $\eqref{eq:conslaw}$ is defined as
+$$
+u(x,t) = \lim_{\varepsilon \to 0} u^{(\varepsilon)}(x,t).
+$$
+This limit, if it exists, is unique and is a weak solution of $\eqref{eq:conslaw}$.&lt;/em>&lt;/p>
+&lt;p>Again, this definition is quite difficult to work with, even moreso than the original definition of the weak solution, and we need to establish a more efficient way of verifying whether we have the entropy solution or not. There are alternative definitions based on the notions of &lt;em>entropy flux&lt;/em> and &lt;em>entropy flux functions&lt;/em>, but we&amp;rsquo;ll skip right to the chase here. Thanks to the work of Oleinik and Lax, we have a quick way to identify entropy solutions.&lt;/p>
+&lt;p>&lt;strong>Theorem 2. (Oleinik Entropy Condition)&lt;/strong> &lt;em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+\frac{f(u) - f(u^{-})}{u - u^{-}} \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant \frac{f(u^{+}) - f(u)}{u^{+} - u}
+\label{eq:oleinik}
+\end{equation}
+$$
+for all $u$ between $u^{-}$ and $u^{+}$.&lt;/em>&lt;/p>
+&lt;p>Again, $u^{-}$ and $u^{+}$ denote the values of $u$ on each side of the shock $x(t)$. However, we can simplify $\eqref{eq:oleinik}$ even further if we have a &lt;em>convex&lt;/em> conservation law, which is simply the case when $f(u)$ is convex. For Burgers equation, we have $f(u) = u^{2}/2$, which is indeed convex. The Lax Entropy condition tells us the following.&lt;/p>
+&lt;p>&lt;strong>Theorem 3. (Lax Entropy Condition)&lt;/strong> &lt;em>Suppose the solution of $\eqref{eq:conslaw}$ is piecewise smooth and contains a discontinuity along the curve $x(t)$. Suppose also that $f$ is convex. Then $u$ is the entropy solution if and only if
+$$
+\begin{equation}
+f&amp;rsquo;(u^{-}) \geqslant \frac{f(u^{+}) - f(u^{-})}{u^{+} - u^{-}} \geqslant f&amp;rsquo;(u^{+}).
+\label{eq:lax}
+\end{equation}
+$$
+In particular, $\eqref{eq:lax}$ is equivalent to requiring that $u^{-} &amp;gt; u^{+}$.&lt;/em>&lt;/p>
+&lt;p>The Lax Entropy condition tells us that for convex conservation laws, the value of the weak solution on the left side of the shock ($u^{-}$) must be larger than the value of the solution on the right side of the shock ($u^{+}$) in order for the weak solution to be an entropy solution. The physical intuition behind the entropy solution is related to the entropy of a fluid in gas dynamics: in smooth flows, the entropy remains constant along particle paths, and if the particle crosses a shock, the entropy may only jump to a &lt;em>higher&lt;/em> value. Entropy is inversely proportional to density, and so the density $u$ can only jump to lower values along a shock.&lt;/p>
+&lt;p>We&amp;rsquo;ve spent a lot of time now developing the main ideas of weak solutions for conservation laws. We can concretely define what it means to have discontinuous solutions of $\eqref{eq:conslaw}$ and impose conditions to guarantee the uniqueness of this solution. Great. We can finally move on to numerical methods for solving conservation laws. In developing such schemes, our goal will be to ensure that our scheme converges (in some sense) to the entropy solution.&lt;/p>
+&lt;h2 id="2-monotone-schemes">&lt;strong>2. Monotone Schemes&lt;/strong>&lt;/h2>
+&lt;p>First, a cautionary tale in constructing numerical methods for conservation laws. We consider Burgers equation with the initial condition $u(x,0) = 𝟙_{\{x \geqslant 0\}}$ and the following finite difference scheme:
+$$
+u_{j}^{n+1} = u_{j}^{n} - \frac{\Delta t}{\Delta x} u_{j}^{n}(u_{j}^{n} - u_{j-1}^{n}).
+$$&lt;/p>
+&lt;p>Initially, we have $u_{j}^{0} = 𝟙_{\{x_{j} \geqslant 0\}}$. However, this scheme returns $u_{j}^{n} = u_{j}^{0}$ for all $n$ and $j$, so the scheme converges to $u(x,t) = u(x,0)$. But in the preceding sections, we established that this can&amp;rsquo;t even be a weak solution (indeed, the Rankine-Hugoniot condition is not satisfied).&lt;/p>
+&lt;p>Clearly, we must exercise caution in constructing schemes to solve $\eqref{eq:conslaw}$. We have just seen that a perfectly reasonable-looking finite difference scheme (at least, at first glance) fails to converge to a weak solution, let alone the correct entropy solution. In other cases, it may be possible that a scheme converges to a weak solution but not an entropy solution. We will circle back to this idea shortly.&lt;/p>
+&lt;h2 id="21-the-finite-volume-method">&lt;strong>2.1 The Finite Volume Method&lt;/strong>&lt;/h2>
+&lt;p>We begin by introducing the &lt;strong>finite volume method&lt;/strong>, which discretizes the spatial domain into cells (intervals in 1D, rectangles or other polygons in 2D), and computes an approximation to the average of the solution in each cell. The precise formulation is as follows: consider a bounded, open, connected domain $\Omega = (a,b) \subset \mathbb{R}$ and a finite stopping time $T$, and consider the conservation law given by
+$$
+\begin{equation}
+\begin{cases}
+u_{t} + f(u)_{x} = 0 &amp;amp;\text{in};\Omega \times (0,T)\\\
+u(x,0) = u_{0}(x) &amp;amp;\text{on};\Omega \times \{t=0\}.
+\end{cases}
+\label{eq:conslaw2}
+\end{equation}
+$$&lt;/p>
+&lt;p>We discretize $\Omega$ into equally-sized cells $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$:
+$$
+a = x_{1/ 2} &amp;lt; x_{3/ 2} &amp;lt; \dots &amp;lt; x_{N+1/ 2} = b, ;;;\Delta x := x_{j+1/ 2} - x_{j-1/ 2}.
+$$&lt;/p>
+&lt;p>Next, we integrate $\eqref{eq:conslaw2}$ over each cell $I_{j}$:
+$$
+\begin{align}
+\int_{x_{j-1/ 2}}^{x_{j+1/ 2}} (u_{t} + f(u)_{x});dx &amp;amp;= 0\notag\\\
+\Delta x \frac{d\bar{u}_{j}}{dt} + f(u_{j+1/ 2}^{-}) - f(u_{j-1/ 2}^{+}) &amp;amp;= 0\notag\\\
+\frac{d\bar{u}_{j}}{dt} + \frac{f(u_{j+1/ 2}) - f(u_{j-1/ 2})}{\Delta x} &amp;amp;= 0
+\end{align}
+$$&lt;/p>
+&lt;p>Here, $\bar{u}_{j}$ denotes the cell average of $u$ in cell $I_{j}$: $\bar{u}_{j} := \frac{1}{\Delta x}\int_{I_{j}} u;dx$. If our goal is to solve for the cell averages $\bar{u}_{j}$, you might notice that the second term poses a problem as it is formulated in terms of pointwise values of $u$ at $x_{j-1/ 2}$ and $x_{j+1/ 2}$ rather than $\bar{u}_{j}$. In the first finite volume scheme we consider, we will approximate $u$ in $I_{j} = (x_{j-1/ 2}, x_{j+1/ 2})$ by the cell average $\bar{u}_{j}$ in $I_{j}$.&lt;/p>
+&lt;p>This approximation is not so well defined as the points $x_{j+1/ 2}$, which lie at the intersection between the two cells $I_{j}$ and $I_{j+1}$. The finite volume scheme remedies this by introducing a &lt;em>numerical flux function&lt;/em> which takes as inputs cell averages and returns an approximation of the flux function at the cell endpoints $x_{j+1/ 2}$, i.e. $f(u_{j+1/ 2}) \approx \hat{f}(\bar{u}_{j}, \bar{u}_{j+1})$ and $f(u_{j-1/ 2}) \approx \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})$:
+$$
+\begin{equation}
+\frac{d\bar{u}_{j}}{dt} + \frac{1}{\Delta x}\left(\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) - \hat{f}(\bar{u}_{j-1}, \bar{u}_{j})\right) = 0.
+\label{eq:finitevol}
+\end{equation}
+$$&lt;/p>
+&lt;p>Thus, $\hat{f}$ can be viewed in this context as a function which takes in the dual values at the cell interfaces and returns a single, physically relevant value. This will be important when we try to develop higher order finite volume schemes later.&lt;/p>
+&lt;p>For now, the only thing left to do to turn $\eqref{eq:finitevol}$ into a usable scheme is to discretize the time derivative. The simplest option is to use a first-order finite difference. In doing so, we arrive at the explicit first-order finite volume scheme.&lt;/p>
+&lt;p>&lt;strong>Definition 3.&lt;/strong> &lt;em>The explicit first-order finite volume scheme in space and time is given by
+$$
+\begin{equation}
+\bar{u}_{j}^{n+1} = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right),
+\label{eq:finitevol2}
+\end{equation}
+$$
+where $\bar{u}_{j}^{n}$ denotes the cell averages at time $t^{n}$ and $\bar{u}_{j}^{n+1}$ the cell averages at time $t^{n+1} = t^{n} + \Delta t$.&lt;/em>&lt;/p>
+&lt;p>Notice that we haven&amp;rsquo;t specified what, exactly, the flux function $\hat{f}$ is yet. The choice of $\hat{f}$ is immensely important as it will determine many properties of our scheme, such as convergence to the entropy solution. Before stating some possible choices of $\hat{f}$, we will first cover the properties $\hat{f}$ must satisfy in order to converge to the entropy solution.&lt;/p>
+&lt;p>&lt;strong>Definition 4.&lt;/strong> &lt;em>A&lt;/em> &lt;strong>monotone scheme&lt;/strong> &lt;em>is one that can be written in the form
+$$
+\begin{equation}
+\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}),
+\end{equation}
+$$
+where $\mathcal{H}$ is a nondecreasing function in all arguments. In particular, the monotone scheme on the three-point stencil $\{\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}\}$ is given by $\bar{u}_{j}^{n+1} = \mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$.&lt;/em>&lt;/p>
+&lt;p>This is all well and good, but why should we care about monotone schemes? To begin with, they have a number of remarkable properties that guarantee our numerical solution behaves &amp;ldquo;nicely.&amp;rdquo;&lt;/p>
+&lt;p>&lt;strong>Theorem 4.&lt;/strong> &lt;em>Monotone schemes satisfy the following properties:&lt;/em>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Local maximum principle.&lt;/strong>
+$$
+\min_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} \leqslant \mathcal{H}(\bar{u})_{j} \leqslant \max_{j-p \leqslant i \leqslant j+q} \bar{u}_{i}^{n} ;;;\forall j.
+$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Total variation diminishing property.&lt;/strong>
+$$
+||\mathcal{H}(\bar{u})||_{BV} \leqslant ||\bar{u}||_{BV},
+$$
+&lt;em>where the bounded variation seminorm is given by $||u||_{BV} = \sum_{j} |u_{j} - u_{j-1}|$.&lt;/em>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Entropy solution.&lt;/strong> &lt;em>Monotone schemes converge to the entropy solution with a rate in $\ell^{1}$ of half-order. This bound is sharp.&lt;/em>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>Roughly speaking, the local maximum principle tells us that our cell averages at $t^{n+1}$ cannot be larger or smaller than our averages at $t^{n}$ around the stencil $\{\bar{u}_{j-p}^{n}, \dots, \bar{u}_{j+q}^{n}\}$. The total variation diminishing property tells us that our cell averages can only decrease in bounded variation. In particular, this means that our cell averages at $t^{n+1}$ cannot be more oscillatory than our cell averages at $t^{n}$. We will see soon some schemes which violate this property and tend to produce spurious oscillations in the numerical solution. The last property is of course self-explanatory: by using a monotone scheme, we are guaranteed to converge to the entropy solution!&lt;/p>
+&lt;p>We would like for the finite volume scheme in $\eqref{eq:finitevol2}$ to be a monotone scheme, and our goal now is to choose a function $\hat{f}$ in order to achieve this. We have
+$$
+\mathcal{H}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) = \bar{u}_{j}^{n} - \frac{\Delta t}{\Delta x}\left( \hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right).
+$$&lt;/p>
+&lt;p>$\mathcal{H}$ must be nondecreasing in each argument, so we compute its partial derivatives:
+$$
+\begin{align}
+\mathcal{H}_{1} &amp;amp;= \frac{\Delta t}{\Delta x} \hat{f}_{1}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})\label{eq:monotone1}\\\
+\mathcal{H}_{2} &amp;amp;= 1 - \frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right)\label{eq:monotone2}\\\
+\mathcal{H}_{3} &amp;amp;= -\frac{\Delta t}{\Delta x} \hat{f}_{2}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})\label{eq:monotone3}.
+\end{align}
+$$&lt;/p>
+&lt;p>Here, $\hat{f}_{1}$ denotes the partial derivative of $\hat{f}$ with respect to the first argument, and so on. If $\hat{f}$ is increasing in the first argument and decreasing in the second argument, then $\eqref{eq:monotone1}$ and $\eqref{eq:monotone3}$ will be nonnegative. Furthermore, if
+$$
+\frac{\Delta t}{\Delta x} \left( \hat{f}_{1}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n}) - \hat{f}_{2}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n}) \right) \leqslant 1,
+$$&lt;/p>
+&lt;p>then $\eqref{eq:monotone2}$ will also be nonnegative. This last condition is merely a restriction on our time step. By choosing $\Delta t$ small enough, we can always satisfy this condition. The first two conditions tell us that we merely need to choose our numerical flux function $\hat{f}$ such that it is increasing in its first argument and decreasing in its second argument.&lt;/p>
+&lt;p>&lt;strong>Proposition 1.&lt;/strong> &lt;em>If $\hat{f}$ satifies the following conditions:&lt;/em>&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;em>$\hat{f}$ is Lipschitz continuous in all arguments.&lt;/em>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>$\hat{f}(u,u) = f(u)$. This is known as the consistency condition.&lt;/em>&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;em>$\hat{f}$ is increasing in the first argument and decreasing in the second argument,&lt;/em>&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>&lt;em>then the scheme $\eqref{eq:finitevol2}$ is monotone.&lt;/em>&lt;/p>
+&lt;p>We will not discuss the first two conditions here, but suffice it to say that these properties are very easy to check.&lt;/p>
+&lt;h3 id="211-numerical-flux-functions">&lt;strong>2.1.1 Numerical Flux Functions&lt;/strong>&lt;/h3>
+&lt;p>We will briefly state some common choices of $\hat{f}$ that satisfy the conditions of Proposition 1 and lead to monotone schemes.&lt;/p>
+&lt;ol>
+&lt;li>
+&lt;p>&lt;strong>Lax-Friedrichs flux.&lt;/strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \frac{1}{2}\left( f(u_{j}) + f(u_{j+1}) - \alpha(u_{j+1} - u_{j}) \right),
+\end{equation}
+$$
+where $\alpha = \max_{u} |f&amp;rsquo;(u)|$. We can take $\alpha = \max_{[\bar{u}_{j}, \bar{u}_{j+1}]} |f&amp;rsquo;(u)|$.&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Godunov flux.&lt;/strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+\min_{\bar{u}_{j} \leqslant u \leqslant \bar{u}_{j+1}} f(u), &amp;amp;\bar{u}_{j} \leqslant \bar{u}_{j+1}\\\
+\max_{\bar{u}_{j} \geqslant u \geqslant \bar{u}_{j+1}} f(u), &amp;amp;\bar{u}_{j} &amp;gt; \bar{u}_{j+1}.
+\end{cases}
+\end{equation}
+$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Engquist-Osher flux.&lt;/strong>
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\int_{0}^{\bar{u}_{j}} \max\{f&amp;rsquo;(u),0\};du + \int_{0}^{\bar{u}_{j+1}} \min\{f&amp;rsquo;(u),0\};du.
+\end{align}
+$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;p>There are two more popular choices of flux that do not lead to monotone schemes but are nevertheless still popular.&lt;/p>
+&lt;ol start="4">
+&lt;li>
+&lt;p>&lt;strong>Roe flux.&lt;/strong>
+$$
+\begin{equation}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = \begin{cases}
+f(\bar{u}_{j}), &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} \geqslant 0\\\
+f(\bar{u}_{j+1}), &amp;amp;\frac{f(\bar{u}_{j+1}) - f(\bar{u}_{j})}{\bar{u}_{j+1} - \bar{u}_{j}} &amp;lt; 0.
+\end{cases}
+\end{equation}
+$$&lt;/p>
+&lt;/li>
+&lt;li>
+&lt;p>&lt;strong>Lax-Wendroff flux.&lt;/strong>
+$$
+\begin{align}
+\hat{f}(\bar{u}_{j}, \bar{u}_{j+1}) = &amp;amp;\frac{1}{2}(f(\bar{u}_{j}) + f(\bar{u}_{j+1})) -\notag\\\
+&amp;amp;\frac{\Delta t}{2\Delta x}f&amp;rsquo;\left( \frac{\bar{u}_{j} + \bar{u}_{j+1}}{2}\right) \left( f(\bar{u}_{j+1}) - f(\bar{u}_{j}) \right)
+\end{align}
+$$&lt;/p>
+&lt;/li>
+&lt;/ol>
+&lt;h2 id="22-implementation">&lt;strong>2.2 Implementation&lt;/strong>&lt;/h2>
+&lt;p>Without further ado, we will implement the first-order finite volume method using all five of the aforementioned numerical fluxes for Burgers equation with $u(x,0) = \sin{x}$. All of the source code is publicly available on &lt;a href="https://github.com/jdongg/numCL" target="_blank" rel="noopener">GitHub&lt;/a> in both a MATLAB and Python implementation. For convenience, we will explain the Python implementation here. First, we initialize the parameters of the scheme.&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># specify domain&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">a&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">b&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">2&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">pi&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># initial condition: u(x,0) = alpha + beta*sin(x)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">alpha&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">beta&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">1.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># number of grid points in spatial discretization&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">N&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mi">80&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># setup grid points&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">x&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">linspace&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">dx&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="n">b&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="n">a&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">);&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># stopping time&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">T&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">1.5&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, we compute the cell averages of the initial condition, $\bar{u}_{j}^{0}$. This is accomplished by integrating the initial condiiton over each cell $I_{j}$:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># setup array to store cell averages; due to periodicity, we omit the last cell&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="n">u&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">zeros&lt;/span>&lt;span class="p">((&lt;/span>&lt;span class="nb">len&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">x&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># returns the initial condition of the PDE&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">def&lt;/span> &lt;span class="nf">initial_condition&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">z&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">alpha&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">beta&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">return&lt;/span> &lt;span class="n">alpha&lt;/span> &lt;span class="o">+&lt;/span> &lt;span class="n">beta&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">sin&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">z&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="c1"># compute cell averages at t=0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">for&lt;/span> &lt;span class="n">i&lt;/span> &lt;span class="ow">in&lt;/span> &lt;span class="nb">range&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">N&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">):&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">]&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="p">(&lt;/span>&lt;span class="mf">1.0&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="p">)&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="n">integrate&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">quad&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">initial_condition&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">x&lt;/span>&lt;span class="p">[&lt;/span>&lt;span class="n">i&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">],&lt;/span> &lt;span class="n">args&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">alpha&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="n">beta&lt;/span>&lt;span class="p">))[&lt;/span>&lt;span class="mi">0&lt;/span>&lt;span class="p">]&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Next, we must choose an appropriate time step for the scheme. Since we are using an explicit time-stepping scheme, we must choose an appropriately small time step (recall that explicit time-stepping is conditionally stable). For the purposes of example, we choose
+$$
+\frac{\Delta t}{\Delta x} \max_{u} |f&amp;rsquo;(u)| = \frac{1}{2}.
+$$&lt;/p>
+&lt;p>The last step is to perform the time-stepping, whereby for each time step we must compute the numerical fluxes $\hat{f}(\bar{u}_{j}^{n}, \bar{u}_{j+1}^{n})$ and $\hat{f}(\bar{u}_{j-1}^{n}, \bar{u}_{j}^{n})$:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="mf">0.0&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">while&lt;/span> &lt;span class="n">t&lt;/span> &lt;span class="o">&amp;lt;&lt;/span> &lt;span class="n">T&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># alpha for the Lax-Friedrichs flux&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">A&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amax&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">amax&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">));&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute numerical fluxes fhat_{j+1/2}&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">um&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">u&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">up&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">u&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="o">-&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fR&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">lf_flux&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">um&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">up&lt;/span>&lt;span class="p">,&lt;/span> &lt;span class="n">A&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># compute numerical fluxes fhat_{j-1/2} (assuming periodic BCs)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">fL&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">np&lt;/span>&lt;span class="o">.&lt;/span>&lt;span class="n">roll&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span>&lt;span class="p">,&lt;/span>&lt;span class="mi">1&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># first order explicit time-stepping&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">u&lt;/span> &lt;span class="o">-=&lt;/span> &lt;span class="n">dt&lt;/span>&lt;span class="o">/&lt;/span>&lt;span class="n">dx&lt;/span>&lt;span class="o">*&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="n">fR&lt;/span> &lt;span class="o">-&lt;/span> &lt;span class="n">fL&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="c1"># increment time step&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="n">t&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="n">t&lt;/span>&lt;span class="o">+&lt;/span>&lt;span class="n">dt&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Each of the numerical fluxes in Section 2.1.1 have been implemented and can be viewed on &lt;a href="https://github.com/jdongg/numCL" target="_blank" rel="noopener">GitHub&lt;/a>. Figure 2 shows the finite volume solutions at $T=1.5$.&lt;/p>
+&lt;figure id="figure-figure-2-solution-of-burgers-equation-with-sine-initial-data-using-the-first-order-finite-volume-method">
+&lt;div class="d-flex justify-content-center">
+&lt;div class="w-100" >&lt;img alt="**Figure 2:** Solution of Burgers equation with sine initial data using the first-order finite volume method." srcset="
+/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_ed13937a009d03abc2b1bca94414c2df.webp 400w,
+/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_278e562f9606b727c9ab336afefbe866.webp 760w,
+/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+src="https://jdongg.github.io/post/conservation-laws-1/gallery/finiteVolumeBurgers_hu943ed7bb929b54bdd1c7b614ced40c3b_85994_ed13937a009d03abc2b1bca94414c2df.webp"
+width="760"
+height="535"
+loading="lazy" data-zoomable />&lt;/div>
+&lt;/div>&lt;figcaption>
+&lt;strong>Figure 2:&lt;/strong> Solution of Burgers equation with sine initial data using the first-order finite volume method.
+&lt;/figcaption>&lt;/figure>
+&lt;p>The first observation we make is that there is little difference between the Roe, Godunov, and Engquist-Osher fluxes, at least for this example problem. The Godunov and Engquist-Osher fluxes lead to monotone schemes which converge to the entropy solution. The Roe flux does not lead to a monotone scheme, and in very rare cases may provide solutions with the incorrect shock speed. Nevertheless, in most cases the Roe scheme works well and is a popular choice for the numerical flux.&lt;/p>
+&lt;p>Next, the Lax-Friedrichs flux is noticeably more dissipative than any of the other results. It is known to &amp;ldquo;smear&amp;rdquo; discontinuities and add numerical diffusion. However, the Lax-Friedrichs flux is a very popular choice for the numerical flux since it leads to a monotone scheme and is straightforward to implement.&lt;/p>
+&lt;p>Lastly, the Lax-Wendroff flux is&amp;hellip;problematic, to say the least. Notice that the numerical solution develops spurious (nonphysical) oscillations in the vicinity of the shock at $x=\pi$. If the Lax-Wendroff scheme converges, it converges to a weak solution, but the scheme is not monotone and does not exhibit the total variation-diminishing (TVD) property. Lax-Wendroff is actually a &lt;em>second-order method&lt;/em> in disguise, but we&amp;rsquo;ll discuss this much later and how the order of a numerical method is related to the TVD property for conservation laws.&lt;/p>
+&lt;h2 id="3-key-takeaways">&lt;strong>3. Key Takeaways&lt;/strong>&lt;/h2>
+&lt;p>If I haven&amp;rsquo;t bored you to death by this point, you should have a basic understanding of weak solutions for conservation laws and the mathematical foundations for discontinuous solutions. The study of such solutions is important because they occur frequently in fluid dynamics and other related fields. You should also be able to implement a basic first-order finite volume scheme for a variety of one-dimensional conservation laws.&lt;/p>
+&lt;p>We&amp;rsquo;ve only covered first-order schemes in this post, and you might have already guessed that these methods converge too slowly to be of much use for practical problems. Next time, we&amp;rsquo;ll cover higher order finite volume methods for conservation laws and touch on some of the theory regarding higher-order methods (remember how I said the Lax-Wendroff flux actually yields a second-order method? We&amp;rsquo;ll circle back to that soon). Unfortunately, there&amp;rsquo;s no free lunch and higher order methods come with their own set of issues.&lt;/p>
+&lt;p>Below are two texts by Randy LeVeque which are helpful in fleshing out much of the details of the Theorems given in this post. I&amp;rsquo;ve found them to be immensely helpful in my Ph.D. studies.&lt;/p>
+&lt;h3 id="references">&lt;strong>References&lt;/strong>&lt;/h3>
+&lt;p>[1] LeVeque, Randall J. &lt;a href="http://staff.washington.edu/rjl/book2/sample.pdf" target="_blank" rel="noopener">Finite volume methods for hyperbolic problems&lt;/a>. Vol. 31. Cambridge university press, 2002.&lt;/p>
+&lt;p>[2] LeVeque, Randall J. &lt;a href="https://pdfs.semanticscholar.org/1470/c6f43c769572c4cfc94ffc9c5710484ff1e5.pdf" target="_blank" rel="noopener">Numerical methods for conservation laws&lt;/a>. Vol. 132. Basel: Birkhäuser, 1992.&lt;/p>
+&lt;h3 id="codes">&lt;strong>Codes&lt;/strong>&lt;/h3>
+&lt;p>&lt;a href="https://github.com/jdongg/numCL" target="_blank" rel="noopener">NumCL repository on GitHub&lt;/a>&lt;/p></description></item><item><title>Slides</title><link>https://jdongg.github.io/slides/example/</link><pubDate>Tue, 05 Feb 2019 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/slides/example/</guid><description>&lt;h1 id="create-slides-in-markdown-with-wowchemy">Create slides in Markdown with Wowchemy&lt;/h1>
+&lt;p>&lt;a href="https://wowchemy.com/" target="_blank" rel="noopener">Wowchemy&lt;/a> | &lt;a href="https://wowchemy.com/docs/content/slides/" target="_blank" rel="noopener">Documentation&lt;/a>&lt;/p>
+&lt;hr>
+&lt;h2 id="features">Features&lt;/h2>
+&lt;ul>
+&lt;li>Efficiently write slides in Markdown&lt;/li>
+&lt;li>3-in-1: Create, Present, and Publish your slides&lt;/li>
+&lt;li>Supports speaker notes&lt;/li>
+&lt;li>Mobile friendly slides&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="controls">Controls&lt;/h2>
+&lt;ul>
+&lt;li>Next: &lt;code>Right Arrow&lt;/code> or &lt;code>Space&lt;/code>&lt;/li>
+&lt;li>Previous: &lt;code>Left Arrow&lt;/code>&lt;/li>
+&lt;li>Start: &lt;code>Home&lt;/code>&lt;/li>
+&lt;li>Finish: &lt;code>End&lt;/code>&lt;/li>
+&lt;li>Overview: &lt;code>Esc&lt;/code>&lt;/li>
+&lt;li>Speaker notes: &lt;code>S&lt;/code>&lt;/li>
+&lt;li>Fullscreen: &lt;code>F&lt;/code>&lt;/li>
+&lt;li>Zoom: &lt;code>Alt + Click&lt;/code>&lt;/li>
+&lt;li>&lt;a href="https://revealjs.com/pdf-export/" target="_blank" rel="noopener">PDF Export&lt;/a>&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="code-highlighting">Code Highlighting&lt;/h2>
+&lt;p>Inline code: &lt;code>variable&lt;/code>&lt;/p>
+&lt;p>Code block:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-python" data-lang="python">&lt;span class="line">&lt;span class="cl">&lt;span class="n">porridge&lt;/span> &lt;span class="o">=&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">if&lt;/span> &lt;span class="n">porridge&lt;/span> &lt;span class="o">==&lt;/span> &lt;span class="s2">&amp;#34;blueberry&amp;#34;&lt;/span>&lt;span class="p">:&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="nb">print&lt;/span>&lt;span class="p">(&lt;/span>&lt;span class="s2">&amp;#34;Eating...&amp;#34;&lt;/span>&lt;span class="p">)&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="math">Math&lt;/h2>
+&lt;p>In-line math: $x + y = z$&lt;/p>
+&lt;p>Block math:&lt;/p>
+&lt;p>$$
+f\left( x \right) = ;\frac{{2\left( {x + 4} \right)\left( {x - 4} \right)}}{{\left( {x + 4} \right)\left( {x + 1} \right)}}
+$$&lt;/p>
+&lt;hr>
+&lt;h2 id="fragments">Fragments&lt;/h2>
+&lt;p>Make content appear incrementally&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-fallback" data-lang="fallback">&lt;span class="line">&lt;span class="cl">{{% fragment %}} One {{% /fragment %}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{% fragment %}} **Two** {{% /fragment %}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{% fragment %}} Three {{% /fragment %}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Press &lt;code>Space&lt;/code> to play!&lt;/p>
+&lt;span class="fragment " >
+One
+&lt;/span>
+&lt;span class="fragment " >
+&lt;strong>Two&lt;/strong>
+&lt;/span>
+&lt;span class="fragment " >
+Three
+&lt;/span>
+&lt;hr>
+&lt;p>A fragment can accept two optional parameters:&lt;/p>
+&lt;ul>
+&lt;li>&lt;code>class&lt;/code>: use a custom style (requires definition in custom CSS)&lt;/li>
+&lt;li>&lt;code>weight&lt;/code>: sets the order in which a fragment appears&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;h2 id="speaker-notes">Speaker Notes&lt;/h2>
+&lt;p>Add speaker notes to your presentation&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">{{% speaker_note %}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> Only the speaker can read these notes
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="k">-&lt;/span> Press &lt;span class="sb">`S`&lt;/span> key to view
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> {{% /speaker_note %}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;p>Press the &lt;code>S&lt;/code> key to view the speaker notes!&lt;/p>
+&lt;aside class="notes">
+&lt;ul>
+&lt;li>Only the speaker can read these notes&lt;/li>
+&lt;li>Press &lt;code>S&lt;/code> key to view&lt;/li>
+&lt;/ul>
+&lt;/aside>
+&lt;hr>
+&lt;h2 id="themes">Themes&lt;/h2>
+&lt;ul>
+&lt;li>black: Black background, white text, blue links (default)&lt;/li>
+&lt;li>white: White background, black text, blue links&lt;/li>
+&lt;li>league: Gray background, white text, blue links&lt;/li>
+&lt;li>beige: Beige background, dark text, brown links&lt;/li>
+&lt;li>sky: Blue background, thin dark text, blue links&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;ul>
+&lt;li>night: Black background, thick white text, orange links&lt;/li>
+&lt;li>serif: Cappuccino background, gray text, brown links&lt;/li>
+&lt;li>simple: White background, black text, blue links&lt;/li>
+&lt;li>solarized: Cream-colored background, dark green text, blue links&lt;/li>
+&lt;/ul>
+&lt;hr>
+&lt;section data-noprocess data-shortcode-slide
+data-background-image="/media/boards.jpg"
+>
+&lt;h2 id="custom-slide">Custom Slide&lt;/h2>
+&lt;p>Customize the slide style and background&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-markdown" data-lang="markdown">&lt;span class="line">&lt;span class="cl">{{&lt;span class="p">&amp;lt;&lt;/span> &lt;span class="nt">slide&lt;/span> &lt;span class="na">background-image&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;/media/boards.jpg&amp;#34;&lt;/span> &lt;span class="p">&amp;gt;&lt;/span>}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&lt;span class="p">&amp;lt;&lt;/span> &lt;span class="nt">slide&lt;/span> &lt;span class="na">background-color&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;#0000FF&amp;#34;&lt;/span> &lt;span class="p">&amp;gt;&lt;/span>}}
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">{{&lt;span class="p">&amp;lt;&lt;/span> &lt;span class="nt">slide&lt;/span> &lt;span class="na">class&lt;/span>&lt;span class="o">=&lt;/span>&lt;span class="s">&amp;#34;my-style&amp;#34;&lt;/span> &lt;span class="p">&amp;gt;&lt;/span>}}
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h2 id="custom-css-example">Custom CSS Example&lt;/h2>
+&lt;p>Let&amp;rsquo;s make headers navy colored.&lt;/p>
+&lt;p>Create &lt;code>assets/css/reveal_custom.css&lt;/code> with:&lt;/p>
+&lt;div class="highlight">&lt;pre tabindex="0" class="chroma">&lt;code class="language-css" data-lang="css">&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">reveal&lt;/span> &lt;span class="nt">section&lt;/span> &lt;span class="nt">h1&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">reveal&lt;/span> &lt;span class="nt">section&lt;/span> &lt;span class="nt">h2&lt;/span>&lt;span class="o">,&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">.&lt;/span>&lt;span class="nc">reveal&lt;/span> &lt;span class="nt">section&lt;/span> &lt;span class="nt">h3&lt;/span> &lt;span class="p">{&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl"> &lt;span class="k">color&lt;/span>&lt;span class="p">:&lt;/span> &lt;span class="kc">navy&lt;/span>&lt;span class="p">;&lt;/span>
+&lt;/span>&lt;/span>&lt;span class="line">&lt;span class="cl">&lt;span class="p">}&lt;/span>
+&lt;/span>&lt;/span>&lt;/code>&lt;/pre>&lt;/div>&lt;hr>
+&lt;h1 id="questions">Questions?&lt;/h1>
+&lt;p>&lt;a href="https://discord.gg/z8wNYzb" target="_blank" rel="noopener">Ask&lt;/a>&lt;/p>
+&lt;p>&lt;a href="https://wowchemy.com/docs/content/slides/" target="_blank" rel="noopener">Documentation&lt;/a>&lt;/p></description></item><item><title>A semi-implicit method for incompressible three-phase flow in porous media</title><link>https://jdongg.github.io/publication/compgeo-article/</link><pubDate>Fri, 12 Aug 2016 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/publication/compgeo-article/</guid><description>&lt;p>.&lt;/p></description></item><item><title>Example Project</title><link>https://jdongg.github.io/project/example/</link><pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/project/example/</guid><description>&lt;p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis posuere tellus ac convallis placerat. Proin tincidunt magna sed ex sollicitudin condimentum. Sed ac faucibus dolor, scelerisque sollicitudin nisi. Cras purus urna, suscipit quis sapien eu, pulvinar tempor diam. Quisque risus orci, mollis id ante sit amet, gravida egestas nisl. Sed ac tempus magna. Proin in dui enim. Donec condimentum, sem id dapibus fringilla, tellus enim condimentum arcu, nec volutpat est felis vel metus. Vestibulum sit amet erat at nulla eleifend gravida.&lt;/p>
+&lt;p>Nullam vel molestie justo. Curabitur vitae efficitur leo. In hac habitasse platea dictumst. Sed pulvinar mauris dui, eget varius purus congue ac. Nulla euismod, lorem vel elementum dapibus, nunc justo porta mi, sed tempus est est vel tellus. Nam et enim eleifend, laoreet sem sit amet, elementum sem. Morbi ut leo congue, maximus velit ut, finibus arcu. In et libero cursus, rutrum risus non, molestie leo. Nullam congue quam et volutpat malesuada. Sed risus tortor, pulvinar et dictum nec, sodales non mi. Phasellus lacinia commodo laoreet. Nam mollis, erat in feugiat consectetur, purus eros egestas tellus, in auctor urna odio at nibh. Mauris imperdiet nisi ac magna convallis, at rhoncus ligula cursus.&lt;/p>
+&lt;p>Cras aliquam rhoncus ipsum, in hendrerit nunc mattis vitae. Duis vitae efficitur metus, ac tempus leo. Cras nec fringilla lacus. Quisque sit amet risus at ipsum pharetra commodo. Sed aliquam mauris at consequat eleifend. Praesent porta, augue sed viverra bibendum, neque ante euismod ante, in vehicula justo lorem ac eros. Suspendisse augue libero, venenatis eget tincidunt ut, malesuada at lorem. Donec vitae bibendum arcu. Aenean maximus nulla non pretium iaculis. Quisque imperdiet, nulla in pulvinar aliquet, velit quam ultrices quam, sit amet fringilla leo sem vel nunc. Mauris in lacinia lacus.&lt;/p>
+&lt;p>Suspendisse a tincidunt lacus. Curabitur at urna sagittis, dictum ante sit amet, euismod magna. Sed rutrum massa id tortor commodo, vitae elementum turpis tempus. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean purus turpis, venenatis a ullamcorper nec, tincidunt et massa. Integer posuere quam rutrum arcu vehicula imperdiet. Mauris ullamcorper quam vitae purus congue, quis euismod magna eleifend. Vestibulum semper vel augue eget tincidunt. Fusce eget justo sodales, dapibus odio eu, ultrices lorem. Duis condimentum lorem id eros commodo, in facilisis mauris scelerisque. Morbi sed auctor leo. Nullam volutpat a lacus quis pharetra. Nulla congue rutrum magna a ornare.&lt;/p>
+&lt;p>Aliquam in turpis accumsan, malesuada nibh ut, hendrerit justo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Quisque sed erat nec justo posuere suscipit. Donec ut efficitur arcu, in malesuada neque. Nunc dignissim nisl massa, id vulputate nunc pretium nec. Quisque eget urna in risus suscipit ultricies. Pellentesque odio odio, tincidunt in eleifend sed, posuere a diam. Nam gravida nisl convallis semper elementum. Morbi vitae felis faucibus, vulputate orci placerat, aliquet nisi. Aliquam erat volutpat. Maecenas sagittis pulvinar purus, sed porta quam laoreet at.&lt;/p></description></item><item><title>External Project</title><link>https://jdongg.github.io/project/external-project/</link><pubDate>Wed, 27 Apr 2016 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/project/external-project/</guid><description/></item><item><title>Three-phase flow simulations in one dimension</title><link>https://jdongg.github.io/publication/undergrad-paper/</link><pubDate>Tue, 18 Mar 2014 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/publication/undergrad-paper/</guid><description/></item><item><title/><link>https://jdongg.github.io/admin/config.yml</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://jdongg.github.io/admin/config.yml</guid><description/></item></channel></rss>
