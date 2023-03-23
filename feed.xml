@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/al-folio/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/al-folio/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-03-23T02:28:40-04:00</updated><id>http://localhost:4000/al-folio/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
-</subtitle><entry><title type="html">Numerical methods for conservation laws (part 2)</title><link href="http://localhost:4000/al-folio/blog/2019/conservationlaws2/" rel="alternate" type="text/html" title="Numerical methods for conservation laws (part 2)" /><published>2019-05-25T11:12:00-04:00</published><updated>2019-05-25T11:12:00-04:00</updated><id>http://localhost:4000/al-folio/blog/2019/conservationlaws2</id><content type="html" xml:base="http://localhost:4000/al-folio/blog/2019/conservationlaws2/"><![CDATA[<h1 id="1-high-order-finite-volume-methods"><strong>1. High Order Finite Volume Methods</strong></h1>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="4.3.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2023-03-23T02:33:33-04:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Numerical methods for conservation laws (part 2)</title><link href="http://localhost:4000/blog/2019/conservationlaws2/" rel="alternate" type="text/html" title="Numerical methods for conservation laws (part 2)" /><published>2019-05-25T11:12:00-04:00</published><updated>2019-05-25T11:12:00-04:00</updated><id>http://localhost:4000/blog/2019/conservationlaws2</id><content type="html" xml:base="http://localhost:4000/blog/2019/conservationlaws2/"><![CDATA[<h1 id="1-high-order-finite-volume-methods"><strong>1. High Order Finite Volume Methods</strong></h1>
 
 <p>Last time, we established that the explicit first order finite volume scheme is given by
 \(\begin{equation}
@@ -20,13 +20,13 @@
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/reconstruction0-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/reconstruction0-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/reconstruction0-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/reconstruction0-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/reconstruction0-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/reconstruction0-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/reconstruction0.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/reconstruction0.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -64,13 +64,13 @@
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/reconstruction2-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/reconstruction2-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/reconstruction2-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/reconstruction2-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/reconstruction2-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/reconstruction2-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/reconstruction2.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/reconstruction2.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -183,13 +183,13 @@ def polynomial_reconstruction(u):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/fv3bad.gif-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/fv3bad.gif-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/fv3bad.gif-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/fv3bad.gif-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/fv3bad.gif-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/fv3bad.gif-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/fv3bad.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/fv3bad.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -219,13 +219,13 @@ def polynomial_reconstruction(u):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3bad-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3bad-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3bad-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/convergencefv3bad-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/convergencefv3bad-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/convergencefv3bad-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/convergencefv3bad.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/convergencefv3bad.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -371,13 +371,13 @@ def minmod(a, b, c):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/fv3muscl.gif-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/fv3muscl.gif-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/fv3muscl.gif-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/fv3muscl.gif-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/fv3muscl.gif-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/fv3muscl.gif-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/fv3muscl.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/fv3muscl.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -409,13 +409,13 @@ def minmod(a, b, c):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3muscl-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3muscl-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3muscl-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/convergencefv3muscl-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/convergencefv3muscl-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/convergencefv3muscl-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/convergencefv3muscl.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/convergencefv3muscl.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -486,13 +486,13 @@ def minmod2(a, b, c, dx, M):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3tvb-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3tvb-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw2/convergencefv3tvb-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw2/convergencefv3tvb-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw2/convergencefv3tvb-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw2/convergencefv3tvb-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw2/convergencefv3tvb.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw2/convergencefv3tvb.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -527,7 +527,7 @@ def minmod2(a, b, c, dx, M):
 <ul>
   <li><a href="https://github.com/jdongg/numCL">NumCL repository on GitHub</a></li>
   <li>Figures 1 and 2 were created using <a href="https://www.mathcha.io/">Mathcha</a>, an online math editor with a convenient GUI that even allows you to export figures to TikZ.</li>
-</ul>]]></content><author><name>Justin Dong</name></author><category term="numerical-methods" /><category term="finite-volume-method," /><category term="hyperbolic-conservation-laws" /><summary type="html"><![CDATA[1. High Order Finite Volume Methods]]></summary></entry><entry><title type="html">Numerical methods for conservation laws (part 1)</title><link href="http://localhost:4000/al-folio/blog/2019/conservationlaws1/" rel="alternate" type="text/html" title="Numerical methods for conservation laws (part 1)" /><published>2019-05-15T11:12:00-04:00</published><updated>2019-05-15T11:12:00-04:00</updated><id>http://localhost:4000/al-folio/blog/2019/conservationlaws1</id><content type="html" xml:base="http://localhost:4000/al-folio/blog/2019/conservationlaws1/"><![CDATA[<h1 id="1-conservation-laws"><strong>1. Conservation Laws</strong></h1>
+</ul>]]></content><author><name>Justin Dong</name></author><category term="numerical-methods" /><category term="finite-volume-method," /><category term="hyperbolic-conservation-laws" /><summary type="html"><![CDATA[1. High Order Finite Volume Methods]]></summary></entry><entry><title type="html">Numerical methods for conservation laws (part 1)</title><link href="http://localhost:4000/blog/2019/conservationlaws1/" rel="alternate" type="text/html" title="Numerical methods for conservation laws (part 1)" /><published>2019-05-15T11:12:00-04:00</published><updated>2019-05-15T11:12:00-04:00</updated><id>http://localhost:4000/blog/2019/conservationlaws1</id><content type="html" xml:base="http://localhost:4000/blog/2019/conservationlaws1/"><![CDATA[<h1 id="1-conservation-laws"><strong>1. Conservation Laws</strong></h1>
 
 <p>In this post, we’ll take a look at conservation laws, the contexts in which they arise in nature, and some of the numerical methods used for solving them. In one spatial-dimension, conservation laws take the general form</p>
 
@@ -572,13 +572,13 @@ def minmod2(a, b, c, dx, M):
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw1/burgers.gif-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw1/burgers.gif-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw1/burgers.gif-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw1/burgers.gif-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw1/burgers.gif-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw1/burgers.gif-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw1/burgers.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw1/burgers.gif" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
@@ -951,13 +951,13 @@ while t &lt; T:
 
   <picture>
     
-    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/al-folio/assets/img/conslaw1/finiteVolumeBurgers-480.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/al-folio/assets/img/conslaw1/finiteVolumeBurgers-800.webp" />
-    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/al-folio/assets/img/conslaw1/finiteVolumeBurgers-1400.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/conslaw1/finiteVolumeBurgers-480.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/conslaw1/finiteVolumeBurgers-800.webp" />
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/conslaw1/finiteVolumeBurgers-1400.webp" />
     
 
     <!-- Fallback to the original file -->
-    <img src="/al-folio/assets/img/conslaw1/finiteVolumeBurgers.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
+    <img src="/assets/img/conslaw1/finiteVolumeBurgers.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();" />
 
   </picture>
 
