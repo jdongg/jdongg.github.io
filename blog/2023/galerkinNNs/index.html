@@ -301,7 +301,7 @@
               <li><a href="#i-riesz-representation-of-weak-residuals">I. Riesz Representation of Weak Residuals</a></li>
               <li><a href="#ii-learning-a-basis-function">II. Learning a Basis Function</a></li>
               <li><a href="#iii-adaptive-subspace-generation">III. Adaptive Subspace Generation</a></li>
-              <li><a href="#iv-implementation">IV. Implementation</a></li>
+              <li><a href="#iv-implementation-details">IV. Implementation Details</a></li>
               
             </ul>
 <div><a href="#5-numerical-examples">5. Numerical Examples</a></div>
@@ -960,7 +960,60 @@
 
 <p>For all examples here, we use a <a href="https://en.wikipedia.org/wiki/Gauss%E2%80%93Legendre_quadrature" rel="external nofollow noopener" target="_blank">Gauss-Legendre</a> quadrature rule in which the nodes and weights are obtained from Legendre polynomials.</p>
 
-<p>To perform the numerical optimization, we use a hybrid first-order least squares optimization approach. This approach considers the weights of the activation layer (i.e. the parameters \(c\) in \eqref{eq:Vn}) to be expansion coefficients of the nonlinear basis \(\sigma\). It’s similar in concept to nonlinear least squares methods such as <a href="https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm" rel="external nofollow noopener" target="_blank">Levenberg-Marquardt</a> which</p>
+<p>To perform the numerical optimization, we use a hybrid first-order least squares optimization approach. This approach considers the weights of the activation layer (i.e. the parameters \(c\) in \eqref{eq:Vn}) to be expansion coefficients of the nonlinear basis \(\sigma\). It’s similar in concept to nonlinear least squares methods such as <a href="https://en.wikipedia.org/wiki/Levenberg%E2%80%93Marquardt_algorithm" rel="external nofollow noopener" target="_blank">Levenberg-Marquardt</a> which obtain \(c\) by solving a linear least squares system.</p>
+
+<p>In [[3]] we proposed the following training procedure. We update the hidden parameters using a gradient-based optimizer such as gradient descent:</p>
+
+\[\begin{align}
+  W &amp;\leftarrow W + \lambda \nabla_{W}\left[ \frac{\langle r(u_{i-1}),v(\cdot;\theta) \rangle}{\vert\vert\vert v(\cdot;\theta) \vert\vert\vert} \right]\notag\\
+  b &amp;\leftarrow b + \lambda \nabla_{b}\left[ \frac{\langle r(u_{i-1}),v(\cdot;\theta) \rangle}{\vert\vert\vert v(\cdot;\theta) \vert\vert\vert} \right].\notag\\
+\end{align}\]
+
+<p>The linear parameters are updated according to the least squares solve:</p>
+
+\[\begin{align}
+  \begin{cases}
+    c \leftarrow \text{argmin}_{c \in \mathbb{R}^{n}} \|Ac-F\|_{\ell^{2}}\notag\\
+    A_{k\ell} = a(\sigma_{k}, \sigma_{\ell}), \;\;\;F_{k} = L(\sigma_{k}) - a(u_{i-1},\sigma_{k})\\
+    \sigma_{k} := \sigma((\cdot)\cdot W_{k} + b_{k}).
+  \end{cases}
+\end{align}\]
+
+<p>This linear system is equivalent to taking the orthogonal projection of the Riesz representation \(u-u_{i-1}\) with respect to \(a(\cdot,\cdot)\) onto the space \(\text{span}\{\sigma(x\cdot W_{i}+b_{i})\}_{i=1}^{n}\).</p>
+
+<p>Lastly, there is the matter of how to initialize the parameters \(W\) and \(b\). In computer vision applications, it’s common to draw values of \(W\) and \(b\) from a probability distribution (often uniform or Gaussian with mean and variance depending in some way on the width of the layer). These initializers are sometimes not optimal for function and PDE approximation. In [[8]], the authors propose a new initializer (the “box initialization”) which distributes the hyperplanes of the network more evenly throughout the computational domain \(\Omega\). While this initialization was developed for very deep ResNets, it is sufficient for our very shallow networks.</p>
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+    </div>
+    <div class="col-10">
+      <figure>
+
+  <picture>
+    
+    <source class="responsive-img-srcset" media="(max-width: 480px)" srcset="/assets/img/gnn/box-480.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 800px)" srcset="/assets/img/gnn/box-800.webp"></source>
+    <source class="responsive-img-srcset" media="(max-width: 1400px)" srcset="/assets/img/gnn/box-1400.webp"></source>
+    
+
+    <!-- Fallback to the original file -->
+    <img src="/assets/img/gnn/box.png" class="img rounded z-depth-1" width="auto" height="auto" onerror="this.onerror=null; $('.responsive-img-srcset').remove();">
+
+  </picture>
+
+</figure>
+
+      <div class="caption">
+        <b>Figure 6 (from [[8]]):</b> Hyperplanes $x\cdot W_{i} + b_{i}$ for the box initialization vs. several standard initializers in the unit square.
+      </div> 
+    </div>
+    <div class="col">
+    </div>
+  </div>
+</div>
+
+<p>A full implementation (using Google’s Jax framework) for some simple 1D and 2D problems is provided on my <a href="https://github.com/jdongg" rel="external nofollow noopener" target="_blank">GitHub</a>. The rest of this post will be dedicated to showcasing more numerical examples.</p>
 
 <h1 id="5-numerical-examples"><strong>5. Numerical Examples</strong></h1>
 
@@ -1362,6 +1415,8 @@
   </div> 
 </div>
 
+<h2 id="ii-poisson-equation-with-line-source-data"><strong>II. Poisson Equation with Line Source Data</strong></h2>
+
 <h1 id="6-key-takeaways"><strong>6. Key Takeaways</strong></h1>
 
 <h1 id="7-references"><strong>7. References</strong></h1>
@@ -1381,8 +1436,8 @@
 
 <h1 id="8-codes--resources"><strong>8. Codes &amp; Resources</strong></h1>
 <ul>
-  <li><a href="https://github.com/jdongg/numCL" rel="external nofollow noopener" target="_blank">NumCL repository on GitHub</a></li>
-  <li>Figures 1 and 2 were created using <a href="https://www.mathcha.io/" rel="external nofollow noopener" target="_blank">Mathcha</a>, an online math editor with a convenient GUI that even allows you to export figures to TikZ.</li>
+  <li><a href="https://github.com/jdongg/numCL" rel="external nofollow noopener" target="_blank">GalerkinNN repository on GitHub</a></li>
+  <li>All figures in this post were generated by me unless otherwise noted.</li>
 </ul>
 
       </d-article>
